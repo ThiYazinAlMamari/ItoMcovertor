@@ -1,0 +1,19 @@
+/* Converted unit styling */
+.unit-converted {
+  position: relative;
+  cursor: help;
+  border-bottom: 1px dotted #4a90d9;
+}
+
+.unit-badge {
+  display: inline-block;
+  margin-left: 3px;
+  padding: 1px 4px;
+  font-size: 0.75em;
+  font-weight: 600;
+  color: #fff;
+  background: #4a90d9;
+  border-radius: 3px;
+  vertical-align: super;
+  line-height: 1;
+}
