@@ -1,18 +1,62 @@
 // Default settings
 const DEFAULT_SETTINGS = {
   enabledUnits: {
+    // Length
     'length-feet-inch': true,
     'length-inch': true,
     'length-feet': true,
+    'length-yards': true,
     'length-miles': true,
+    'length-nmi': true,
+    'length-mm': true,
+    'length-cm': true,
+    'length-m': true,
+    'length-km': true,
+    // Area
     'area-sqin': true,
     'area-sqft': true,
+    'area-sqyd': true,
+    'area-sqmi': true,
     'area-acres': true,
+    'area-sqcm': true,
+    'area-sqm': true,
+    'area-sqkm': true,
+    'area-ha': true,
+    // Volume
+    'volume-cuin': true,
+    'volume-cuft': true,
     'volume-cuyd': true,
-    'weight': true,
+    'volume-floz': true,
+    'volume-tsp': true,
+    'volume-tbsp': true,
+    'volume-cups': true,
+    'volume-pints': true,
+    'volume-quarts': true,
+    'volume-gallons': true,
+    'volume-cucm': true,
+    'volume-cum': true,
+    'volume-ml': true,
+    'volume-l': true,
+    // Weight
+    'weight-oz': true,
+    'weight-lbs': true,
+    'weight-stone': true,
+    'weight-long-tons': true,
     'weight-tons': true,
-    'volume': true,
-    'temperature': true
+    'weight-g': true,
+    'weight-kg': true,
+    'weight-tonnes': true,
+    // Speed
+    'speed-mph': true,
+    'speed-knots': true,
+    'speed-kmh': true,
+    // Pressure
+    'pressure-psi': true,
+    'pressure-kpa': true,
+    'pressure-bar': true,
+    // Temperature
+    'temperature': true,
+    'temperature-k': true
   },
   displayMode: 'replace',
   precision: 2,

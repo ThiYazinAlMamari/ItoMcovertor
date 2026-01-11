@@ -47,7 +47,44 @@ h2 {
 .checkbox-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.checkbox-group::-webkit-scrollbar {
+  width: 6px;
+}
+
+.checkbox-group::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 3px;
+}
+
+.checkbox-group::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.checkbox-group::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+
+.unit-category {
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  padding-top: 8px;
+  border-top: 1px solid #eee;
+}
+
+.unit-category:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
 }
 
 .checkbox-group label {
