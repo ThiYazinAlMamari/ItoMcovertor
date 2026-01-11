@@ -58,6 +58,14 @@ const DEFAULT_SETTINGS = {
     'temperature': true,
     'temperature-k': true
   },
+  targetUnits: {
+    // Area target unit preferences
+    'area-sqin': 'cm²',
+    'area-sqft': 'm²',
+    'area-sqyd': 'm²',
+    'area-sqmi': 'km²',
+    'area-acres': 'ha'
+  },
   displayMode: 'replace',
   precision: 2,
   badgeColor: '#4a90d9',
@@ -66,6 +74,7 @@ const DEFAULT_SETTINGS = {
 
 // DOM Elements
 const unitCheckboxes = document.querySelectorAll('[data-unit]');
+const targetSelects = document.querySelectorAll('[data-target]');
 const displayModeSelect = document.getElementById('displayMode');
 const precisionSelect = document.getElementById('precision');
 const badgeColorInput = document.getElementById('badgeColor');
@@ -87,6 +96,15 @@ function applySettingsToUI(settings) {
   unitCheckboxes.forEach(cb => {
     const unit = cb.dataset.unit;
     cb.checked = settings.enabledUnits?.[unit] ?? true;
+  });
+
+  // Target unit selectors
+  targetSelects.forEach(select => {
+    const target = select.dataset.target;
+    const value = settings.targetUnits?.[target];
+    if (value) {
+      select.value = value;
+    }
   });
 
   // Display mode
@@ -115,6 +133,7 @@ displayModeSelect.addEventListener('change', updateBadgeColorVisibility);
 saveBtn.addEventListener('click', () => {
   const settings = {
     enabledUnits: {},
+    targetUnits: {},
     displayMode: displayModeSelect.value,
     precision: parseInt(precisionSelect.value),
     badgeColor: badgeColorInput.value,
@@ -123,6 +142,10 @@ saveBtn.addEventListener('click', () => {
 
   unitCheckboxes.forEach(cb => {
     settings.enabledUnits[cb.dataset.unit] = cb.checked;
+  });
+
+  targetSelects.forEach(select => {
+    settings.targetUnits[select.dataset.target] = select.value;
   });
 
   chrome.storage.sync.set({ settings }, () => {

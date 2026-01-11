@@ -31,11 +31,53 @@
         <label><input type="checkbox" data-unit="length-km" checked> Kilometers / Miles</label>
 
         <h3 class="unit-category">📐 Area</h3>
-        <label><input type="checkbox" data-unit="area-sqin" checked> Square Inches / cm²</label>
-        <label><input type="checkbox" data-unit="area-sqft" checked> Square Feet / m²</label>
-        <label><input type="checkbox" data-unit="area-sqyd" checked> Square Yards / m²</label>
-        <label><input type="checkbox" data-unit="area-sqmi" checked> Square Miles / km²</label>
-        <label><input type="checkbox" data-unit="area-acres" checked> Acres / Hectares</label>
+        <label><input type="checkbox" data-unit="area-sqin" checked> Square Inches</label>
+        <div class="target-row">
+          <span>→ Convert to:</span>
+          <select data-target="area-sqin">
+            <option value="cm²">cm²</option>
+            <option value="mm²">mm²</option>
+          </select>
+        </div>
+        
+        <label><input type="checkbox" data-unit="area-sqft" checked> Square Feet</label>
+        <div class="target-row">
+          <span>→ Convert to:</span>
+          <select data-target="area-sqft">
+            <option value="m²">m²</option>
+            <option value="cm²">cm²</option>
+          </select>
+        </div>
+        
+        <label><input type="checkbox" data-unit="area-sqyd" checked> Square Yards</label>
+        <div class="target-row">
+          <span>→ Convert to:</span>
+          <select data-target="area-sqyd">
+            <option value="m²">m²</option>
+            <option value="cm²">cm²</option>
+          </select>
+        </div>
+        
+        <label><input type="checkbox" data-unit="area-sqmi" checked> Square Miles</label>
+        <div class="target-row">
+          <span>→ Convert to:</span>
+          <select data-target="area-sqmi">
+            <option value="km²">km²</option>
+            <option value="ha">hectares</option>
+            <option value="m²">m²</option>
+          </select>
+        </div>
+        
+        <label><input type="checkbox" data-unit="area-acres" checked> Acres</label>
+        <div class="target-row">
+          <span>→ Convert to:</span>
+          <select data-target="area-acres">
+            <option value="ha">hectares</option>
+            <option value="km²">km²</option>
+            <option value="m²">m²</option>
+          </select>
+        </div>
+        
         <label><input type="checkbox" data-unit="area-sqcm" checked> cm² / Square Inches</label>
         <label><input type="checkbox" data-unit="area-sqm" checked> m² / Square Feet</label>
         <label><input type="checkbox" data-unit="area-sqkm" checked> km² / Square Miles</label>
@@ -56,6 +98,14 @@
         <label><input type="checkbox" data-unit="volume-l" checked> Liters / Gallons</label>
         <label><input type="checkbox" data-unit="volume-cucm" checked> cm³ / Cubic Inches</label>
         <label><input type="checkbox" data-unit="volume-cum" checked> m³ / Cubic Yards</label>
+
+        <h3 class="unit-category">🏃 Speed</h3>
+        <label><input type="checkbox" data-unit="speed-ftps" checked> Feet/second / m/s</label>
+        <label><input type="checkbox" data-unit="speed-inps" checked> Inches/second / m/s</label>
+        <label><input type="checkbox" data-unit="speed-ftpm" checked> Feet/minute / m/s</label>
+        <label><input type="checkbox" data-unit="speed-fps-alt" checked> fps / m/s</label>
+        <label><input type="checkbox" data-unit="speed-mph" checked> mph / km/h</label>
+        <label><input type="checkbox" data-unit="speed-knots" checked> knots / km/h</label>
 
         <h3 class="unit-category">⚖️ Weight / Mass</h3>
         <label><input type="checkbox" data-unit="weight-oz" checked> Ounces / Grams</label>

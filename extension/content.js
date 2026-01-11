@@ -1,13 +1,61 @@
 // Shared building blocks for regex patterns
 const NUM = String.raw`-?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?`; // 1,234.56 or 1234.56
-const WS = String.raw`\s*`;
+const WS = String.raw`[\s\-]*`;  // Allow whitespace or hyphen between number and unit
+
+// Geographic coordinate pattern - matches patterns like 25°11′50″N or 55°16′27″E
+// Used to exclude these from inch/foot conversion
+const COORD_PATTERN = /\d{1,3}°\s*\d{1,2}[′']\s*\d{1,2}[″"][NSEW]/gi;
 
 // Common unit token sets
 const FT_TOKENS = String.raw`feet|foot|ft|'|′`;
-const IN_TOKENS = String.raw`inches|inch|in|"|″`;
+const IN_TOKENS = 'inches|inch|in|"';  // Note: ″ (double-prime) excluded to avoid matching arcseconds
 const DEG_F_TOKENS = String.raw`°?\s*F`;  // allows: F, °F, ° F
 const DEG_C_TOKENS = String.raw`°?\s*C`;
 const DEG_K_TOKENS = String.raw`°?\s*K|kelvin`;  // allows: K, °K, ° K, kelvin
+
+// Check if text contains a coordinate pattern that includes the given position
+function isPartOfCoordinate(text, matchStart, matchEnd) {
+  const coordRegex = new RegExp(COORD_PATTERN.source, 'gi');
+  let coordMatch;
+  while ((coordMatch = coordRegex.exec(text)) !== null) {
+    const coordStart = coordMatch.index;
+    const coordEnd = coordStart + coordMatch[0].length;
+    // Check if our match overlaps with the coordinate
+    if (matchStart >= coordStart && matchEnd <= coordEnd) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// Check if text already contains both metric and imperial for this value
+// Example: "828 m (2,717 ft)" or "10 m/s (33 ft/s)" - the imperial value is already alongside its metric equivalent
+function hasMetricEquivalentBefore(text, matchIndex) {
+  // Look for pattern like "XXX m (" or "XXX km/h (" before this position
+  const textBefore = text.substring(Math.max(0, matchIndex - 50), matchIndex);
+  // Check if there's a metric measurement followed by opening parenthesis nearby
+  // Includes: length (m, km, cm, mm), area (m², km², ha), weight (kg, g), volume (L, mL), speed (m/s, km/h)
+  return /\d+(?:\.\d+)?\s*(?:m\/s|km\/h|m|km|cm|mm|m²|km²|ha|kg|g|L|mL)\s*\(\s*$/.test(textBefore);
+}
+
+// Get conversion target - handles both multi-target (new) and single-target (legacy) patterns
+// Returns { primary: {unit, factor}, alternatives: [{unit, factor, label}...] }
+function getConversionTarget(pattern, patternKey, settings) {
+  // New multi-target pattern
+  if (pattern.targets && pattern.targets.length > 0) {
+    // Get user's preferred target from settings, or use default
+    const preferredUnit = settings.targetUnits?.[patternKey] || pattern.defaultTarget;
+    const primary = pattern.targets.find(t => t.unit === preferredUnit) || pattern.targets[0];
+    const alternatives = pattern.targets.filter(t => t.unit !== primary.unit);
+    return { primary, alternatives };
+  }
+  
+  // Legacy single-target pattern
+  return {
+    primary: { unit: pattern.to, factor: pattern.factor, label: pattern.to },
+    alternatives: []
+  };
+}
 
 // Unit patterns to detect on pages - more specific patterns to avoid false positives
 // IMPORTANT: Order matters! Match longer/more-specific units first (mm before m, fl oz before oz, etc.)
@@ -24,9 +72,11 @@ const UNIT_PATTERNS = {
     },
 
     'length-inch': {
+      // Match inches - coordinate check done in post-processing via isPartOfCoordinate()
       regex: new RegExp(String.raw`\b(${NUM})${WS}(?:${IN_TOKENS})\b`, 'giu'),
       factor: 2.54,
-      to: 'cm'
+      to: 'cm',
+      skipCoordinateCheck: true  // Flag to check for coordinate overlap
     },
 
     'length-feet': {
@@ -59,8 +109,11 @@ const UNIT_PATTERNS = {
         String.raw`\b(${NUM})${WS}(?:square${WS}inches?|sq\.?${WS}in\.?|in²|in2)\b`,
         'giu'
       ),
-      factor: 6.4516,
-      to: 'cm²'
+      targets: [
+        { unit: 'cm²', factor: 6.4516, label: 'sq cm' },
+        { unit: 'mm²', factor: 645.16, label: 'sq mm' }
+      ],
+      defaultTarget: 'cm²'
     },
 
     'area-sqft': {
@@ -68,8 +121,11 @@ const UNIT_PATTERNS = {
         String.raw`\b(${NUM})${WS}(?:square${WS}feet|square${WS}foot|sq\.?${WS}ft\.?|ft²|ft2)\b`,
         'giu'
       ),
-      factor: 0.092903,
-      to: 'm²'
+      targets: [
+        { unit: 'm²', factor: 0.092903, label: 'sq m' },
+        { unit: 'cm²', factor: 929.03, label: 'sq cm' }
+      ],
+      defaultTarget: 'm²'
     },
 
     'area-sqyd': {
@@ -77,8 +133,11 @@ const UNIT_PATTERNS = {
         String.raw`\b(${NUM})${WS}(?:square${WS}yards?|sq\.?${WS}yd\.?|yd²|yd2)\b`,
         'giu'
       ),
-      factor: 0.836127,
-      to: 'm²'
+      targets: [
+        { unit: 'm²', factor: 0.836127, label: 'sq m' },
+        { unit: 'cm²', factor: 8361.27, label: 'sq cm' }
+      ],
+      defaultTarget: 'm²'
     },
 
     'area-sqmi': {
@@ -86,14 +145,22 @@ const UNIT_PATTERNS = {
         String.raw`\b(${NUM})${WS}(?:square${WS}miles?|sq\.?${WS}mi\.?|mi²|mi2)\b`,
         'giu'
       ),
-      factor: 2.58999,
-      to: 'km²'
+      targets: [
+        { unit: 'km²', factor: 2.58999, label: 'sq km' },
+        { unit: 'ha', factor: 258.999, label: 'hectares' },
+        { unit: 'm²', factor: 2589990, label: 'sq m' }
+      ],
+      defaultTarget: 'km²'
     },
 
     'area-acres': {
       regex: new RegExp(String.raw`\b(${NUM})${WS}(?:acres?|ac)\b`, 'giu'),
-      factor: 0.404686,
-      to: 'ha'
+      targets: [
+        { unit: 'ha', factor: 0.404686, label: 'hectares' },
+        { unit: 'km²', factor: 0.00404686, label: 'sq km' },
+        { unit: 'm²', factor: 4046.86, label: 'sq m' }
+      ],
+      defaultTarget: 'ha'
     },
 
     // === VOLUME ===
@@ -208,10 +275,35 @@ const UNIT_PATTERNS = {
     },
 
     // === SPEED ===
+    // Compound speed units MUST come before simple length patterns
+    'speed-ftps': {
+      regex: new RegExp(String.raw`\b(${NUM})${WS}(?:feet|foot|ft)[\s/]*(per[\s/]*)?(?:second|sec|s)\b`, 'giu'),
+      factor: 0.3048,
+      to: 'm/s'
+    },
+
+    'speed-inps': {
+      regex: new RegExp(String.raw`\b(${NUM})${WS}(?:inches?|in)[\s/]*(per[\s/]*)?(?:second|sec|s)\b`, 'giu'),
+      factor: 0.0254,
+      to: 'm/s'
+    },
+
+    'speed-ftpm': {
+      regex: new RegExp(String.raw`\b(${NUM})${WS}(?:feet|foot|ft)[\s/]*(per[\s/]*)?(?:minute|min|m)\b`, 'giu'),
+      factor: 0.00508,
+      to: 'm/s'
+    },
+
     'speed-mph': {
       regex: new RegExp(String.raw`\b(${NUM})${WS}(?:miles?${WS}per${WS}hour|mph|mi\/h)\b`, 'giu'),
       factor: 1.60934,
       to: 'km/h'
+    },
+
+    'speed-fps-alt': {
+      regex: new RegExp(String.raw`\b(${NUM})${WS}fps\b`, 'giu'),
+      factor: 0.3048,
+      to: 'm/s'
     },
 
     'speed-knots': {
@@ -298,8 +390,8 @@ const UNIT_PATTERNS = {
 
     'area-ha': {
       regex: new RegExp(String.raw`\b(${NUM})${WS}(?:hectares?|ha)\b`, 'giu'),
-      factor: 1 / 0.404686,
-      to: 'acres'
+      factor: 0.00386102,  // 1 ha = 0.00386102 sq mi
+      to: 'sq mi'
     },
 
     // === VOLUME ===
@@ -548,39 +640,9 @@ function scanAndConvert() {
     }
   }
 
-  // Process text nodes - but also check if we should process parent for linked units
+  // Process each text node
   textNodes.forEach(textNode => {
     const parent = textNode.parentElement;
-
-    // Check if this text node ends with a number (might have unit in sibling)
-    const endsWithNumber = /[\d,]+\s*$/.test(textNode.textContent);
-
-    // If number at end, try to find a good container to process
-    if (endsWithNumber && parent) {
-      // Find a suitable container (paragraph, div, span, td, etc.)
-      const container = parent.closest('p, div, td, th, li, span, dd, dt') || parent.parentElement;
-
-      if (container && !processedParents.has(container) && !container.closest('.unit-wrapper')) {
-        // Check if the container's full text matches any pattern
-        const containerText = container.textContent;
-        let hasMatch = false;
-        for (const pattern of Object.values(enabledPatterns)) {
-          const testRegex = new RegExp(pattern.regex.source, pattern.regex.flags);
-          if (testRegex.test(containerText)) {
-            hasMatch = true;
-            break;
-          }
-        }
-
-        if (hasMatch) {
-          processedParents.add(container);
-          processElementWithLinks(container, enabledPatterns);
-          return; // Skip individual text node processing
-        }
-      }
-    }
-
-    // Standard text node processing if not handled above
     if (parent && !parent.closest('.unit-wrapper')) {
       processTextNode(textNode, enabledPatterns);
     }
@@ -623,18 +685,27 @@ function processElementWithLinks(element, patterns) {
   // Create a text-based version for matching (strip HTML tags)
   const textContent = element.textContent;
 
-  for (const [, pattern] of sortedPatterns) {
+  for (const [patternKey, pattern] of sortedPatterns) {
     const regex = new RegExp(pattern.regex.source, pattern.regex.flags);
     let match;
 
     // Find matches in text content
     while ((match = regex.exec(textContent)) !== null) {
       const fullMatch = match[0];
+      const matchStart = match.index;
+      const matchEnd = matchStart + fullMatch.length;
       const value = match[1];
       const value2 = match[2];
 
+      // Skip if this match is part of a geographic coordinate
+      if (pattern.skipCoordinateCheck && isPartOfCoordinate(textContent, matchStart, matchEnd)) {
+        continue;
+      }
+
+
       let converted;
       let toUnit;
+      let altTooltip = '';
 
       if (pattern.type === 'feet-inch') {
         const feet = parseNumber(value);
@@ -643,22 +714,36 @@ function processElementWithLinks(element, patterns) {
         const totalMeters = (feet * 0.3048) + (inches * 0.0254);
         converted = formatNumber(totalMeters, precision);
         toUnit = 'm';
+      } else if (pattern.type === 'temp-f') {
+        const numValue = parseNumber(value);
+        if (isNaN(numValue)) continue;
+        converted = formatNumber((numValue - 32) * 5 / 9, precision);
+        toUnit = '°C';
+      } else if (pattern.type === 'temp-c') {
+        const numValue = parseNumber(value);
+        if (isNaN(numValue)) continue;
+        converted = formatNumber(numValue * 9 / 5 + 32, precision);
+        toUnit = '°F';
+      } else if (pattern.type === 'temp-k') {
+        const numValue = parseNumber(value);
+        if (isNaN(numValue)) continue;
+        converted = formatNumber(numValue - 273.15, precision);
+        toUnit = '°C';
       } else {
         const numValue = parseNumber(value);
         if (isNaN(numValue)) continue;
 
-        if (pattern.type === 'temp-f') {
-          converted = formatNumber((numValue - 32) * 5 / 9, precision);
-          toUnit = '°C';
-        } else if (pattern.type === 'temp-c') {
-          converted = formatNumber(numValue * 9 / 5 + 32, precision);
-          toUnit = '°F';
-        } else if (pattern.type === 'temp-k') {
-          converted = formatNumber(numValue - 273.15, precision);
-          toUnit = '°C';
-        } else {
-          converted = formatNumber(numValue * pattern.factor, precision);
-          toUnit = pattern.to;
+        // Use multi-target conversion if available
+        const { primary, alternatives } = getConversionTarget(pattern, patternKey, settings);
+        converted = formatNumber(numValue * primary.factor, precision);
+        toUnit = primary.unit;
+        
+        // Build alternatives tooltip
+        if (alternatives.length > 0) {
+          const alts = alternatives.map(alt => 
+            `${formatNumber(numValue * alt.factor, precision)} ${alt.unit}`
+          ).join(' | ');
+          altTooltip = `\nAlso: ${alts}`;
         }
       }
 
@@ -670,10 +755,12 @@ function processElementWithLinks(element, patterns) {
       const htmlRegex = new RegExp(htmlAwarePattern, 'gi');
 
       if (displayMode === 'replace') {
+        const tooltip = `Original: ${fullMatch}${altTooltip}`;
         newHTML = newHTML.replace(htmlRegex,
-          `<span class="unit-converted unit-wrapper" title="Original: ${fullMatch}">${converted} ${toUnit}</span>`);
+          `<span class="unit-converted unit-wrapper" title="${tooltip}">${converted} ${toUnit}</span>`);
       } else {
-        const tooltipAttr = showTooltip ? `title="${converted} ${toUnit}"` : '';
+        const tooltip = showTooltip ? `${converted} ${toUnit}${altTooltip}` : '';
+        const tooltipAttr = tooltip ? `title="${tooltip}"` : '';
         newHTML = newHTML.replace(htmlRegex, (m) =>
           `<span class="unit-converted unit-wrapper" ${tooltipAttr}>${m} <sup class="unit-badge" style="background:${badgeColor}">(${converted} ${toUnit})</sup></span>`);
       }
@@ -682,6 +769,7 @@ function processElementWithLinks(element, patterns) {
 
   if (newHTML !== element.innerHTML) {
     element.innerHTML = newHTML;
+    element.setAttribute('data-unit-processed', 'true');  // Mark as processed
   }
 }
 
@@ -713,61 +801,134 @@ function processTextNode(textNode, patterns) {
   const badgeColor = settings.badgeColor || '#4a90d9';
   const showTooltip = settings.showTooltip ?? true;
 
-  // Sort patterns so combined patterns (feet-inch) process first
+  // Sort patterns: compound patterns (feet-inch, speed with /s) process first to avoid breaking compound units
   const sortedPatterns = Object.entries(patterns).sort(([keyA], [keyB]) => {
-    if (keyA.includes('feet-inch')) return -1;
-    if (keyB.includes('feet-inch')) return 1;
-    return 0;
+    // Priority order: feet-inch > speed compounds > everything else
+    const getPriority = (key) => {
+      if (key.includes('feet-inch')) return 0;
+      if (key.startsWith('speed-ftps') || key.startsWith('speed-inps') || key.startsWith('speed-ftpm')) return 1;
+      if (key.startsWith('speed-')) return 2;
+      return 3;
+    };
+    return getPriority(keyA) - getPriority(keyB);
   });
 
-  for (const [, pattern] of sortedPatterns) {
+  // PHASE 1: Collect all matches across all patterns
+  const allMatches = [];
+  
+  for (const [patternKey, pattern] of sortedPatterns) {
     const regex = new RegExp(pattern.regex.source, pattern.regex.flags);
-    newHTML = newHTML.replace(regex, (match, value, value2) => {
+    let match;
+    
+    while ((match = regex.exec(text)) !== null) {
+      const fullMatch = match[0];
+      const matchStart = match.index;
+      const matchEnd = matchStart + fullMatch.length;
+      const value = match[1];
+      const value2 = match[2];
+      
+      // Skip if this match is part of a geographic coordinate
+      if (pattern.skipCoordinateCheck && isPartOfCoordinate(text, matchStart, matchEnd)) {
+        continue;
+      }
+
       let converted;
       let toUnit;
+      let altTooltip = '';
 
       // Handle combined feet + inches pattern
       if (pattern.type === 'feet-inch') {
         const feet = parseNumber(value);
-        const inches = value2 ? parseNumber(value2) : 0;  // Inches are optional
-        if (isNaN(feet)) return match;
-        // Convert to meters: (feet * 0.3048) + (inches * 0.0254)
+        const inches = value2 ? parseNumber(value2) : 0;
+        if (isNaN(feet)) continue;
         const totalMeters = (feet * 0.3048) + (inches * 0.0254);
         converted = formatNumber(totalMeters, precision);
         toUnit = 'm';
+      } else if (pattern.type === 'temp-f') {
+        const numValue = parseNumber(value);
+        if (isNaN(numValue)) continue;
+        converted = formatNumber((numValue - 32) * 5 / 9, precision);
+        toUnit = '°C';
+      } else if (pattern.type === 'temp-c') {
+        const numValue = parseNumber(value);
+        if (isNaN(numValue)) continue;
+        converted = formatNumber(numValue * 9 / 5 + 32, precision);
+        toUnit = '°F';
+      } else if (pattern.type === 'temp-k') {
+        const numValue = parseNumber(value);
+        if (isNaN(numValue)) continue;
+        converted = formatNumber(numValue - 273.15, precision);
+        toUnit = '°C';
       } else {
         const numValue = parseNumber(value);
-        if (isNaN(numValue)) return match;
+        if (isNaN(numValue)) continue;
 
-        if (pattern.type === 'temp-f') {
-          converted = formatNumber((numValue - 32) * 5 / 9, precision);
-          toUnit = '°C';
-        } else if (pattern.type === 'temp-c') {
-          converted = formatNumber(numValue * 9 / 5 + 32, precision);
-          toUnit = '°F';
-        } else if (pattern.type === 'temp-k') {
-          // Kelvin to Celsius: K - 273.15
-          converted = formatNumber(numValue - 273.15, precision);
-          toUnit = '°C';
-        } else {
-          converted = formatNumber(numValue * pattern.factor, precision);
-          toUnit = pattern.to;
+        const { primary, alternatives } = getConversionTarget(pattern, patternKey, settings);
+        converted = formatNumber(numValue * primary.factor, precision);
+        toUnit = primary.unit;
+        
+        if (alternatives.length > 0) {
+          const alts = alternatives.map(alt => 
+            `${formatNumber(numValue * alt.factor, precision)} ${alt.unit}`
+          ).join(' | ');
+          altTooltip = `\nAlso: ${alts}`;
         }
       }
 
-      // Display mode: badge (addition) or replace (overwrite)
-      if (displayMode === 'replace') {
-        return `<span class="unit-converted unit-wrapper" title="Original: ${match}">${converted} ${toUnit}</span>`;
-      } else {
-        const tooltipAttr = showTooltip ? `title="${converted} ${toUnit}"` : '';
-        // For combined patterns, add zero-width space to prevent individual patterns from matching
-        const displayMatch = pattern.type === 'feet-inch'
-          ? match.replace(/\b(ft|feet|foot|in|inch|inches)\b/gi, '$1\u200B')
-          : match;
-        return `<span class="unit-converted unit-wrapper" ${tooltipAttr}>${displayMatch} <sup class="unit-badge" style="background:${badgeColor}">(${converted} ${toUnit})</sup></span>`;
-      }
-    });
+      allMatches.push({
+        start: matchStart,
+        end: matchEnd,
+        fullMatch,
+        converted,
+        toUnit,
+        altTooltip,
+        patternType: pattern.type
+      });
+    }
   }
+
+  // Remove overlapping matches (keep first/longer one)
+  allMatches.sort((a, b) => a.start - b.start || b.end - a.end);
+  const filteredMatches = [];
+  let lastEnd = 0;
+  for (const match of allMatches) {
+    if (match.start >= lastEnd) {
+      filteredMatches.push(match);
+      lastEnd = match.end;
+    }
+  }
+
+  // PHASE 2: Build result string with all replacements
+  let result = '';
+  let lastIndex = 0;
+  
+  for (const match of filteredMatches) {
+    // Add text before this match
+    result += text.substring(lastIndex, match.start);
+    
+    // Build replacement
+    let replacement;
+    const safeBadgeText = `${match.converted}\u00A0${match.toUnit}`;
+    
+    if (displayMode === 'replace') {
+      const tooltip = `Original: ${match.fullMatch}${match.altTooltip}`;
+      replacement = `<span class="unit-converted unit-wrapper" title="${tooltip}">${safeBadgeText}</span>`;
+    } else {
+      const tooltip = showTooltip ? `${match.converted} ${match.toUnit}${match.altTooltip}` : '';
+      const tooltipAttr = tooltip ? `title="${tooltip}"` : '';
+      const displayMatch = match.patternType === 'feet-inch'
+        ? match.fullMatch.replace(/\b(ft|feet|foot|in|inch|inches)\b/gi, '$1\u200B')
+        : match.fullMatch;
+      replacement = `<span class="unit-converted unit-wrapper" ${tooltipAttr}>${displayMatch} <sup class="unit-badge" style="background:${badgeColor}">(${safeBadgeText})</sup></span>`;
+    }
+    
+    result += replacement;
+    lastIndex = match.end;
+  }
+  
+  // Add remaining text
+  result += text.substring(lastIndex);
+  newHTML = result || newHTML;
 
   if (newHTML !== text) {
     const wrapper = document.createElement('span');
