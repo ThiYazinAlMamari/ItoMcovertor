@@ -32,6 +32,37 @@ dotnet build
 dotnet run
 ```
 
+## Chrome Extension
+
+A browser extension that automatically converts units on any webpage.
+
+### Extension Features
+
+- **Auto-Convert** - Automatically detects and converts units on pages
+- **Manual Converter** - Quick popup converter for manual conversions
+- **Bidirectional** - Switch between Imperial→Metric or Metric→Imperial
+- **Display Modes** - Replace text or show as badge tooltip
+- **Customizable** - Enable/disable specific unit types in settings
+
+### Installation
+
+1. Open Chrome and go to `chrome://extensions/`
+2. Enable **Developer mode** (toggle in top-right)
+3. Click **Load unpacked**
+4. Select the `extension` folder
+
+### Supported Units
+
+| Type | Imperial → Metric | Metric → Imperial |
+|------|-------------------|-------------------|
+| Length | in → cm, ft → m, mi → km | cm → in, m → ft, km → mi |
+| Area | sq in → cm², sq ft → m², acres → ha | cm² → sq in, m² → sq ft, ha → acres |
+| Weight | lbs → kg | kg → lbs |
+| Volume | gal → L | L → gal |
+| Temperature | °F → °C | °C → °F |
+
+---
+
 ## Project Structure
 
 ```
@@ -40,6 +71,13 @@ ItoMcovertor/
 ├── Program.cs             # Main entry point & menus
 ├── Converters/
 │   └── UnitConverter.cs   # Conversion logic & utilities
+├── extension/             # Chrome Extension
+│   ├── manifest.json      # Extension config
+│   ├── background.js      # Service worker
+│   ├── content.js         # Page conversion logic
+│   ├── popup.html/js/css  # Popup UI
+│   ├── settings.html/js   # Settings page
+│   └── icons/             # Extension icons
 └── README.md
 ```
 

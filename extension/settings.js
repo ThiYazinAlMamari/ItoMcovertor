@@ -1,14 +1,20 @@
 // Default settings
 const DEFAULT_SETTINGS = {
   enabledUnits: {
+    'length-feet-inch': true,
     'length-inch': true,
     'length-feet': true,
     'length-miles': true,
+    'area-sqin': true,
+    'area-sqft': true,
+    'area-acres': true,
+    'volume-cuyd': true,
     'weight': true,
+    'weight-tons': true,
     'volume': true,
     'temperature': true
   },
-  displayMode: 'badge',
+  displayMode: 'replace',
   precision: 2,
   badgeColor: '#4a90d9',
   showTooltip: true
@@ -38,17 +44,17 @@ function applySettingsToUI(settings) {
     const unit = cb.dataset.unit;
     cb.checked = settings.enabledUnits?.[unit] ?? true;
   });
-  
+
   // Display mode
   displayModeSelect.value = settings.displayMode || 'badge';
   updateBadgeColorVisibility();
-  
+
   // Precision
   precisionSelect.value = settings.precision ?? 2;
-  
+
   // Badge color
   badgeColorInput.value = settings.badgeColor || '#4a90d9';
-  
+
   // Tooltip
   showTooltipCheckbox.checked = settings.showTooltip ?? true;
 }
@@ -70,18 +76,18 @@ saveBtn.addEventListener('click', () => {
     badgeColor: badgeColorInput.value,
     showTooltip: showTooltipCheckbox.checked
   };
-  
+
   unitCheckboxes.forEach(cb => {
     settings.enabledUnits[cb.dataset.unit] = cb.checked;
   });
-  
+
   chrome.storage.sync.set({ settings }, () => {
     showStatus('Settings saved!', 'success');
-    
+
     // Notify content scripts to refresh
     chrome.tabs.query({}, (tabs) => {
       tabs.forEach(tab => {
-        chrome.tabs.sendMessage(tab.id, { action: 'settingsUpdated', settings }).catch(() => {});
+        chrome.tabs.sendMessage(tab.id, { action: 'settingsUpdated', settings }).catch(() => { });
       });
     });
   });

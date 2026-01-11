@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Unit Converter</title>
   <link rel="stylesheet" href="popup.css">
 </head>
+
 <body>
   <div class="container">
     <div class="header">
       <h1>Unit Converter</h1>
       <a href="settings.html" class="settings-link" title="Settings">⚙️</a>
     </div>
-    
+
     <!-- Auto-Convert Toggle -->
     <div class="toggle-section">
       <span>Auto-convert pages:</span>
@@ -27,12 +29,12 @@
       <span class="section-title">Conversion Direction</span>
       <div class="direction-toggle">
         <label>
-          <input type="radio" name="direction" value="metric-to-imperial" checked>
-          Metric → Imperial
+          <input type="radio" name="direction" value="imperial-to-metric" checked>
+          Imperial → Metric
         </label>
         <label>
-          <input type="radio" name="direction" value="imperial-to-metric">
-          Imperial → Metric
+          <input type="radio" name="direction" value="metric-to-imperial">
+          Metric → Imperial
         </label>
       </div>
     </div>
@@ -42,15 +44,18 @@
     <!-- Manual Converter -->
     <div class="manual-section">
       <span class="section-title">Manual Converter</span>
-      
+
       <!-- Unit Type Buttons -->
       <div class="unit-buttons">
-        <button class="unit-btn active" data-unit="small-distance">cm → in</button>
-        <button class="unit-btn" data-unit="medium-distance">m → ft</button>
-        <button class="unit-btn" data-unit="far-distance">km → mi</button>
-        <button class="unit-btn" data-unit="weight">kg → lbs</button>
-        <button class="unit-btn" data-unit="volume">L → gal</button>
-        <button class="unit-btn" data-unit="temperature">°C → °F</button>
+        <button class="unit-btn active" data-unit="small-distance">in → cm</button>
+        <button class="unit-btn" data-unit="medium-distance">ft → m</button>
+        <button class="unit-btn" data-unit="far-distance">mi → km</button>
+        <button class="unit-btn" data-unit="area-sqin">sq in → cm²</button>
+        <button class="unit-btn" data-unit="area-sqft">sq ft → m²</button>
+        <button class="unit-btn" data-unit="area-acres">acres → ha</button>
+        <button class="unit-btn" data-unit="weight">lbs → kg</button>
+        <button class="unit-btn" data-unit="volume">gal → L</button>
+        <button class="unit-btn" data-unit="temperature">°F → °C</button>
       </div>
 
       <!-- Input -->
@@ -69,4 +74,5 @@
 
   <script src="popup.js"></script>
 </body>
+
 </html>
