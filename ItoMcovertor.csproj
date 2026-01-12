@@ -11,4 +11,9 @@
     <FileVersion>2.0.0.0</FileVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="ItoMcovertor.Tests\**" />
+    <None Remove="ItoMcovertor.Tests\**" />
+  </ItemGroup>
+
 </Project>
