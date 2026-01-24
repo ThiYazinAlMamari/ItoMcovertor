@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Options - ItoMcovertor</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="options-layout">
+    <!-- Sidebar Navigation -->
+    <nav class="options-nav">
+      <div class="nav-brand">
+        <img src="icons/icon48.png" alt="ItoMcovertor" class="nav-logo">
+        <span class="nav-title">ItoMcovertor</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#general" class="nav-link active" data-section="general">General</a></li>
+        <li><a href="#site-rules" class="nav-link" data-section="site-rules">Site Rules</a></li>
+        <li><a href="#display" class="nav-link" data-section="display">Display</a></li>
+        <li><a href="#advanced" class="nav-link" data-section="advanced">Advanced</a></li>
+        <li><a href="#privacy" class="nav-link" data-section="privacy">Privacy</a></li>
+      </ul>
+      <div class="nav-footer">
+        <a href="https://itomcovertor.com" target="_blank" class="nav-footer-link">itomcovertor.com</a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="options-content">
+      <!-- General Section -->
+      <section id="general" class="options-section">
+        <h2 class="section-title">General</h2>
+        <p class="section-description">Configure basic conversion settings</p>
+        
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">Auto-Convert</span>
+            <span class="setting-description">Automatically convert units on every page</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="autoConvertToggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">Default Direction</span>
+            <span class="setting-description">Which unit system to convert to</span>
+          </div>
+          <select id="directionSelect" class="setting-select">
+            <option value="imperial-to-metric">Imperial to Metric</option>
+            <option value="metric-to-imperial">Metric to Imperial</option>
+          </select>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">Decimal Places</span>
+            <span class="setting-description">Number of decimal places in results</span>
+          </div>
+          <select id="precisionSelect" class="setting-select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Site Rules Section -->
+      <section id="site-rules" class="options-section">
+        <h2 class="section-title">Site Rules</h2>
+        <p class="section-description">Control which websites the extension works on</p>
+        
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">Site Filter Mode</span>
+            <span class="setting-description">How to apply site rules</span>
+          </div>
+          <select id="siteRuleModeSelect" class="setting-select">
+            <option value="all">All Sites (no filter)</option>
+            <option value="allowlist">Allowlist Only</option>
+            <option value="denylist">Denylist (Exclude)</option>
+          </select>
+        </div>
+        
+        <div class="setting-item setting-item-vertical" id="siteRulesContainer">
+          <div class="setting-info">
+            <span class="setting-label">Site List</span>
+            <span class="setting-description">One domain per line (e.g., example.com)</span>
+          </div>
+          <textarea id="siteRulesTextarea" class="setting-textarea" placeholder="example.com&#10;*.example.org&#10;subdomain.site.com" rows="6"></textarea>
+        </div>
+      </section>
+
+      <!-- Display Section -->
+      <section id="display" class="options-section">
+        <h2 class="section-title">Display</h2>
+        <p class="section-description">Customize how conversions appear</p>
+        
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">Badge Style</span>
+            <span class="setting-description">How converted values appear on page</span>
+          </div>
+          <select id="badgeStyleSelect" class="setting-select">
+            <option value="badge">Badge (superscript)</option>
+            <option value="inline">Inline (replace)</option>
+          </select>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">Show Tooltip</span>
+            <span class="setting-description">Show detailed tooltip on hover</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="showTooltipToggle" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">Show Selection Popup</span>
+            <span class="setting-description">Show conversion popup when selecting text</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="selectionPopupToggle" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">Number Grouping</span>
+            <span class="setting-description">Use comma separators (1,000)</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="numberGroupingToggle" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Advanced Section -->
+      <section id="advanced" class="options-section">
+        <h2 class="section-title">Advanced</h2>
+        <p class="section-description">Fine-tune conversion behavior</p>
+        
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">Scan Mode</span>
+            <span class="setting-description">When to scan for units on page</span>
+          </div>
+          <select id="scanModeSelect" class="setting-select">
+            <option value="full">Full Page</option>
+            <option value="visible">Visible Content Only</option>
+            <option value="ondemand">On Demand</option>
+          </select>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">Max Conversions</span>
+            <span class="setting-description">Maximum conversions per page (10-1000)</span>
+          </div>
+          <input type="number" id="maxConversionsInput" class="setting-input" min="10" max="1000" value="100">
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">Scientific Notation</span>
+            <span class="setting-description">Use for very small/large numbers</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="scientificNotationToggle" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+        
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">Rounding</span>
+            <span class="setting-description">How to round converted values</span>
+          </div>
+          <select id="roundingSelect" class="setting-select">
+            <option value="round">Round</option>
+            <option value="floor">Floor</option>
+            <option value="ceiling">Ceiling</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Privacy Section -->
+      <section id="privacy" class="options-section">
+        <h2 class="section-title">Privacy</h2>
+        <p class="section-description">Control your data and privacy settings</p>
+        
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-label">Sync Settings</span>
+            <span class="setting-description">Sync preferences across devices</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="syncEnabledToggle" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+        
+        <div class="setting-item setting-item-vertical">
+          <div class="setting-info">
+            <span class="setting-label">Clear History</span>
+            <span class="setting-description">Remove all conversion history and cached data</span>
+          </div>
+          <button id="clearHistoryBtn" class="btn btn-danger">Clear All Data</button>
+        </div>
+        
+        <div class="info-box">
+          <p><strong>Data Usage:</strong> ItoMcovertor stores your settings locally and optionally syncs them via your browser account. No conversion data is sent to external servers. All conversions happen locally in your browser.</p>
+        </div>
+      </section>
+
+      <!-- Status Message -->
+      <div id="statusMessage" class="status-message"></div>
+    </main>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

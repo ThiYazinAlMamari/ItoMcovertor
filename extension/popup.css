@@ -1,0 +1,416 @@
+/* ItoMcovertor Extension - Compact Popup Styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  width: 280px;
+  background: #ffffff;
+  color: #1a202c;
+}
+
+.popup-container {
+  padding: 12px;
+}
+
+/* Header */
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-logo {
+  width: 24px;
+  height: 24px;
+}
+
+.brand-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4A5568;
+}
+
+.settings-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: #a0aec0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.settings-btn:hover {
+  background: #f7fafc;
+  color: #4A5568;
+}
+
+/* Quick Actions */
+.quick-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toggle-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #4A5568;
+}
+
+/* Switch Toggle */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cbd5e0;
+  transition: 0.2s;
+  border-radius: 22px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.2s;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .slider {
+  background-color: #38B2AC;
+}
+
+input:checked + .slider:before {
+  transform: translateX(18px);
+}
+
+/* Direction Select */
+.direction-row {
+  display: flex;
+}
+
+.direction-select {
+  flex: 1;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #4A5568;
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: none;
+}
+
+.direction-select:focus {
+  border-color: #38B2AC;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.action-btn.primary {
+  color: white;
+  background: #38B2AC;
+}
+
+.action-btn.primary:hover {
+  background: #319795;
+}
+
+.action-btn.secondary {
+  color: #4A5568;
+  background: #edf2f7;
+}
+
+.action-btn.secondary:hover {
+  background: #e2e8f0;
+}
+
+/* Quick Convert */
+.quick-convert {
+  margin-bottom: 10px;
+}
+
+.input-group {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.quick-input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px;
+  font-size: 13px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  outline: none;
+}
+
+.quick-input:focus {
+  border-color: #38B2AC;
+}
+
+.quick-input::placeholder {
+  color: #a0aec0;
+}
+
+.unit-select {
+  width: 90px;
+  padding: 8px 6px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #4A5568;
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: none;
+}
+
+.unit-select:focus {
+  border-color: #38B2AC;
+}
+
+/* Result Row */
+.result-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px;
+  background: #f0fff4;
+  border-radius: 6px;
+  min-height: 38px;
+}
+
+.result-row:empty {
+  display: none;
+}
+
+.result-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #234e52;
+}
+
+.result-value.placeholder {
+  color: #a0aec0;
+  font-weight: 400;
+}
+
+.result-unit {
+  font-size: 13px;
+  font-weight: 500;
+  color: #38B2AC;
+}
+
+/* Footer */
+.popup-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.web-link,
+.settings-link {
+  font-size: 11px;
+  color: #a0aec0;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.web-link:hover,
+.settings-link:hover {
+  color: #38B2AC;
+}
+
+.footer-divider {
+  font-size: 11px;
+  color: #cbd5e0;
+}
+
+/* Hide number input spinners */
+.quick-input::-webkit-outer-spin-button,
+.quick-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.quick-input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Settings View */
+.hidden {
+  display: none !important;
+}
+
+.settings-view {
+  animation: slideIn 0.15s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.settings-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: #4A5568;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.back-btn:hover {
+  background: #f7fafc;
+  color: #38B2AC;
+}
+
+.settings-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4A5568;
+}
+
+.settings-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.setting-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #4A5568;
+}
+
+.setting-select {
+  padding: 6px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #4A5568;
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: none;
+}
+
+.setting-select:focus {
+  border-color: #38B2AC;
+}
+
+/* Small switch variant */
+.switch.small {
+  width: 36px;
+  height: 20px;
+}
+
+.switch.small .slider:before {
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+}
+
+.switch.small input:checked + .slider:before {
+  transform: translateX(16px);
+}

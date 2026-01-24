@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ItoMcovertor</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="popup-header">
+      <div class="brand">
+        <img src="icons/icon48.png" alt="ItoMcovertor" class="brand-logo">
+        <span class="brand-name">ItoMcovertor</span>
+      </div>
+    </header>
+
+    <!-- Main View -->
+    <div id="mainView">
+      <!-- Quick Actions -->
+      <div class="quick-actions">
+        <div class="toggle-row">
+          <span class="toggle-label">Auto-Convert</span>
+          <label class="switch">
+            <input type="checkbox" id="autoConvertToggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+        
+        <div class="direction-row">
+          <select id="directionSelect" class="direction-select">
+            <option value="imperial-to-metric">Imperial to Metric</option>
+            <option value="metric-to-imperial">Metric to Imperial</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button id="convertPageBtn" class="action-btn primary">Convert This Page</button>
+        <button id="clearBadgesBtn" class="action-btn secondary">Clear</button>
+      </div>
+
+      <!-- Quick Convert -->
+      <div class="quick-convert">
+        <div class="input-group">
+          <input type="number" id="inputValue" class="quick-input" placeholder="Enter value" step="any">
+          <select id="unitSelect" class="unit-select">
+            <option value="in-cm">in / cm</option>
+            <option value="ft-m">ft / m</option>
+            <option value="mi-km">mi / km</option>
+            <option value="lbs-kg">lbs / kg</option>
+            <option value="oz-g">oz / g</option>
+            <option value="gal-L">gal / L</option>
+            <option value="F-C">F / C</option>
+            <option value="sqft-sqm">sq ft / m2</option>
+            <option value="mph-kmh">mph / km/h</option>
+            <option value="fl oz-ml">fl oz / ml</option>
+          </select>
+        </div>
+        <div class="result-row" id="resultRow">
+          <span id="resultValue" class="result-value"></span>
+          <span id="resultUnit" class="result-unit"></span>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="popup-footer">
+        <a href="https://itomcovertor.com" target="_blank" class="web-link">itomcovertor.com</a>
+        <span class="footer-divider">|</span>
+        <a href="#" id="settingsBtn" class="settings-link">Options</a>
+      </footer>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

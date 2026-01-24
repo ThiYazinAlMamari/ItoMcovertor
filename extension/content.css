@@ -1,0 +1,219 @@
+/* ItoMcovertor Extension - Content Script Styles */
+
+/* Wrapper for processed text */
+.itom-processed {
+  display: contents;
+}
+
+/* Unit wrapper */
+.itom-unit {
+  position: relative;
+}
+
+/* Conversion badge */
+.itom-badge {
+  display: inline-block;
+  margin-left: 2px;
+  padding: 2px 5px;
+  font-size: 0.7em;
+  font-weight: 600;
+  line-height: 1;
+  color: #ffffff;
+  background: linear-gradient(135deg, #38B2AC 0%, #319795 100%);
+  border-radius: 4px;
+  vertical-align: super;
+  white-space: nowrap;
+  cursor: help;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.itom-badge:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(56, 178, 172, 0.4);
+}
+
+/* ===== SELECTION POPUP ===== */
+
+.itom-selection-popup {
+  position: fixed;
+  z-index: 2147483647;
+  min-width: 180px;
+  max-width: 300px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  overflow: hidden;
+  animation: itom-popup-appear 0.15s ease-out;
+}
+
+@keyframes itom-popup-appear {
+  from {
+    opacity: 0;
+    transform: translateY(-5px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.itom-popup-header {
+  padding: 8px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #38B2AC 0%, #319795 100%);
+}
+
+.itom-popup-content {
+  padding: 8px 0;
+}
+
+.itom-popup-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  transition: background 0.15s ease;
+}
+
+.itom-popup-row:hover {
+  background: #f7fafc;
+}
+
+.itom-popup-original {
+  color: #4A5568;
+  font-weight: 500;
+}
+
+.itom-popup-arrow {
+  color: #a0aec0;
+  font-size: 12px;
+}
+
+.itom-popup-result {
+  color: #38B2AC;
+  font-weight: 600;
+  margin-left: auto;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .itom-badge {
+    background: linear-gradient(135deg, #4FD1C5 0%, #38B2AC 100%);
+    color: #1a202c;
+  }
+  
+  .itom-selection-popup {
+    background: #1a202c;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+  
+  .itom-popup-row:hover {
+    background: #2d3748;
+  }
+  
+  .itom-popup-original {
+    color: #e2e8f0;
+  }
+  
+  .itom-popup-arrow {
+    color: #718096;
+  }
+  
+  .itom-popup-result {
+    color: #4FD1C5;
+  }
+}
+
+/* ===== CLICKABLE BADGES ===== */
+
+.itom-clickable {
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
+}
+
+.itom-clickable:hover {
+  text-decoration-style: solid;
+}
+
+/* ===== DROPDOWN MENU ===== */
+
+.itom-dropdown {
+  position: absolute;
+  z-index: 2147483647;
+  min-width: 160px;
+  max-width: 280px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  overflow: hidden;
+  animation: itom-popup-appear 0.15s ease-out;
+}
+
+.itom-dropdown-header {
+  padding: 8px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #38B2AC 0%, #319795 100%);
+}
+
+.itom-dropdown-options {
+  padding: 4px 0;
+}
+
+.itom-dropdown-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.itom-dropdown-option:hover {
+  background: #e6fffa;
+}
+
+.itom-dropdown-value {
+  font-weight: 600;
+  color: #234e52;
+}
+
+.itom-dropdown-label {
+  color: #718096;
+  font-size: 12px;
+}
+
+/* Dark mode for dropdown */
+@media (prefers-color-scheme: dark) {
+  .itom-dropdown {
+    background: #1a202c;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+  
+  .itom-dropdown-option:hover {
+    background: #2d3748;
+  }
+  
+  .itom-dropdown-value {
+    color: #81e6d9;
+  }
+  
+  .itom-dropdown-label {
+    color: #a0aec0;
+  }
+}
+

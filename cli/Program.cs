@@ -12,20 +12,21 @@ while (true)
     Console.WriteLine("\n┌─────────────────────────────────────┐");
     Console.WriteLine("│           MAIN MENU                 │");
     Console.WriteLine("├─────────────────────────────────────┤");
-    Console.WriteLine("│  1. 📏 Length / Distance            │");
-    Console.WriteLine("│  2. 📐 Area                         │");
-    Console.WriteLine("│  3. 📦 Volume (Liquid)              │");
-    Console.WriteLine("│  4. 📦 Volume (Solid)               │");
-    Console.WriteLine("│  5. ⚖️  Mass / Weight               │");
-    Console.WriteLine("│  6. 🌡️ Temperature                  │");
-    Console.WriteLine("│  7. 🚗 Speed                        │");
-    Console.WriteLine("│  8. 🧭 Pressure                     │");
-    Console.WriteLine("│  9. ⚡ Energy                       │");
-    Console.WriteLine("│ 10. 🔌 Power                        │");
-    Console.WriteLine("│ 11. 🧪 Force                        │");
-    Console.WriteLine("│ 12. 🌊 Nautical                     │");
+    Console.WriteLine("│  1. Length / Distance               │");
+    Console.WriteLine("│  2. Area                            │");
+    Console.WriteLine("│  3. Volume (Liquid)                 │");
+    Console.WriteLine("│  4. Volume (Solid)                  │");
+    Console.WriteLine("│  5. Mass / Weight                   │");
+    Console.WriteLine("│  6. Temperature                     │");
+    Console.WriteLine("│  7. Speed                           │");
+    Console.WriteLine("│  8. Pressure                        │");
+    Console.WriteLine("│  9. Energy                          │");
+    Console.WriteLine("│ 10. Power                           │");
+    Console.WriteLine("│ 11. Force                           │");
+    Console.WriteLine("│ 12. Nautical                        │");
     Console.WriteLine("│ 13. View History                    │");
-    Console.WriteLine("│ 14. Quit                            │");
+    Console.WriteLine("│ 14. Settings                        │");
+    Console.WriteLine("│ 15. Quit                            │");
     Console.WriteLine("└─────────────────────────────────────┘");
     Console.Write("\nSelect option (or enter a conversion): ");
 
@@ -58,25 +59,26 @@ while (true)
         case "11": ForceMenu(); break;
         case "12": NauticalMenu(); break;
         case "13": ShowHistory(); break;
-        case "14":
+        case "14": SettingsMenu(); break;
+        case "15":
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\nGoodbye! 👋");
+            Console.WriteLine("\nGoodbye!");
             Console.ResetColor();
             return;
         default:
-            PrintError("Invalid option. Enter 1-14 or type a conversion like '5.5 ft to m'.");
+            PrintError("Invalid option. Enter 1-15 or type a conversion like '5.5 ft to m'.");
             break;
     }
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 📏 LENGTH / DISTANCE
+// LENGTH / DISTANCE
 // ═══════════════════════════════════════════════════════════════════════════
 void LengthMenu()
 {
     while (true)
     {
-        PrintHeader("📏 LENGTH / DISTANCE");
+        PrintHeader("LENGTH / DISTANCE");
         Console.WriteLine("  Imperial → Metric:");
         Console.WriteLine("   1. Inch → Centimeter");
         Console.WriteLine("   2. Inch → Millimeter");
@@ -113,13 +115,13 @@ void LengthMenu()
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 📐 AREA
+// AREA
 // ═══════════════════════════════════════════════════════════════════════════
 void AreaMenu()
 {
     while (true)
     {
-        PrintHeader("📐 AREA");
+        PrintHeader("AREA");
         Console.WriteLine("  Imperial → Metric:");
         Console.WriteLine("   1. Sq Inch → Sq Centimeter");
         Console.WriteLine("   2. Sq Inch → Sq Millimeter");
@@ -158,13 +160,13 @@ void AreaMenu()
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 📦 VOLUME (LIQUID)
+// VOLUME (LIQUID)
 // ═══════════════════════════════════════════════════════════════════════════
 void VolumeLiquidMenu()
 {
     while (true)
     {
-        PrintHeader("📦 VOLUME (LIQUID)");
+        PrintHeader("VOLUME (LIQUID)");
         Console.WriteLine("  Imperial → Metric:");
         Console.WriteLine("   1. Teaspoon → Milliliter");
         Console.WriteLine("   2. Tablespoon → Milliliter");
@@ -203,13 +205,13 @@ void VolumeLiquidMenu()
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 📦 VOLUME (SOLID / GEOMETRIC)
+// VOLUME (SOLID / GEOMETRIC)
 // ═══════════════════════════════════════════════════════════════════════════
 void VolumeSolidMenu()
 {
     while (true)
     {
-        PrintHeader("📦 VOLUME (SOLID / GEOMETRIC)");
+        PrintHeader("VOLUME (SOLID / GEOMETRIC)");
         Console.WriteLine("  Imperial → Metric:");
         Console.WriteLine("   1. Cubic Inch → Cubic Centimeter");
         Console.WriteLine("   2. Cubic Foot → Cubic Meter");
@@ -236,13 +238,13 @@ void VolumeSolidMenu()
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// ⚖️ MASS / WEIGHT
+// MASS / WEIGHT
 // ═══════════════════════════════════════════════════════════════════════════
 void MassMenu()
 {
     while (true)
     {
-        PrintHeader("⚖️ MASS / WEIGHT");
+        PrintHeader("MASS / WEIGHT");
         Console.WriteLine("  Imperial → Metric:");
         Console.WriteLine("   1. Ounce → Gram");
         Console.WriteLine("   2. Pound → Kilogram");
@@ -283,13 +285,13 @@ void MassMenu()
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 🌡️ TEMPERATURE
+// TEMPERATURE
 // ═══════════════════════════════════════════════════════════════════════════
 void TemperatureMenu()
 {
     while (true)
     {
-        PrintHeader("🌡️ TEMPERATURE");
+        PrintHeader("TEMPERATURE");
         Console.WriteLine("   1. Fahrenheit → Celsius");
         Console.WriteLine("   2. Fahrenheit → Kelvin");
         Console.WriteLine("   3. Celsius → Fahrenheit");
@@ -314,13 +316,13 @@ void TemperatureMenu()
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 🚗 SPEED
+// SPEED
 // ═══════════════════════════════════════════════════════════════════════════
 void SpeedMenu()
 {
     while (true)
     {
-        PrintHeader("🚗 SPEED");
+        PrintHeader("SPEED");
         Console.WriteLine("  Imperial → Metric:");
         Console.WriteLine("   1. Miles/Hour → Kilometers/Hour");
         Console.WriteLine("   2. Miles/Hour → Meters/Second");
@@ -347,13 +349,13 @@ void SpeedMenu()
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 🧭 PRESSURE
+// PRESSURE
 // ═══════════════════════════════════════════════════════════════════════════
 void PressureMenu()
 {
     while (true)
     {
-        PrintHeader("🧭 PRESSURE");
+        PrintHeader("PRESSURE");
         Console.WriteLine("  Imperial → Metric:");
         Console.WriteLine("   1. PSI → Pascal");
         Console.WriteLine("   2. PSI → Kilopascal");
@@ -384,13 +386,13 @@ void PressureMenu()
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// ⚡ ENERGY
+// ENERGY
 // ═══════════════════════════════════════════════════════════════════════════
 void EnergyMenu()
 {
     while (true)
     {
-        PrintHeader("⚡ ENERGY");
+        PrintHeader("ENERGY");
         Console.WriteLine("  Imperial → Metric:");
         Console.WriteLine("   1. BTU → Joule");
         Console.WriteLine("   2. BTU → Kilojoule");
@@ -417,13 +419,13 @@ void EnergyMenu()
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 🔌 POWER
+// POWER
 // ═══════════════════════════════════════════════════════════════════════════
 void PowerMenu()
 {
     while (true)
     {
-        PrintHeader("🔌 POWER");
+        PrintHeader("POWER");
         Console.WriteLine("  Imperial → Metric:");
         Console.WriteLine("   1. Horsepower → Watt");
         Console.WriteLine("   2. Horsepower → Kilowatt");
@@ -446,13 +448,13 @@ void PowerMenu()
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 🧪 FORCE
+// FORCE
 // ═══════════════════════════════════════════════════════════════════════════
 void ForceMenu()
 {
     while (true)
     {
-        PrintHeader("🧪 FORCE");
+        PrintHeader("FORCE");
         Console.WriteLine("   1. Pound-Force → Newton");
         Console.WriteLine("   2. Newton → Pound-Force");
         Console.WriteLine("   3. ← Back");
@@ -469,13 +471,13 @@ void ForceMenu()
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// 🌊 NAUTICAL
+// NAUTICAL
 // ═══════════════════════════════════════════════════════════════════════════
 void NauticalMenu()
 {
     while (true)
     {
-        PrintHeader("🌊 NAUTICAL");
+        PrintHeader("NAUTICAL");
         Console.WriteLine("   1. Nautical Mile → Kilometer");
         Console.WriteLine("   2. Kilometer → Nautical Mile");
         Console.WriteLine("   3. ← Back");

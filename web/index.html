@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online unit converter for length, area, volume, mass, temperature, speed, pressure, energy, power, and force. Convert between Imperial and Metric units instantly. 60+ conversions across 12 categories.">
+    <meta name="keywords" content="unit converter, imperial to metric, metric to imperial, length converter, weight converter, temperature converter, area converter, volume converter, mass converter, speed converter, pressure converter, energy converter, online calculator, measurement converter, free converter">
+    <meta name="author" content="ItoMcovertor">
+    <meta name="theme-color" content="#38B2AC">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://itomcovertor.com/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://itomcovertor.com/">
+    <meta property="og:title" content="ItoMcovertor - Free Imperial to Metric Unit Converter">
+    <meta property="og:description" content="Convert 60+ units across 12 categories instantly. Free online unit converter for length, area, volume, mass, temperature, speed, and more. No ads, no sign-up.">
+    <meta property="og:image" content="https://itomcovertor.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="ItoMcovertor">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://itomcovertor.com/">
+    <meta name="twitter:title" content="ItoMcovertor - Free Imperial to Metric Unit Converter">
+    <meta name="twitter:description" content="Convert 60+ units across 12 categories instantly. Free online unit converter for length, area, volume, mass, temperature, speed, and more.">
+    <meta name="twitter:image" content="https://itomcovertor.com/og-image.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    <link rel="apple-touch-icon" href="logo.svg">
+    
+    <title>Unit Converter - Imperial to Metric | ItoMcovertor</title>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "ItoMcovertor",
+        "url": "https://itomcovertor.com/",
+        "description": "Free online unit converter for length, area, volume, mass, temperature, speed, pressure, energy, power, and force. Convert between Imperial and Metric units instantly.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "60+ unit conversions",
+            "12 measurement categories",
+            "Imperial to Metric conversion",
+            "Metric to Imperial conversion",
+            "Free to use",
+            "No registration required",
+            "Shareable conversion links",
+            "Conversion history"
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What units can I convert?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "You can convert 60+ units of measurement in 12 categories in ItoMcovertor: Length, Area, Volume (Liquid and Solid), Mass, Temperature, Speed, Pressure, Energy, Power, Force and Nautical. Convert from Imperial to Metric and vice versa!"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is this converter free to use?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Absolutely! ItoMcovertor is a passion project. No ads, no sign up, no catch. It's completely free to use and all history of conversions is saved only on your device."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is there a browser extension?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes! There is a Chrome extension version of ItoMcovertor that has extra features like auto-convert when selecting a page. You'll have it in your browser's tool bar in no time after you install it from the Chrome Web Store."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Does it work offline?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The web version does need internet to load, but all calculations are done in your browser. The Chrome extension is completely offline once installed."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I share a conversion?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "After you have converted something, just copy the URL from your browser. It will encode your conversion and people will see the same output."
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#converter" class="skip-link">Skip to converter</a>
+    
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">
+                <img src="logo.svg" alt="ItoMcovertor Logo" class="navbar-logo">
+                <span class="navbar-title">ItoMcovertor</span>
+            </a>
+            
+            <ul class="navbar-nav">
+                <li><a href="#converter" class="nav-link active">Converter</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+                <li><a href="support.html" class="nav-link">Support</a></li>
+                <li><a href="https://chrome.google.com/webstore" target="_blank" rel="noopener" class="nav-link nav-extension">Extension</a></li>
+            </ul>
+            
+            <div class="navbar-actions">
+                <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                    <svg class="moon-icon" style="display:none" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+                <button class="settings-btn" id="settingsBtn" title="Settings">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"/>
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <line x1="3" y1="18" x2="21" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1 class="hero-title">Transform Units in a <span class="accent">Snap</span></h1>
+        <p class="hero-subtitle">Convert Imperial to Metric and Metric to Imperial in a snap. 60+ conversions for Units of Measure across 12 categories all for free.</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-value">12</div>
+                <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">60+</div>
+                <div class="stat-label">Conversions</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Free</div>
+            </div>
+        </div>
+    </section>
+
+<!-- Extension Promotion Section -->
+<section class="extension-section" aria-labelledby="extension-title">
+    <div class="extension-container">
+
+        <!-- Left: Content -->
+        <div class="extension-content">
+            <span class="extension-badge">Browser Extension</span>
+
+            <h2 class="extension-title" id="extension-title">
+                Get the Chrome Extension
+            </h2>
+
+            <p class="extension-description">
+                Auto-convert units on any webpage. Select text to convert instantly.
+                Works fully offline after install.
+            </p>
+
+            <ul class="extension-features">
+                <li>
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    <span>Automatic unit detection on pages</span>
+                </li>
+
+                <li>
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    <span>Convert by selecting any text</span>
+                </li>
+
+                <li>
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    <span>100% offline after installation</span>
+                </li>
+            </ul>
+
+            <a
+                id="extensionBtn"
+                href="https://chrome.google.com/webstore/detail/YOUR_EXTENSION_ID"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="extension-btn"
+                aria-label="Add ItoMcovertor Extension"
+            >
+                <!-- Chrome Web Store Icon (exact copy from Google_Chrome_Web_Store_icon_2022.svg) -->
+                <svg id="iconChrome" class="browser-icon" viewBox="0 0 152.00976 132" width="22" height="22" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <defs>
+                    <linearGradient id="cws-red" gradientUnits="userSpaceOnUse" x1="39.16" y1="775.01501" x2="152.84" y2="775.01501" gradientTransform="translate(-20,-678)"><stop offset="0" style="stop-color:#d93025"/><stop offset="1" style="stop-color:#ea4335"/></linearGradient>
+                    <linearGradient id="cws-green" gradientUnits="userSpaceOnUse" x1="-1169.8269" y1="59.741402" x2="-1056.1232" y2="59.741402" gradientTransform="matrix(-0.5,-0.866,0.866,-0.5,-553.5404,-800.0297)"><stop offset="0" style="stop-color:#1e8e3e"/><stop offset="1" style="stop-color:#34a853"/></linearGradient>
+                    <linearGradient id="cws-yellow" gradientUnits="userSpaceOnUse" x1="56.7071" y1="-664.77472" x2="170.4071" y2="-664.77472" gradientTransform="matrix(-0.5,0.866,-0.866,-0.5,-423.9008,-292.818)"><stop offset="0" style="stop-color:#fbbc04"/><stop offset="1" style="stop-color:#fcc934"/></linearGradient>
+                  </defs>
+                  <path d="M 0,0 V 121.63086 C 0,127.35086 4.6391406,132 10.369141,132 H 141.64062 c 5.72,0 10.36915,-4.63914 10.36915,-10.36914 L 152,0 Z m 58.730469,14.519531 h 34.539062 c 3.82,0 6.910159,3.090157 6.910159,6.910157 0,3.809999 -3.090159,6.910156 -6.910159,6.910156 H 58.730469 c -3.82,0 -6.910157,-3.090156 -6.910157,-6.910156 0,-3.820001 3.090157,-6.910157 6.910157,-6.910157 z" fill="#f1f3f4"/>
+                  <path d="M 0,0 V 66.349609 H 152 V 0 Z m 58.730469,14.519531 h 34.539062 c 3.82,0 6.910159,3.090157 6.910159,6.910157 0,3.809999 -3.090159,6.910156 -6.910159,6.910156 H 58.730469 c -3.82,0 -6.910157,-3.090156 -6.910157,-6.910156 0,-3.820001 3.090157,-6.910157 6.910157,-6.910157 z" fill="#e8eaed"/>
+                  <path style="fill:url(#cws-red)" d="m 76,55.990236 c -24.29,0 -45.48984,13.190544 -56.83984,32.810544 L 28.21094,116.41016 42.17969,132 h 8.89453 L 76,88.81055 l 56.83984,-0.01 C 121.48984,69.18078 100.29,55.990236 76,55.990236 Z"/>
+                  <path style="fill:url(#cws-green)" d="M 19.16016,88.80078 C 11.69401,101.76587 8.79854,117.05336 11.18555,132 h 32.9082 z"/>
+                  <path style="fill:url(#cws-yellow)" d="M 76,88.81055 100.93359,132 h 39.88086 c 2.38639,-14.943 -0.50881,-30.22498 -7.97461,-43.18945 z"/>
+                  <path style="fill:#f1f3f4" d="m 76,88.81055 c -18.12046,0 -32.810541,14.69433 -32.810547,32.82031 0,3.62529 0.598449,7.10853 1.683594,10.36914 h 62.253903 c 1.08515,-3.26061 1.6836,-6.74385 1.6836,-10.36914 C 108.81054,103.50488 94.12046,88.81055 76,88.81055 Z"/>
+                  <path d="M 76,94.96094 A 26.66,26.67 0 0 0 49.33984,121.63086 26.66,26.67 0 0 0 51.48633,132 h 49.02734 A 26.66,26.67 0 0 0 102.66016,121.63086 26.66,26.67 0 0 0 76,94.96094 Z" fill="#1a73e8"/>
+                </svg>
+                <!-- Firefox Add-ons Icon (exact copy from Firefox_Browser_Add-ons_logo.svg - icon only, viewBox cropped to 0 0 80 80) -->
+                <svg id="iconFirefox" class="browser-icon" style="display:none" viewBox="0 0 80 80" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="ff-main" x1="87.25%" x2="9.4%" y1="15.5%" y2="93.1%"><stop offset=".05" stop-color="#fff44f"/><stop offset=".37" stop-color="#ff980e"/><stop offset=".53" stop-color="#ff3647"/><stop offset=".7" stop-color="#e31587"/></linearGradient>
+                    <radialGradient id="ff-glow" cx="87.4%" cy="-12.9%" r="128%"><stop offset=".13" stop-color="#ffbd4f"/><stop offset=".28" stop-color="#ff980e"/><stop offset=".47" stop-color="#ff3750"/><stop offset=".78" stop-color="#eb0878"/></radialGradient>
+                  </defs>
+                  <path d="M75.916 26.831c-1.684-4.052-5.1-8.427-7.775-9.81a40.266 40.266 0 0 1 3.925 11.764l.007.065C67.691 17.925 60.26 13.52 54.191 3.928a47.099 47.099 0 0 1-.913-1.484 12.24 12.24 0 0 1-.427-.8 7.053 7.053 0 0 1-.578-1.535.1.1 0 0 0-.088-.1.138.138 0 0 0-.073 0c-.005 0-.013.009-.019.011s-.019.011-.028.015l.015-.026c-9.735 5.7-13.038 16.252-13.342 21.53a19.387 19.387 0 0 0-10.666 4.111 11.587 11.587 0 0 0-1-.758 17.968 17.968 0 0 1-.109-9.473 28.705 28.705 0 0 0-9.329 7.21h-.018c-1.536-1.947-1.428-8.367-1.34-9.708a6.928 6.928 0 0 0-1.294.687 28.225 28.225 0 0 0-3.788 3.245A33.845 33.845 0 0 0 7.571 21.2v.006-.007a32.733 32.733 0 0 0-5.2 11.743l-.052.256a61.89 61.89 0 0 0-.381 2.42c0 .029-.006.056-.009.085a36.937 36.937 0 0 0-.629 5.343v.2A38.759 38.759 0 0 0 78.254 47.8c.065-.5.118-.995.176-1.5a39.857 39.857 0 0 0-2.514-19.469z" fill="url(#ff-main)"/>
+                  <path d="M75.916 26.831c-1.684-4.052-5.1-8.427-7.775-9.81a40.266 40.266 0 0 1 3.925 11.764v.037l.007.041a35.1 35.1 0 0 1-1.206 26.158c-4.442 9.531-15.194 19.3-32.024 18.825-18.185-.515-34.2-14.009-37.194-31.683-.545-2.787 0-4.2.274-6.465a28.876 28.876 0 0 0-.623 5.348v.2A38.759 38.759 0 0 0 78.254 47.8c.065-.5.118-.995.176-1.5a39.857 39.857 0 0 0-2.514-19.469z" fill="url(#ff-glow)"/>
+                </svg>
+                <!-- Edge Icon (exact copy from Microsoft_Edge_logo_(2019).svg) -->
+                <svg id="iconEdge" class="browser-icon" style="display:none" viewBox="0 0 256 256" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <radialGradient id="ed-shadow1" cx="161.8" cy="68.9" r="95.4" gradientTransform="matrix(1 0 0 -.95 0 248.8)" gradientUnits="userSpaceOnUse"><stop offset=".7" stop-opacity="0"/><stop offset=".9" stop-opacity=".5"/><stop offset="1"/></radialGradient>
+                    <radialGradient id="ed-shadow2" cx="-340.3" cy="63" r="143.2" gradientTransform="matrix(.15 -.99 -.8 -.12 176.6 -125.4)" gradientUnits="userSpaceOnUse"><stop offset=".8" stop-opacity="0"/><stop offset=".9" stop-opacity=".5"/><stop offset="1"/></radialGradient>
+                    <radialGradient id="ed-top" cx="113.4" cy="570.2" r="202.4" gradientTransform="matrix(-.04 1 2.13 .08 -1179.5 -106.7)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#35c1f1"/><stop offset=".1" stop-color="#34c1ed"/><stop offset=".2" stop-color="#2fc2df"/><stop offset=".3" stop-color="#2bc3d2"/><stop offset=".7" stop-color="#36c752"/></radialGradient>
+                    <radialGradient id="ed-highlight" cx="376.5" cy="568" r="97.3" gradientTransform="matrix(.28 .96 .78 -.23 -303.8 -148.5)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#66eb6e"/><stop offset="1" stop-color="#66eb6e" stop-opacity="0"/></radialGradient>
+                    <linearGradient id="ed-bottom" x1="63.3" y1="84" x2="241.7" y2="84" gradientTransform="matrix(1 0 0 -1 0 266)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#0c59a4"/><stop offset="1" stop-color="#114a8b"/></linearGradient>
+                    <linearGradient id="ed-middle" x1="157.3" y1="161.4" x2="46" y2="40.1" gradientTransform="matrix(1 0 0 -1 0 266)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1b9de2"/><stop offset=".2" stop-color="#1595df"/><stop offset=".7" stop-color="#0680d7"/><stop offset="1" stop-color="#0078d4"/></linearGradient>
+                  </defs>
+                  <path d="M235.7 195.5a93.7 93.7 0 0 1-10.6 4.7 101.9 101.9 0 0 1-35.9 6.4c-47.3 0-88.5-32.5-88.5-74.3a31.5 31.5 0 0 1 16.4-27.3c-42.8 1.8-53.8 46.4-53.8 72.5 0 74 68.1 81.4 82.8 81.4 7.9 0 19.8-2.3 27-4.6l1.3-.4a128.3 128.3 0 0 0 66.6-52.8 4 4 0 0 0-5.3-5.6Z" transform="translate(-4.6 -5)" style="fill:url(#ed-bottom)"/>
+                  <path d="M235.7 195.5a93.7 93.7 0 0 1-10.6 4.7 101.9 101.9 0 0 1-35.9 6.4c-47.3 0-88.5-32.5-88.5-74.3a31.5 31.5 0 0 1 16.4-27.3c-42.8 1.8-53.8 46.4-53.8 72.5 0 74 68.1 81.4 82.8 81.4 7.9 0 19.8-2.3 27-4.6l1.3-.4a128.3 128.3 0 0 0 66.6-52.8 4 4 0 0 0-5.3-5.6Z" transform="translate(-4.6 -5)" style="isolation:isolate;opacity:.35;fill:url(#ed-shadow1)"/>
+                  <path d="M110.3 246.3A79.2 79.2 0 0 1 87.6 225a80.7 80.7 0 0 1 29.5-120c3.2-1.5 8.5-4.1 15.6-4a32.4 32.4 0 0 1 25.7 13 31.9 31.9 0 0 1 6.3 18.7c0-.2 24.5-79.6-80-79.6-43.9 0-80 41.6-80 78.2a130.2 130.2 0 0 0 12.1 56 128 128 0 0 0 156.4 67 75.5 75.5 0 0 1-62.8-8Z" transform="translate(-4.6 -5)" style="fill:url(#ed-middle)"/>
+                  <path d="M110.3 246.3A79.2 79.2 0 0 1 87.6 225a80.7 80.7 0 0 1 29.5-120c3.2-1.5 8.5-4.1 15.6-4a32.4 32.4 0 0 1 25.7 13 31.9 31.9 0 0 1 6.3 18.7c0-.2 24.5-79.6-80-79.6-43.9 0-80 41.6-80 78.2a130.2 130.2 0 0 0 12.1 56 128 128 0 0 0 156.4 67 75.5 75.5 0 0 1-62.8-8Z" transform="translate(-4.6 -5)" style="opacity:.41;fill:url(#ed-shadow2);isolation:isolate"/>
+                  <path d="M157 153.8c-.9 1-3.4 2.5-3.4 5.6 0 2.6 1.7 5.2 4.8 7.3 14.3 10 41.4 8.6 41.5 8.6a59.6 59.6 0 0 0 30.3-8.3 61.4 61.4 0 0 0 30.4-52.9c.3-22.4-8-37.3-11.3-43.9C228 28.8 182.3 5 132.6 5a128 128 0 0 0-128 126.2c.5-36.5 36.8-66 80-66 3.5 0 23.5.3 42 10a72.6 72.6 0 0 1 30.9 29.3c6.1 10.6 7.2 24.1 7.2 29.5s-2.7 13.3-7.8 19.9Z" transform="translate(-4.6 -5)" style="fill:url(#ed-top)"/>
+                  <path d="M157 153.8c-.9 1-3.4 2.5-3.4 5.6 0 2.6 1.7 5.2 4.8 7.3 14.3 10 41.4 8.6 41.5 8.6a59.6 59.6 0 0 0 30.3-8.3 61.4 61.4 0 0 0 30.4-52.9c.3-22.4-8-37.3-11.3-43.9C228 28.8 182.3 5 132.6 5a128 128 0 0 0-128 126.2c.5-36.5 36.8-66 80-66 3.5 0 23.5.3 42 10a72.6 72.6 0 0 1 30.9 29.3c6.1 10.6 7.2 24.1 7.2 29.5s-2.7 13.3-7.8 19.9Z" transform="translate(-4.6 -5)" style="fill:url(#ed-highlight)"/>
+                </svg>
+                <!-- App Store Icon (exact copy from App_Store_(iOS).svg) -->
+                <svg id="iconSafari" class="browser-icon" style="display:none" viewBox="0 0 800 800" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                  <linearGradient id="as-grad" gradientUnits="userSpaceOnUse" x1="400.05" y1="798.7717" x2="400.05" y2="-1.2283" gradientTransform="matrix(1 0 0 -1 0 798.7717)"><stop offset="0" style="stop-color:#18BFFB"/><stop offset="1" style="stop-color:#2072F3"/></linearGradient>
+                  <path fill="url(#as-grad)" d="M638.4,0H161.6C72.3,0,0,72.3,0,161.6v476.9C0,727.7,72.3,800,161.6,800h476.9c89.2,0,161.6-72.3,161.6-161.6V161.6C800,72.3,727.7,0,638.4,0z"/>
+                  <path fill="#FFFFFF" d="M396.6,183.8l16.2-28c10-17.5,32.3-23.4,49.8-13.4s23.4,32.3,13.4,49.8L319.9,462.4h112.9c36.6,0,57.1,43,41.2,72.8H143c-20.2,0-36.4-16.2-36.4-36.4c0-20.2,16.2-36.4,36.4-36.4h92.8l118.8-205.9l-37.1-64.4c-10-17.5-4.1-39.6,13.4-49.8c17.5-10,39.6-4.1,49.8,13.4L396.6,183.8L396.6,183.8z M256.2,572.7l-35,60.7c-10,17.5-32.3,23.4-49.8,13.4S148,614.5,158,597l26-45C213.4,542.9,237.3,549.9,256.2,572.7L256.2,572.7z M557.6,462.6h94.7c20.2,0,36.4,16.2,36.4,36.4c0,20.2-16.2,36.4-36.4,36.4h-52.6l35.5,61.6c10,17.5,4.1,39.6-13.4,49.8c-17.5,10-39.6,4.1-49.8-13.4c-59.8-103.7-104.7-181.3-134.5-233c-30.5-52.6-8.7-105.4,12.8-123.3C474.2,318.1,509.9,380,557.6,462.6L557.6,462.6z"/>
+                </svg>
+                <span id="extensionBtnText">Add to Chrome - Free</span>
+            </a>
+            
+            <script>
+                // Dynamic browser detection using modern API
+                (function() {
+                    const btn = document.getElementById('extensionBtn');
+                    const text = document.getElementById('extensionBtnText');
+                    const icons = {
+                        chrome: document.getElementById('iconChrome'),
+                        firefox: document.getElementById('iconFirefox'),
+                        edge: document.getElementById('iconEdge'),
+                        safari: document.getElementById('iconSafari')
+                    };
+                    
+                    function hideAllIcons() {
+                        Object.values(icons).forEach(icon => { if(icon) icon.style.display = 'none'; });
+                    }
+                    
+                    function setBrowser(browser, storeName, storeUrl) {
+                        hideAllIcons();
+                        // Show matching icon or default to Chrome icon for Chromium browsers
+                        const iconKey = browser.toLowerCase();
+                        if (icons[iconKey]) {
+                            icons[iconKey].style.display = 'block';
+                        } else {
+                            icons.chrome.style.display = 'block'; // Default icon for Chromium-based
+                        }
+                        text.textContent = `Add to ${storeName} - Free`;
+                        btn.href = storeUrl;
+                    }
+                    
+                    // Store URLs
+                    const stores = {
+                        chrome: 'https://chrome.google.com/webstore/detail/YOUR_EXTENSION_ID',
+                        edge: 'https://microsoftedge.microsoft.com/addons/detail/YOUR_EXTENSION_ID',
+                        firefox: 'https://addons.mozilla.org/en-US/firefox/addon/YOUR_EXTENSION_ID',
+                        safari: 'https://apps.apple.com/app/YOUR_EXTENSION_ID'
+                    };
+                    
+                    // Try modern userAgentData API first (gives actual browser name)
+                    if (navigator.userAgentData && navigator.userAgentData.brands) {
+                        const brands = navigator.userAgentData.brands;
+                        
+                        // Find the actual browser (not just Chromium)
+                        const browser = brands.find(b => 
+                            !b.brand.includes('Chromium') && 
+                            !b.brand.includes('Not') &&
+                            b.brand !== 'Google Chrome'
+                        ) || brands.find(b => b.brand === 'Google Chrome') || brands[0];
+                        
+                        const browserName = browser ? browser.brand : 'Chrome';
+                        
+                        // Map browser to store
+                        if (browserName.includes('Edge') || browserName === 'Microsoft Edge') {
+                            setBrowser('edge', 'Edge', stores.edge);
+                        } else if (browserName.includes('Brave')) {
+                            setBrowser('chrome', 'Brave', stores.chrome);
+                        } else if (browserName.includes('Opera')) {
+                            setBrowser('chrome', 'Opera', stores.chrome);
+                        } else if (browserName.includes('Vivaldi')) {
+                            setBrowser('chrome', 'Vivaldi', stores.chrome);
+                        } else {
+                            // Chrome and other Chromium browsers
+                            setBrowser('chrome', browserName || 'Chrome', stores.chrome);
+                        }
+                    } else {
+                        // Fallback: Parse user agent string
+                        const ua = navigator.userAgent;
+                        
+                        if (ua.includes('Edg/')) {
+                            setBrowser('edge', 'Edge', stores.edge);
+                        } else if (ua.includes('Firefox')) {
+                            setBrowser('firefox', 'Firefox', stores.firefox);
+                        } else if (ua.includes('Safari') && !ua.includes('Chrome')) {
+                            setBrowser('safari', 'Safari', stores.safari);
+                        } else if (ua.includes('Brave')) {
+                            setBrowser('chrome', 'Brave', stores.chrome);
+                        } else if (ua.includes('OPR') || ua.includes('Opera')) {
+                            setBrowser('chrome', 'Opera', stores.chrome);
+                        } else if (ua.includes('Vivaldi')) {
+                            setBrowser('chrome', 'Vivaldi', stores.chrome);
+                        } else if (ua.includes('Ecosia')) {
+                            setBrowser('chrome', 'Ecosia', stores.chrome);
+                        } else {
+                            // Default fallback
+                            setBrowser('chrome', 'Chrome', stores.chrome);
+                        }
+                    }
+                })();
+            </script>
+        </div>
+
+        <!-- Right: Preview -->
+        <div class="extension-preview" aria-hidden="true">
+            <div class="preview-browser" id="previewBrowser">
+                <!-- Mac style (default) -->
+                <div class="preview-bar preview-bar-mac">
+                    <div class="preview-controls-mac">
+                        <span class="preview-dot red"></span>
+                        <span class="preview-dot yellow"></span>
+                        <span class="preview-dot green"></span>
+                    </div>
+                    <div class="preview-url">wikipedia.org/empire-state-building</div>
+                </div>
+                
+                <!-- Windows style -->
+                <div class="preview-bar preview-bar-windows" style="display: none;">
+                    <div class="preview-url">wikipedia.org/empire-state-building</div>
+                    <div class="preview-controls-windows">
+                        <span class="win-btn minimize">─</span>
+                        <span class="win-btn maximize">□</span>
+                        <span class="win-btn close">×</span>
+                    </div>
+                </div>
+
+                <div class="preview-content">
+                    <div class="preview-header">Empire State Building</div>
+                    <div class="preview-text">
+                        <p>The Empire State Building stands at <span class="itom-unit">1,454 feet<span class="itom-badge">443.2 m</span></span> tall.</p>
+                        <p>Located <span class="itom-unit">2.5 miles<span class="itom-badge">4.02 km</span></span> from Central Park.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+            // Detect OS and show appropriate window chrome
+            (function() {
+                const platform = navigator.platform.toLowerCase();
+                const userAgent = navigator.userAgent.toLowerCase();
+                const macBar = document.querySelector('.preview-bar-mac');
+                const winBar = document.querySelector('.preview-bar-windows');
+                
+                if (platform.includes('win') || userAgent.includes('windows')) {
+                    // Windows
+                    if (macBar) macBar.style.display = 'none';
+                    if (winBar) winBar.style.display = 'flex';
+                } else {
+                    // Mac, Linux, and others - use Mac style (most common for web devs)
+                    if (macBar) macBar.style.display = 'flex';
+                    if (winBar) winBar.style.display = 'none';
+                }
+            })();
+        </script>
+
+    </div>
+</section>
+
+
+    <!-- Converter Tool Section -->
+    <section class="tool-section" id="converter">
+        <div class="section-container">
+            <!-- Category Tabs -->
+            <nav class="category-tabs" id="categoryTabs" role="tablist">
+                <button class="tab-btn active" data-category="length" role="tab">Length</button>
+                <button class="tab-btn" data-category="area" role="tab">Area</button>
+                <button class="tab-btn" data-category="volume-liquid" role="tab">Volume (Liquid)</button>
+                <button class="tab-btn" data-category="volume-solid" role="tab">Volume (Solid)</button>
+                <button class="tab-btn" data-category="mass" role="tab">Mass</button>
+                <button class="tab-btn" data-category="temperature" role="tab">Temperature</button>
+                <button class="tab-btn" data-category="speed" role="tab">Speed</button>
+                <button class="tab-btn" data-category="pressure" role="tab">Pressure</button>
+                <button class="tab-btn" data-category="energy" role="tab">Energy</button>
+                <button class="tab-btn" data-category="power" role="tab">Power</button>
+                <button class="tab-btn" data-category="force" role="tab">Force</button>
+                <button class="tab-btn" data-category="nautical" role="tab">Nautical</button>
+            </nav>
+
+            <!-- Two-column layout wrapper -->
+            <div class="tool-grid">
+                <!-- Converter Card -->
+                <main class="converter-card">
+                    <div class="converter-grid">
+                        <!-- From Section -->
+                        <div class="converter-section">
+                            <label class="section-label" for="fromValue">From</label>
+                            <input type="number" id="fromValue" class="value-input" placeholder="Enter value" step="any" autocomplete="off">
+                            <div class="unit-select-wrapper">
+                                <select id="fromUnit" class="unit-select" aria-label="From unit"></select>
+                            </div>
+                        </div>
+
+                        <!-- Swap Button -->
+                        <button class="swap-btn" id="swapBtn" title="Swap units" aria-label="Swap units">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 16V4M7 4L3 8M7 4L11 8M17 8v12M17 20l4-4M17 20l-4-4"/>
+                            </svg>
+                        </button>
+
+                        <!-- To Section -->
+                        <div class="converter-section">
+                            <label class="section-label" for="toValue">To</label>
+                            <div class="result-wrapper">
+                                <input type="text" id="toValue" class="value-input result" readonly placeholder="Result" aria-live="polite">
+                                <button class="copy-btn" id="copyBtn" title="Copy result" aria-label="Copy result">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="unit-select-wrapper">
+                                <select id="toUnit" class="unit-select" aria-label="To unit"></select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Validation Message -->
+                    <div class="validation-message" id="validationMessage" role="alert"></div>
+
+                    <!-- Quick Reference -->
+                    <div class="quick-reference" id="quickReference"></div>
+                </main>
+
+                <!-- History Panel -->
+                <section class="history-panel" aria-labelledby="historyTitle" style="margin-top: 0;">
+                    <div class="history-header">
+                        <h2 id="historyTitle">Conversion History</h2>
+                        <button class="clear-btn" id="clearHistoryBtn">Clear</button>
+                    </div>
+                    <ul class="history-list" id="historyList">
+                        <li class="history-empty">No conversions yet</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>What units can I convert?</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <p>You can convert 60+ units of measurement in 12 categories in ItoMcovertor: Length, Area, Volume (Liquid and Solid), Mass, Temperature, Speed, Pressure, Energy, Power, Force and Nautical. Convert from Imperial to Metric and vice versa!</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Is this converter free to use?</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <p>Absolutely! ItoMcovertor is a passion project. No ads, no sign up, no catch. It's completely free to use and all history of conversions is saved only on your device.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Is there a browser extension?</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes! There is a Chrome extension version of ItoMcovertor that has extra features like auto-convert when selecting a page. You’ll have it in your browser’s tool bar in no time after you install it from the Chrome Web Store.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Does it work offline?</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <p>The web version does need internet to load, but all calculations are done in your browser. The Chrome extension is completely offline once installed.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>How do I share a conversion?</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    <p>After you have converted something, just copy the URL from your browser. It will encode your conversion and people will see the same output.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-brand-link">
+                        <img src="logo.svg" alt="ItoMcovertor" class="footer-logo">
+                        <span class="footer-title">ItoMcovertor</span>
+                    </a>
+                    <p class="footer-description">Fast, accurate, and free unit conversions between Imperial and Metric systems. Built for developers, students, and professionals.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Product</h4>
+                    <ul class="footer-links">
+                        <li><a href="#converter">Web Converter</a></li>
+                        <li><a href="https://chrome.google.com/webstore" target="_blank" rel="noopener">Chrome Extension</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></li>
+                        <li><a href="support.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy;2026 ItoMcovertor. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Settings Panel -->
+    <div class="settings-overlay" id="settingsOverlay">
+        <div class="settings-panel">
+            <div class="settings-header">
+                <h2>Settings</h2>
+                <button class="settings-close" id="settingsClose" aria-label="Close settings">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="settings-content">
+                <div class="settings-group">
+                    <h3>Appearance</h3>
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label">Dark Mode</div>
+                            <div class="setting-description">Use dark color theme</div>
+                        </div>
+                        <div class="toggle-switch" id="darkModeToggle" role="switch" aria-checked="false" tabindex="0"></div>
+                    </div>
+                </div>
+                <div class="settings-group">
+                    <h3>Behavior</h3>
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label">Auto-save History</div>
+                            <div class="setting-description">Save conversions automatically</div>
+                        </div>
+                        <div class="toggle-switch active" id="autoSaveToggle" role="switch" aria-checked="true" tabindex="0"></div>
+                    </div>
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label">Precision (Decimals)</div>
+                            <div class="setting-description">Number of decimal places</div>
+                        </div>
+                        <select class="unit-select" id="precisionSelect" style="width: auto; padding-right: 36px;">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4" selected>4</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label">Number Grouping</div>
+                            <div class="setting-description">Use comma separators (1,000)</div>
+                        </div>
+                        <div class="toggle-switch active" id="numberGroupingToggle" role="switch" aria-checked="true" tabindex="0"></div>
+                    </div>
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label">Scientific Notation</div>
+                            <div class="setting-description">Use for very small/large numbers</div>
+                        </div>
+                        <div class="toggle-switch active" id="scientificNotationToggle" role="switch" aria-checked="true" tabindex="0"></div>
+                    </div>
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label">Rounding</div>
+                            <div class="setting-description">How to round converted values</div>
+                        </div>
+                        <select class="unit-select" id="roundingSelect" style="width: auto; padding-right: 36px;">
+                            <option value="round" selected>Round</option>
+                            <option value="floor">Floor</option>
+                            <option value="ceiling">Ceiling</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-banner" id="cookieBanner" role="dialog" aria-labelledby="cookieTitle" aria-describedby="cookieText">
+        <div class="cookie-container">
+            <div class="cookie-content">
+                <div class="cookie-title" id="cookieTitle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <circle cx="8" cy="9" r="1" fill="currentColor"/>
+                        <circle cx="15" cy="8" r="1" fill="currentColor"/>
+                        <circle cx="10" cy="14" r="1" fill="currentColor"/>
+                        <circle cx="16" cy="13" r="1" fill="currentColor"/>
+                        <circle cx="13" cy="17" r="1" fill="currentColor"/>
+                    </svg>
+                    We use cookies
+                </div>
+                <p class="cookie-text" id="cookieText">
+                    We use cookies to save your preferences and conversion history locally. 
+                    No data is sent to our servers. <a href="privacy.html">Learn more</a>
+                </p>
+            </div>
+            <div class="cookie-actions">
+                <button class="cookie-btn cookie-btn-decline" id="cookieDecline">Decline</button>
+                <button class="cookie-btn cookie-btn-accept" id="cookieAccept">Accept</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="js/converter.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

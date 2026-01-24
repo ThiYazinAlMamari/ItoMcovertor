@@ -1,0 +1,402 @@
+/* ItoMcovertor Extension - Options Page Styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f7fafc;
+  color: #1a202c;
+  min-height: 100vh;
+}
+
+/* Layout */
+.options-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar Navigation */
+.options-nav {
+  width: 220px;
+  background: #ffffff;
+  border-right: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.nav-logo {
+  width: 32px;
+  height: 32px;
+}
+
+.nav-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 12px 0;
+  flex: 1;
+}
+
+.nav-link {
+  display: block;
+  padding: 10px 20px;
+  color: #4a5568;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  border-left: 3px solid transparent;
+  transition: all 0.15s ease;
+}
+
+.nav-link:hover {
+  background: #f7fafc;
+  color: #2d3748;
+}
+
+.nav-link.active {
+  background: #e6fffa;
+  color: #38b2ac;
+  border-left-color: #38b2ac;
+}
+
+.nav-footer {
+  padding: 16px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.nav-footer-link {
+  font-size: 12px;
+  color: #a0aec0;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.nav-footer-link:hover {
+  color: #38b2ac;
+}
+
+/* Main Content */
+.options-content {
+  flex: 1;
+  margin-left: 220px;
+  padding: 32px 40px;
+  max-width: 700px;
+}
+
+/* Sections */
+.options-section {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 4px;
+}
+
+.section-description {
+  font-size: 13px;
+  color: #a0aec0;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Setting Items */
+.setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+}
+
+.setting-item:not(:last-child) {
+  border-bottom: 1px solid #f0f4f8;
+}
+
+.setting-item-vertical {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.setting-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.setting-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #2d3748;
+}
+
+.setting-description {
+  font-size: 12px;
+  color: #a0aec0;
+}
+
+/* Select Dropdown */
+.setting-select {
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #4a5568;
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  min-width: 160px;
+  transition: border-color 0.15s ease;
+}
+
+.setting-select:focus {
+  border-color: #38b2ac;
+}
+
+/* Number Input */
+.setting-input {
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #4a5568;
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  width: 100px;
+  transition: border-color 0.15s ease;
+}
+
+.setting-input:focus {
+  border-color: #38b2ac;
+}
+
+/* Textarea */
+.setting-textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 13px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  color: #4a5568;
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.setting-textarea:focus {
+  border-color: #38b2ac;
+}
+
+.setting-textarea::placeholder {
+  color: #a0aec0;
+}
+
+/* Switch Toggle */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cbd5e0;
+  transition: 0.2s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.2s;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .slider {
+  background-color: #38b2ac;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-danger {
+  background: #fff5f5;
+  color: #c53030;
+  border: 1px solid #fed7d7;
+}
+
+.btn-danger:hover {
+  background: #fed7d7;
+}
+
+/* Info Box */
+.info-box {
+  background: #e6fffa;
+  border: 1px solid #b2f5ea;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-top: 16px;
+}
+
+.info-box p {
+  font-size: 12px;
+  color: #234e52;
+  line-height: 1.6;
+}
+
+.info-box strong {
+  font-weight: 600;
+}
+
+/* Status Message */
+.status-message {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: 12px 20px;
+  background: #38b2ac;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(56, 178, 172, 0.3);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+.status-message.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .options-nav {
+    width: 180px;
+  }
+  
+  .options-content {
+    margin-left: 180px;
+    padding: 24px 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .options-layout {
+    flex-direction: column;
+  }
+  
+  .options-nav {
+    width: 100%;
+    height: auto;
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  .nav-brand {
+    border-bottom: none;
+    border-right: 1px solid #e2e8f0;
+  }
+  
+  .nav-links {
+    display: flex;
+    padding: 0;
+    overflow-x: auto;
+  }
+  
+  .nav-link {
+    border-left: none;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+  }
+  
+  .nav-link.active {
+    border-left-color: transparent;
+    border-bottom-color: #38b2ac;
+  }
+  
+  .nav-footer {
+    display: none;
+  }
+  
+  .options-content {
+    margin-left: 0;
+    padding: 20px 16px;
+    max-width: 100%;
+  }
+  
+  .setting-item {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .setting-select,
+  .setting-input {
+    width: 100%;
+  }
+}
