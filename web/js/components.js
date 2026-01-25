@@ -3,13 +3,13 @@
  * Uses inline templates so it works with file:// protocol (no fetch needed)
  */
 
-(function() {
+(function () {
     'use strict';
 
     // =========================================================================
     // HEADER TEMPLATE
     // =========================================================================
-    
+
     const headerHTML = `
     <nav class="navbar">
         <div class="navbar-container">
@@ -21,6 +21,7 @@
             <ul class="navbar-nav">
                 <li><a href="index.html#converter" class="nav-link" data-page="index">Converter</a></li>
                 <li><a href="index.html#faq" class="nav-link" data-page="faq">FAQ</a></li>
+                <li><a href="changelog.html" class="nav-link" data-page="changelog">Changelog</a></li>
                 <li><a href="support.html" class="nav-link" data-page="support">Support</a></li>
                 <li><a href="https://chrome.google.com/webstore" target="_blank" rel="noopener" class="nav-link nav-extension">Extension</a></li>
             </ul>
@@ -56,7 +57,7 @@
     // =========================================================================
     // FOOTER TEMPLATE
     // =========================================================================
-    
+
     const footerHTML = `
     <footer class="footer">
         <div class="footer-container">
@@ -79,6 +80,7 @@
                 <div class="footer-column">
                     <h4>Resources</h4>
                     <ul class="footer-links">
+                        <li><a href="changelog.html">Changelog</a></li>
                         <li><a href="support.html">Support</a></li>
                         <li><a href="privacy.html">Privacy Policy</a></li>
                     </ul>
@@ -98,6 +100,108 @@
     </footer>`;
 
     // =========================================================================
+    // COOKIE BANNER TEMPLATE
+    // =========================================================================
+
+    const cookieBannerHTML = `
+    <div class="cookie-banner" id="cookieBanner" role="dialog" aria-labelledby="cookieTitle" aria-describedby="cookieText">
+        <div class="cookie-container">
+            <div class="cookie-content">
+                <div class="cookie-title" id="cookieTitle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <path d="M12 3a9 9 0 1 0 9 9 4 4 0 0 1-4-4 3 3 0 0 1-3-3 2 2 0 0 1-2-2"/>
+                        <circle cx="9.6" cy="11.3" r="0.8" fill="currentColor" stroke="none"/>
+                        <circle cx="12.0" cy="14.4" r="0.8" fill="currentColor" stroke="none"/>
+                        <circle cx="13.9" cy="11.9" r="0.8" fill="currentColor" stroke="none"/>
+                    </svg>
+                    We use cookies
+                </div>
+                <p class="cookie-text" id="cookieText">
+                    We use cookies to save your preferences and conversion history locally.
+                    No data is sent to our servers. <a href="privacy.html">Learn more</a>
+                </p>
+            </div>
+            <div class="cookie-actions">
+                <button class="cookie-btn cookie-btn-decline" id="cookieDecline">Decline</button>
+                <button class="cookie-btn cookie-btn-accept" id="cookieAccept">Accept</button>
+            </div>
+        </div>
+    </div>`;
+
+    // =========================================================================
+    // COOKIE UTILITIES
+    // =========================================================================
+
+    const COOKIE_KEY = 'unitConverter_cookieConsent';
+
+    const CookieManager = {
+        get(name) {
+            const cookies = document.cookie.split(';');
+            for (let cookie of cookies) {
+                const [cookieName, cookieValue] = cookie.trim().split('=');
+                if (cookieName === name) {
+                    return decodeURIComponent(cookieValue);
+                }
+            }
+            return null;
+        },
+        set(name, value, days) {
+            const expires = new Date();
+            expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+            document.cookie = `${name}=${encodeURIComponent(value)};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
+        },
+        hasConsented() {
+            return this.get(COOKIE_KEY) === 'accepted';
+        },
+        hasDeclined() {
+            return this.get(COOKIE_KEY) === 'declined';
+        },
+        needsConsent() {
+            return this.get(COOKIE_KEY) === null;
+        }
+    };
+
+    function initCookieBanner() {
+        const banner = document.getElementById('cookieBanner');
+        if (!banner) return;
+
+        // Show if no consent choice made yet
+        if (CookieManager.needsConsent()) {
+            setTimeout(() => {
+                banner.classList.add('show');
+            }, 500);
+        }
+
+        // Accept button
+        const acceptBtn = document.getElementById('cookieAccept');
+        if (acceptBtn) {
+            acceptBtn.addEventListener('click', () => {
+                CookieManager.set(COOKIE_KEY, 'accepted', 365);
+                hideCookieBanner();
+            });
+        }
+
+        // Decline button
+        const declineBtn = document.getElementById('cookieDecline');
+        if (declineBtn) {
+            declineBtn.addEventListener('click', () => {
+                CookieManager.set(COOKIE_KEY, 'declined', 365);
+                hideCookieBanner();
+            });
+        }
+    }
+
+    function hideCookieBanner() {
+        const banner = document.getElementById('cookieBanner');
+        if (banner) {
+            banner.classList.remove('show');
+            banner.classList.add('hide');
+        }
+    }
+
+    // =========================================================================
     // HELPER FUNCTIONS
     // =========================================================================
 
@@ -105,7 +209,7 @@
     function getCurrentPage() {
         const path = window.location.pathname;
         const filename = path.substring(path.lastIndexOf('/') + 1) || 'index.html';
-        
+
         if (filename === 'index.html' || filename === '') return 'index';
         if (filename === 'changelog.html') return 'changelog';
         if (filename === 'support.html') return 'support';
@@ -117,7 +221,7 @@
     function setActiveNavLink() {
         const currentPage = getCurrentPage();
         const navLinks = document.querySelectorAll('.nav-link[data-page]');
-        
+
         navLinks.forEach(link => {
             const page = link.getAttribute('data-page');
             if (page === currentPage) {
@@ -133,27 +237,43 @@
         const themeToggle = document.getElementById('themeToggle');
         if (!themeToggle) return;
 
-        const savedSettings = localStorage.getItem('unitConverter_settings');
-        if (savedSettings) {
-            const settings = JSON.parse(savedSettings);
-            if (settings.darkMode) {
+        // Check if theme was already set by early script
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        let isDark = currentTheme === 'dark';
+
+        // If not set, check saved settings or system preference
+        if (!currentTheme) {
+            const savedSettings = localStorage.getItem('unitConverter_settings');
+            if (savedSettings) {
+                const settings = JSON.parse(savedSettings);
+                if (typeof settings.darkMode === 'boolean') {
+                    isDark = settings.darkMode;
+                } else {
+                    isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                }
+            } else {
+                isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            }
+            if (isDark) {
                 document.documentElement.setAttribute('data-theme', 'dark');
-                const sunIcon = themeToggle.querySelector('.sun-icon');
-                const moonIcon = themeToggle.querySelector('.moon-icon');
-                if (sunIcon) sunIcon.style.display = 'none';
-                if (moonIcon) moonIcon.style.display = 'block';
             }
         }
+
+        // Sync toggle icons with current theme
+        const sunIcon = themeToggle.querySelector('.sun-icon');
+        const moonIcon = themeToggle.querySelector('.moon-icon');
+        if (sunIcon) sunIcon.style.display = isDark ? 'none' : 'block';
+        if (moonIcon) moonIcon.style.display = isDark ? 'block' : 'none';
 
         themeToggle.addEventListener('click', () => {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
-            
+
             const sunIcon = themeToggle.querySelector('.sun-icon');
             const moonIcon = themeToggle.querySelector('.moon-icon');
             if (sunIcon) sunIcon.style.display = isDark ? 'block' : 'none';
             if (moonIcon) moonIcon.style.display = isDark ? 'none' : 'block';
-            
+
             const settings = JSON.parse(localStorage.getItem('unitConverter_settings') || '{}');
             settings.darkMode = !isDark;
             localStorage.setItem('unitConverter_settings', JSON.stringify(settings));
@@ -163,23 +283,30 @@
     // =========================================================================
     // INITIALIZATION
     // =========================================================================
-    
+
     function init() {
         // Insert header
         const headerPlaceholder = document.getElementById('header-placeholder');
         if (headerPlaceholder) {
             headerPlaceholder.outerHTML = headerHTML;
         }
-        
+
         // Insert footer
         const footerPlaceholder = document.getElementById('footer-placeholder');
         if (footerPlaceholder) {
             footerPlaceholder.outerHTML = footerHTML;
         }
-        
+
+        // Insert cookie banner (append to body)
+        const existingBanner = document.getElementById('cookieBanner');
+        if (!existingBanner) {
+            document.body.insertAdjacentHTML('beforeend', cookieBannerHTML);
+        }
+
         // Initialize after components are inserted
         setActiveNavLink();
         initTheme();
+        initCookieBanner();
     }
 
     // Run when DOM is ready

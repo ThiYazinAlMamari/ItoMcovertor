@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Changelog for ItoMcovertor - Unit Converter. See what's new and improved.">
+    <meta name="description"
+        content="Changelog for ItoMcovertor Browser Extension. See the latest updates, new features, and improvements to the unit converter extension.">
+    <meta name="keywords"
+        content="ItoMcovertor changelog, unit converter updates, browser extension changelog, version history, new features">
+    <meta name="author" content="ItoMcovertor">
     <meta name="theme-color" content="#38B2AC">
-    
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://itomcovertor.com/changelog.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://itomcovertor.com/changelog.html">
+    <meta property="og:title" content="Changelog - ItoMcovertor Extension">
+    <meta property="og:description"
+        content="See the latest updates, new features, and improvements to the ItoMcovertor unit converter extension.">
+    <meta property="og:image" content="https://itomcovertor.com/og-image.png">
+    <meta property="og:site_name" content="ItoMcovertor">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Changelog - ItoMcovertor Extension">
+    <meta name="twitter:description"
+        content="See the latest updates, new features, and improvements to the ItoMcovertor unit converter extension.">
+
     <link rel="icon" type="image/svg+xml" href="logo.svg">
-    <title>Changelog - ItoMcovertor</title>
-    
+    <link rel="apple-touch-icon" href="logo.svg">
+    <title>Changelog - ItoMcovertor Extension</title>
+
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,15 +46,18 @@
             background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
             border-bottom: 1px solid var(--border-light);
         }
+
         .changelog-hero h1 {
             font-size: 2.5rem;
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 12px;
         }
+
         .changelog-hero h1 .accent {
             color: var(--color-primary);
         }
+
         .changelog-hero p {
             font-size: 1.1rem;
             color: var(--text-secondary);
@@ -37,178 +65,119 @@
             margin: 0 auto;
         }
 
-        /* Timeline Container */
+        /* Changelog Container */
         .changelog-container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 60px 24px 80px;
-            position: relative;
         }
 
-        /* Timeline Line */
-        .changelog-timeline {
-            position: relative;
-            padding-left: 40px;
-        }
-        .changelog-timeline::before {
-            content: '';
-            position: absolute;
-            left: 12px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, var(--color-primary) 0%, var(--border-light) 100%);
-        }
-
-        /* Version Entry */
-        .changelog-entry {
-            position: relative;
+        /* Version Card */
+        .version-card {
             background: var(--bg-card);
             border: 1px solid var(--border-light);
             border-radius: var(--radius-xl);
-            padding: 32px;
-            margin-bottom: 32px;
+            padding: 40px;
             box-shadow: var(--shadow-sm);
-            transition: var(--transition-fast);
-        }
-        .changelog-entry:hover {
-            box-shadow: var(--shadow-md);
-            border-color: var(--color-primary-light);
-        }
-        .changelog-entry::before {
-            content: '';
-            position: absolute;
-            left: -34px;
-            top: 36px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--color-primary);
-            border: 3px solid var(--bg-primary);
-            box-shadow: 0 0 0 3px var(--color-primary-light);
-        }
-        .changelog-entry:last-child {
-            margin-bottom: 0;
         }
 
         /* Version Header */
-        .changelog-header {
+        .version-header {
             display: flex;
             align-items: center;
             gap: 16px;
-            margin-bottom: 24px;
+            margin-bottom: 32px;
             flex-wrap: wrap;
         }
-        .changelog-version {
-            font-size: 1.5rem;
+
+        .version-number {
+            font-size: 2rem;
             font-weight: 700;
             color: var(--color-primary);
         }
-        .changelog-date {
-            font-size: 0.85rem;
+
+        .version-date {
+            font-size: 0.9rem;
             color: var(--text-muted);
-            padding: 6px 14px;
+            padding: 8px 16px;
             background: var(--bg-secondary);
             border-radius: var(--radius-full);
             font-weight: 500;
         }
-        .changelog-tag {
-            font-size: 0.7rem;
+
+        .version-tag {
+            font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            padding: 6px 12px;
+            padding: 8px 14px;
             border-radius: var(--radius-full);
-        }
-        .tag-major {
-            background: linear-gradient(135deg, rgba(56, 178, 172, 0.2), rgba(56, 178, 172, 0.1));
-            color: var(--color-primary);
-            border: 1px solid var(--color-primary-light);
-        }
-        .tag-initial {
             background: linear-gradient(135deg, rgba(56, 161, 105, 0.2), rgba(56, 161, 105, 0.1));
             color: var(--color-success);
             border: 1px solid rgba(56, 161, 105, 0.3);
         }
 
-        /* Section Divider */
-        .changelog-section {
-            margin-bottom: 24px;
-            padding-bottom: 24px;
-            border-bottom: 1px solid var(--border-light);
-        }
-        .changelog-section:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-        .changelog-section-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .changelog-section-title .icon {
-            width: 28px;
-            height: 28px;
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .icon-new {
-            background: rgba(56, 161, 105, 0.15);
-        }
-        .icon-improved {
-            background: rgba(49, 130, 206, 0.15);
-        }
-        .icon-pages {
-            background: rgba(56, 178, 172, 0.15);
-        }
-        .icon-categories {
-            background: rgba(159, 122, 234, 0.15);
-        }
-
-        /* Changelog List */
-        .changelog-list {
+        /* Feature List */
+        .feature-list {
             list-style: none;
             margin: 0;
             padding: 0;
             display: grid;
-            gap: 12px;
-        }
-        .changelog-list li {
-            position: relative;
-            padding-left: 28px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
-        .changelog-list li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 9px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--color-primary);
-            opacity: 0.6;
-        }
-        .changelog-list li strong {
-            color: var(--text-primary);
-            font-weight: 500;
+            gap: 16px;
         }
 
-        /* Category Pills for v1.0.0 */
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .feature-list li .icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(56, 178, 172, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+
+        .feature-list li .icon svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--color-primary);
+        }
+
+        .feature-list li strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Categories Section */
+        .categories-section {
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .categories-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
         .category-grid {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
         }
+
         .category-pill {
             padding: 8px 16px;
             background: var(--bg-secondary);
@@ -218,29 +187,33 @@
             color: var(--text-secondary);
             transition: var(--transition-fast);
         }
+
         .category-pill:hover {
             border-color: var(--color-primary);
             color: var(--color-primary);
         }
 
-        /* Stats Banner */
-        .stats-banner {
+        /* Stats */
+        .stats-row {
             display: flex;
             justify-content: center;
             gap: 48px;
-            margin-top: 20px;
-            padding-top: 24px;
+            margin-top: 32px;
+            padding-top: 32px;
             border-top: 1px solid var(--border-light);
             flex-wrap: wrap;
         }
+
         .stat-item {
             text-align: center;
         }
+
         .stat-value {
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             font-weight: 700;
             color: var(--color-primary);
         }
+
         .stat-label {
             font-size: 0.8rem;
             color: var(--text-muted);
@@ -248,142 +221,127 @@
             letter-spacing: 0.5px;
         }
     </style>
+
+    <!-- Apply theme immediately to prevent flash -->
+    <script>
+        (function () {
+            try {
+                var settings = JSON.parse(localStorage.getItem('unitConverter_settings') || '{}');
+                var isDark = false;
+                if (typeof settings.darkMode === 'boolean') {
+                    isDark = settings.darkMode;
+                } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    isDark = true;
+                }
+                if (isDark) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            } catch (e) { }
+        })();
+    </script>
 </head>
+
 <body>
     <!-- Header (loaded dynamically) -->
     <div id="header-placeholder"></div>
 
     <!-- Changelog Hero -->
     <section class="changelog-hero">
-        <h1>What's <span class="accent">New</span></h1>
-        <p>Follow along with every update, improvement, and new feature we ship.</p>
+        <h1>Extension <span class="accent">Changelog</span></h1>
+        <p>Updates and improvements to the ItoMcovertor browser extension.</p>
     </section>
 
     <!-- Main Content -->
     <main class="changelog-container">
-        <div class="changelog-timeline">
-            
-            <!-- Version 2.0.0 -->
-            <article class="changelog-entry">
-                <div class="changelog-header">
-                    <span class="changelog-version">v2.0.0</span>
-                    <span class="changelog-date">January 24, 2026</span>
-                    <span class="changelog-tag tag-major">Major Release</span>
-                </div>
-                
-                <div class="changelog-section">
-                    <h3 class="changelog-section-title">
-                        <span class="icon icon-new">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
-                        </span>
-                        New Features
-                    </h3>
-                    <ul class="changelog-list">
-                        <li><strong>Complete Redesign</strong> - Fresh new look derived from our logo colors</li>
-                        <li><strong>Dark Mode</strong> - Toggle between light and dark themes, syncs across pages</li>
-                        <li><strong>Copy to Clipboard</strong> - One-click copy with toast notifications</li>
-                        <li><strong>Shareable Links</strong> - URL preserves your conversion state</li>
-                        <li><strong>Settings Panel</strong> - Customize precision and preferences</li>
-                        <li><strong>Two-Column Layout</strong> - Converter and history side by side</li>
-                        <li><strong>FAQ Section</strong> - Common questions answered inline</li>
-                    </ul>
-                </div>
-                
-                <div class="changelog-section">
-                    <h3 class="changelog-section-title">
-                        <span class="icon icon-improved">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-info)" stroke-width="2.5"><path d="M23 12A11 11 0 1 1 12 1"/><path d="M23 3L12 14l-3-3"/></svg>
-                        </span>
-                        Improvements
-                    </h3>
-                    <ul class="changelog-list">
-                        <li>Better accessibility with ARIA labels and keyboard support</li>
-                        <li>Smoother animations and hover effects</li>
-                        <li>Improved color contrast for readability</li>
-                        <li>Mobile-first responsive design</li>
-                    </ul>
-                </div>
-                
-                <div class="changelog-section">
-                    <h3 class="changelog-section-title">
-                        <span class="icon icon-pages">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-                        </span>
-                        New Pages
-                    </h3>
-                    <ul class="changelog-list">
-                        <li><strong>Privacy Policy</strong> - Chrome Web Store compliant</li>
-                        <li><strong>Support</strong> - Troubleshooting and contact info</li>
-                        <li><strong>Changelog</strong> - You're reading it!</li>
-                    </ul>
-                </div>
-            </article>
 
-            <!-- Version 1.0.0 -->
-            <article class="changelog-entry">
-                <div class="changelog-header">
-                    <span class="changelog-version">v1.0.0</span>
-                    <span class="changelog-date">January 15, 2026</span>
-                    <span class="changelog-tag tag-initial">Initial Release</span>
-                </div>
-                
-                <div class="changelog-section">
-                    <h3 class="changelog-section-title">
-                        <span class="icon icon-new">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
-                        </span>
-                        Core Features
-                    </h3>
-                    <ul class="changelog-list">
-                        <li><strong>Real-time Conversion</strong> - Results update as you type</li>
-                        <li><strong>History Panel</strong> - Recent conversions saved locally</li>
-                        <li><strong>Unit Swap</strong> - Quick swap between from/to units</li>
-                        <li><strong>Quick Reference</strong> - See the conversion factor used</li>
-                        <li><strong>Temperature Validation</strong> - Absolute zero safeguards</li>
-                        <li><strong>Responsive Design</strong> - Works on any device</li>
-                    </ul>
-                </div>
-                
-                <div class="changelog-section">
-                    <h3 class="changelog-section-title">
-                        <span class="icon icon-categories">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9F7AEA" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-                        </span>
-                        12 Categories
-                    </h3>
-                    <div class="category-grid">
-                        <span class="category-pill">Length</span>
-                        <span class="category-pill">Area</span>
-                        <span class="category-pill">Volume (Liquid)</span>
-                        <span class="category-pill">Volume (Solid)</span>
-                        <span class="category-pill">Mass</span>
-                        <span class="category-pill">Temperature</span>
-                        <span class="category-pill">Speed</span>
-                        <span class="category-pill">Pressure</span>
-                        <span class="category-pill">Energy</span>
-                        <span class="category-pill">Power</span>
-                        <span class="category-pill">Force</span>
-                        <span class="category-pill">Nautical</span>
-                    </div>
-                </div>
+        <!-- Version 1.0.0 -->
+        <article class="version-card">
+            <div class="version-header">
+                <span class="version-number">v1.0.0</span>
+                <span class="version-date">January 2026</span>
+                <span class="version-tag">Initial Release</span>
+            </div>
 
-                <div class="stats-banner">
-                    <div class="stat-item">
-                        <div class="stat-value">60+</div>
-                        <div class="stat-label">Units</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">12</div>
-                        <div class="stat-label">Categories</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value">100%</div>
-                        <div class="stat-label">Free</div>
-                    </div>
-                </div>
-            </article>
+            <ul class="feature-list">
+                <li>
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </span>
+                    <span><strong>Auto-detect units</strong> - Automatically finds measurements on any webpage</span>
+                </li>
+                <li>
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </span>
+                    <span><strong>Inline badges</strong> - Shows converted values next to detected units</span>
+                </li>
+                <li>
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </span>
+                    <span><strong>Text selection</strong> - Select any text to see instant conversions</span>
+                </li>
+                <li>
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </span>
+                    <span><strong>Toolbar popup</strong> - Quick manual conversions from the toolbar</span>
+                </li>
+                <li>
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </span>
+                    <span><strong>Works offline</strong> - No internet required after installation</span>
+                </li>
+            </ul>
 
-        </div>
+            <div class="categories-section">
+                <h3 class="categories-title">Supported Categories</h3>
+                <div class="category-grid">
+                    <span class="category-pill">Length</span>
+                    <span class="category-pill">Area</span>
+                    <span class="category-pill">Volume</span>
+                    <span class="category-pill">Mass</span>
+                    <span class="category-pill">Temperature</span>
+                    <span class="category-pill">Speed</span>
+                    <span class="category-pill">Pressure</span>
+                    <span class="category-pill">Energy</span>
+                    <span class="category-pill">Power</span>
+                    <span class="category-pill">Force</span>
+                </div>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-value">120+</div>
+                    <div class="stat-label">Units</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">Offline</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">Free</div>
+                    <div class="stat-label">Forever</div>
+                </div>
+            </div>
+        </article>
+
     </main>
 
     <!-- Footer (loaded dynamically) -->
@@ -392,4 +350,5 @@
     <!-- Component Loader -->
     <script src="js/components.js"></script>
 </body>
+
 </html>

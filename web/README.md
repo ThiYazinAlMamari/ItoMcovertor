@@ -14,20 +14,20 @@ A static HTML/CSS/JS unit converter website with 120+ conversion types.
 
 ## Categories
 
-| Category | Conversions |
-|----------|-------------|
-| Length | in, ft, yd, mi to/from mm, cm, m, km + SI scale |
-| Area | sq in, sq ft, acre, sq mi to/from cm2, m2, ha, km2 |
-| Volume (Liquid) | tsp, tbsp, cup, pint, quart, gallon to/from ml, L + SI scale |
-| Volume (Solid) | cu in, cu ft, cu yd to/from cm3, m3 |
-| Mass | oz, lb, stone, ton to/from g, kg, tonne + SI scale |
-| Temperature | F to/from C to/from K |
-| Speed | mph, ft/s to/from km/h, m/s + SI scale |
-| Pressure | psi, inHg to/from Pa, kPa, bar + SI scale |
-| Energy | BTU, ft-lb to/from J, kJ + SI scale |
-| Power | hp to/from W, kW + SI scale |
-| Force | lbf to/from N |
-| Nautical | nm to/from km |
+| Category          | Units                                                         |
+|-------------------|---------------------------------------------------------------|
+| Length            | in, ft, yd, mi, mm, cm, m, km + full SI scale (ym to Ym)      |
+| Area              | sq in, sq ft, acre, sq mi, cm2, m2, ha, km2                   |
+| Volume (Liquid)   | tsp, tbsp, cup, pint, quart, gallon, ml, L + full SI scale    |
+| Volume (Solid)    | cu in, cu ft, cu yd, cm3, m3                                  |
+| Mass              | oz, lb, stone, ton, g, kg, tonne + full SI scale (ug to Yg)   |
+| Temperature       | F, C, K                                                       |
+| Speed             | mph, ft/s, km/h, m/s + full SI scale (mm/s to km/s)           |
+| Pressure          | psi, inHg, Pa, kPa, bar + full SI scale (Pa to YPa)           |
+| Energy            | BTU, ft-lb, J, kJ + full SI scale (J to QJ)                   |
+| Power             | hp, W, kW + full SI scale (W to YW)                           |
+| Force             | lbf, N                                                        |
+| Nautical          | nm, km                                                        |
 
 ## Local Development
 
@@ -65,7 +65,7 @@ Simply open `index.html` in a web browser. No build step required.
 
 ## Folder Structure
 
-```
+```text
 web/
 ├── index.html          # Main page
 ├── changelog.html      # Version history
@@ -75,8 +75,11 @@ web/
 │   └── styles.css      # Styling
 ├── js/
 │   ├── converter.js    # Conversion logic
+│   ├── components.js   # Reusable UI components
 │   └── app.js          # UI interactions
-├── components/         # Reusable HTML components
+├── components/
+│   ├── header.html     # Site header
+│   └── footer.html     # Site footer
 ├── logo.png            # Site logo
 ├── logo.svg            # Vector logo
 ├── og-image.png        # Social sharing image

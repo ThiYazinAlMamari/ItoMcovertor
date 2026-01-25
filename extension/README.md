@@ -14,20 +14,20 @@ A powerful browser extension that automatically detects and converts Imperial/Me
 
 ## Supported Unit Categories
 
-| Category | Units |
-|----------|-------|
-| Length | in, ft, yd, mi, mm, cm, m, km + full SI scale (ym to Ym) |
-| Area | sq in, sq ft, acre, sq mi, cm2, m2, ha, km2 |
-| Volume (Liquid) | tsp, tbsp, cup, pint, quart, gallon, ml, L + full SI scale |
-| Volume (Solid) | cu in, cu ft, cu yd, cm3, m3 |
-| Mass | oz, lb, stone, ton, g, kg, tonne + full SI scale (ug to Yg) |
-| Temperature | F, C, K |
-| Speed | mph, ft/s, km/h, m/s + full SI scale (mm/s to km/s) |
-| Pressure | psi, inHg, Pa, kPa, bar + full SI scale (Pa to YPa) |
-| Energy | BTU, ft-lb, J, kJ + full SI scale (J to QJ) |
-| Power | hp, W, kW + full SI scale (W to YW) |
-| Force | lbf, N |
-| Nautical | nm, km |
+| Category          | Units                                                            |
+|-------------------|------------------------------------------------------------------|
+| Length            | in, ft, yd, mi, mm, cm, m, km + full SI scale (ym to Ym)         |
+| Area              | sq in, sq ft, acre, sq mi, cm2, m2, ha, km2                      |
+| Volume (Liquid)   | tsp, tbsp, cup, pint, quart, gallon, ml, L + full SI scale       |
+| Volume (Solid)    | cu in, cu ft, cu yd, cm3, m3                                     |
+| Mass              | oz, lb, stone, ton, g, kg, tonne + full SI scale (ug to Yg)      |
+| Temperature       | F, C, K                                                          |
+| Speed             | mph, ft/s, km/h, m/s + full SI scale (mm/s to km/s)              |
+| Pressure          | psi, inHg, Pa, kPa, bar + full SI scale (Pa to YPa)              |
+| Energy            | BTU, ft-lb, J, kJ + full SI scale (J to QJ)                      |
+| Power             | hp, W, kW + full SI scale (W to YW)                              |
+| Force             | lbf, N                                                           |
+| Nautical          | nm, km                                                           |
 
 ## Installation
 
@@ -51,16 +51,21 @@ A powerful browser extension that automatically detects and converts Imperial/Me
 ## Usage
 
 ### Automatic Conversion
+
 Once installed, the extension automatically scans webpages for unit measurements. Hover over highlighted values to see conversions in tooltips, or click badges to cycle through alternatives.
 
 ### Popup Converter
+
 Click the extension icon to open the quick converter popup:
+
 - Select a conversion type from the dropdown
 - Enter a value to see instant results
 - Switch conversion direction with the toggle
 
 ### Options
+
 Right-click the extension icon and select **Options** to configure:
+
 - **General**: Auto-convert toggle, direction, decimal places
 - **Display**: Badge style, tooltips, selection popup, number grouping
 - **Advanced**: Scan mode, max conversions, scientific notation, rounding
@@ -69,7 +74,7 @@ Right-click the extension icon and select **Options** to configure:
 
 ## Folder Structure
 
-```
+```text
 extension/
 ├── manifest.json       # Extension configuration (Manifest V3)
 ├── background.js       # Service worker for context menus
@@ -91,12 +96,14 @@ extension/
 ## Development
 
 ### Modifying the Extension
+
 1. Make changes to the source files
 2. Go to `chrome://extensions/`
 3. Click the refresh icon on the extension card
 4. Reload any open tabs to see changes
 
 ### Key Files
+
 - **content.js**: Core conversion engine with regex patterns for unit detection
 - **background.js**: Handles context menu creation and messaging
 - **popup.js**: Quick converter functionality and settings sync
@@ -104,12 +111,12 @@ extension/
 
 ## Permissions
 
-| Permission | Purpose |
-|------------|---------|
-| `storage` | Save user preferences and settings |
-| `activeTab` | Access current tab for manual conversions |
-| `contextMenus` | Add "Convert Units" to right-click menu |
-| `<all_urls>` | Scan any webpage for units |
+| Permission        | Purpose                                   |
+|-------------------|-------------------------------------------|
+| `storage`         | Save user preferences and settings        |
+| `activeTab`       | Access current tab for manual conversions |
+| `contextMenus`    | Add "Convert Units" to right-click menu   |
+| `<all_urls>`      | Scan any webpage for units                |
 
 ## Version
 

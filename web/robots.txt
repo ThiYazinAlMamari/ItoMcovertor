@@ -1,0 +1,6 @@
+# Robots.txt for ItoMcovertor
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://itomcovertor.com/sitemap.xml

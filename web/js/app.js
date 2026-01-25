@@ -3,13 +3,13 @@
  * Handles UI interactions, history, theme, settings, toasts, and URL state
  */
 
-(function() {
+(function () {
     'use strict';
 
     // =========================================================================
     // DOM ELEMENTS
     // =========================================================================
-    
+
     const elements = {
         categoryTabs: document.getElementById('categoryTabs'),
         fromValue: document.getElementById('fromValue'),
@@ -38,7 +38,7 @@
     // =========================================================================
     // STATE
     // =========================================================================
-    
+
     let state = {
         currentCategory: 'length',
         history: [],
@@ -62,7 +62,7 @@
     // =========================================================================
     // COOKIE UTILITIES
     // =========================================================================
-    
+
     const CookieManager = {
         // Set a cookie with expiration in days
         set(name, value, days = 365) {
@@ -124,7 +124,7 @@
     // =========================================================================
     // INITIALIZATION
     // =========================================================================
-    
+
     function init() {
         initCookieBanner();
         loadSettings();
@@ -139,21 +139,21 @@
     // =========================================================================
     // COOKIE CONSENT BANNER
     // =========================================================================
-    
+
     function initCookieBanner() {
         const banner = document.getElementById('cookieBanner');
         const acceptBtn = document.getElementById('cookieAccept');
         const declineBtn = document.getElementById('cookieDecline');
-        
+
         if (!banner) return;
-        
+
         // Show banner if user hasn't made a choice
         if (CookieManager.needsConsent()) {
             setTimeout(() => {
                 banner.classList.add('show');
             }, 1000); // Delay for better UX
         }
-        
+
         // Accept button handler
         if (acceptBtn) {
             acceptBtn.addEventListener('click', () => {
@@ -165,7 +165,7 @@
                 saveHistory();
             });
         }
-        
+
         // Decline button handler
         if (declineBtn) {
             declineBtn.addEventListener('click', () => {
@@ -175,7 +175,7 @@
             });
         }
     }
-    
+
     function hideCookieBanner() {
         const banner = document.getElementById('cookieBanner');
         if (banner) {
@@ -187,20 +187,20 @@
     // =========================================================================
     // THEME MANAGEMENT
     // =========================================================================
-    
+
     function applyTheme() {
         const isDark = state.settings.darkMode;
         document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-        
+
         // Update theme toggle icons
         const sunIcon = elements.themeToggle.querySelector('.sun-icon');
         const moonIcon = elements.themeToggle.querySelector('.moon-icon');
-        
+
         if (sunIcon && moonIcon) {
             sunIcon.style.display = isDark ? 'none' : 'block';
             moonIcon.style.display = isDark ? 'block' : 'none';
         }
-        
+
         // Update dark mode toggle in settings
         if (elements.darkModeToggle) {
             elements.darkModeToggle.classList.toggle('active', isDark);
@@ -217,43 +217,56 @@
     // =========================================================================
     // SETTINGS MANAGEMENT
     // =========================================================================
-    
+
     function loadSettings() {
-        // Only load from storage if user has consented
-        if (CookieManager.hasConsent()) {
-            try {
-                const saved = localStorage.getItem(STORAGE_KEYS.settings);
-                if (saved) {
-                    state.settings = { ...state.settings, ...JSON.parse(saved) };
+        // Always load darkMode regardless of consent - it's a basic UX preference
+        try {
+            const saved = localStorage.getItem(STORAGE_KEYS.settings);
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                // Always apply darkMode if explicitly set
+                if (typeof parsed.darkMode === 'boolean') {
+                    state.settings.darkMode = parsed.darkMode;
+                } else {
+                    // Check system preference as default
+                    state.settings.darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
                 }
-            } catch (e) {
-                // Use defaults
+                // Only load other settings if user has consented
+                if (CookieManager.hasConsent()) {
+                    state.settings = { ...state.settings, ...parsed };
+                }
+            } else {
+                // No saved settings - check system preference
+                state.settings.darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             }
+        } catch (e) {
+            // Check system preference as fallback
+            state.settings.darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         }
-        
+
         // Apply precision setting
         if (elements.precisionSelect) {
             elements.precisionSelect.value = state.settings.precision;
         }
-        
+
         // Apply auto-save setting
         if (elements.autoSaveToggle) {
             elements.autoSaveToggle.classList.toggle('active', state.settings.autoSave);
             elements.autoSaveToggle.setAttribute('aria-checked', state.settings.autoSave);
         }
-        
+
         // Apply number grouping setting
         if (elements.numberGroupingToggle) {
             elements.numberGroupingToggle.classList.toggle('active', state.settings.numberGrouping);
             elements.numberGroupingToggle.setAttribute('aria-checked', state.settings.numberGrouping);
         }
-        
+
         // Apply scientific notation setting
         if (elements.scientificNotationToggle) {
             elements.scientificNotationToggle.classList.toggle('active', state.settings.scientificNotation);
             elements.scientificNotationToggle.setAttribute('aria-checked', state.settings.scientificNotation);
         }
-        
+
         // Apply rounding setting
         if (elements.roundingSelect) {
             elements.roundingSelect.value = state.settings.rounding;
@@ -261,11 +274,18 @@
     }
 
     function saveSettings() {
-        // Only save if user has consented to cookies
-        if (!CookieManager.hasConsent()) return;
-        
         try {
-            localStorage.setItem(STORAGE_KEYS.settings, JSON.stringify(state.settings));
+            // Always save darkMode - it's a basic UX preference
+            const existing = JSON.parse(localStorage.getItem(STORAGE_KEYS.settings) || '{}');
+            existing.darkMode = state.settings.darkMode;
+
+            // Only save other settings if user has consented
+            if (CookieManager.hasConsent()) {
+                localStorage.setItem(STORAGE_KEYS.settings, JSON.stringify(state.settings));
+            } else {
+                // Just save darkMode
+                localStorage.setItem(STORAGE_KEYS.settings, JSON.stringify(existing));
+            }
         } catch (e) {
             // Storage might be full or disabled
         }
@@ -284,7 +304,7 @@
     // =========================================================================
     // EVENT LISTENERS
     // =========================================================================
-    
+
     function setupEventListeners() {
         // Category tabs
         elements.categoryTabs.addEventListener('click', (e) => {
@@ -426,7 +446,7 @@
     // =========================================================================
     // CATEGORY MANAGEMENT
     // =========================================================================
-    
+
     function setActiveTab(tab) {
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.classList.remove('active');
@@ -468,7 +488,7 @@
 
     function populateSelect(select, units) {
         select.innerHTML = '';
-        
+
         // Group by system
         const imperial = units.filter(u => u.system === 'imperial');
         const metric = units.filter(u => u.system === 'metric');
@@ -501,7 +521,7 @@
     // =========================================================================
     // CONVERSION
     // =========================================================================
-    
+
     function performConversion() {
         const value = parseFloat(elements.fromValue.value);
         const fromUnit = elements.fromUnit.value;
@@ -550,7 +570,7 @@
     // =========================================================================
     // COPY FUNCTIONALITY
     // =========================================================================
-    
+
     function copyResult() {
         const result = elements.toValue.value;
         if (!result) {
@@ -561,12 +581,12 @@
         const fromSymbol = UnitConverter.getUnitSymbol(elements.fromUnit.value);
         const toSymbol = UnitConverter.getUnitSymbol(elements.toUnit.value);
         const fromValue = elements.fromValue.value;
-        
+
         const textToCopy = `${fromValue} ${fromSymbol} = ${result} ${toSymbol}`;
 
         navigator.clipboard.writeText(textToCopy).then(() => {
             showToast('Copied to clipboard!', 'success');
-            
+
             // Visual feedback on button
             elements.copyBtn.classList.add('copied');
             setTimeout(() => {
@@ -580,24 +600,24 @@
     // =========================================================================
     // TOAST NOTIFICATIONS
     // =========================================================================
-    
+
     function showToast(message, type = 'info') {
         const toast = document.createElement('div');
         toast.className = `toast ${type}`;
-        
+
         const icons = {
-            success: '<svg class="toast-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
-            error: '<svg class="toast-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
-            info: '<svg class="toast-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>'
+            success: '<svg class="toast-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9"/></svg>',
+            error: '<svg class="toast-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6"/><path d="M15 9l-6 6"/></svg>',
+            info: '<svg class="toast-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v6"/><path d="M12 16h.01"/></svg>'
         };
-        
+
         toast.innerHTML = `
             ${icons[type] || icons.info}
             <span class="toast-message">${message}</span>
         `;
-        
+
         elements.toastContainer.appendChild(toast);
-        
+
         // Auto-dismiss after 3 seconds
         setTimeout(() => {
             toast.classList.add('hiding');
@@ -610,10 +630,10 @@
     // =========================================================================
     // URL STATE MANAGEMENT (Shareable Links)
     // =========================================================================
-    
+
     function updateURL() {
         const params = new URLSearchParams();
-        
+
         if (state.currentCategory !== 'length') {
             params.set('cat', state.currentCategory);
         }
@@ -626,35 +646,35 @@
         if (elements.toUnit.value) {
             params.set('to', elements.toUnit.value);
         }
-        
+
         const queryString = params.toString();
         const newURL = queryString ? `${window.location.pathname}?${queryString}` : window.location.pathname;
-        
+
         window.history.replaceState({}, '', newURL);
     }
 
     function loadFromURL() {
         const params = new URLSearchParams(window.location.search);
-        
+
         const category = params.get('cat') || 'length';
         const value = params.get('v') || '';
         const fromUnit = params.get('from');
         const toUnit = params.get('to');
-        
+
         // Set category
         state.currentCategory = category;
         const tabBtn = document.querySelector(`[data-category="${category}"]`);
         if (tabBtn) {
             setActiveTab(tabBtn);
         }
-        
+
         // Load category units
         const units = UnitConverter.units[category];
         if (units) {
             populateSelect(elements.fromUnit, units);
             populateSelect(elements.toUnit, units);
         }
-        
+
         // Set units if provided
         if (fromUnit && elements.fromUnit.querySelector(`option[value="${fromUnit}"]`)) {
             elements.fromUnit.value = fromUnit;
@@ -662,7 +682,7 @@
         if (toUnit && elements.toUnit.querySelector(`option[value="${toUnit}"]`)) {
             elements.toUnit.value = toUnit;
         }
-        
+
         // Set value and convert
         elements.fromValue.value = value;
         if (value) {
@@ -675,7 +695,7 @@
     // =========================================================================
     // VALIDATION & UI FEEDBACK
     // =========================================================================
-    
+
     function showValidation(message, type) {
         elements.validationMessage.textContent = message;
         elements.validationMessage.className = `validation-message ${type}`;
@@ -689,7 +709,7 @@
     function updateQuickReference() {
         const fromUnit = elements.fromUnit.value;
         const toUnit = elements.toUnit.value;
-        
+
         if (!fromUnit || !toUnit || fromUnit === toUnit) {
             elements.quickReference.textContent = '';
             return;
@@ -701,15 +721,15 @@
 
         const fromSymbol = UnitConverter.getUnitSymbol(fromUnit);
         const toSymbol = UnitConverter.getUnitSymbol(toUnit);
-        
-        elements.quickReference.textContent = 
+
+        elements.quickReference.textContent =
             `1 ${fromSymbol} = ${UnitConverter.formatResult(result.value, state.settings)} ${toSymbol}`;
     }
 
     // =========================================================================
     // HISTORY MANAGEMENT
     // =========================================================================
-    
+
     function addToHistory() {
         if (!state.settings.autoSave) return;
 
@@ -755,7 +775,7 @@
     function saveHistory() {
         // Only save if user has consented to cookies
         if (!CookieManager.hasConsent()) return;
-        
+
         try {
             localStorage.setItem(STORAGE_KEYS.history, JSON.stringify(state.history));
         } catch (e) {
@@ -769,7 +789,7 @@
             state.history = [];
             return;
         }
-        
+
         try {
             const saved = localStorage.getItem(STORAGE_KEYS.history);
             if (saved) {
@@ -783,10 +803,10 @@
     // =========================================================================
     // FAQ ACCORDION
     // =========================================================================
-    
+
     function initFAQ() {
         const faqItems = document.querySelectorAll('.faq-item');
-        
+
         faqItems.forEach(item => {
             const question = item.querySelector('.faq-question');
             if (question) {
@@ -807,7 +827,7 @@
     // =========================================================================
     // AUTO-SAVE TO HISTORY ON VALID CONVERSION
     // =========================================================================
-    
+
     // Debounce to auto-add to history after user stops typing
     let historyTimeout;
     elements.fromValue.addEventListener('input', () => {
@@ -822,7 +842,7 @@
     // =========================================================================
     // START
     // =========================================================================
-    
+
     document.addEventListener('DOMContentLoaded', init);
 
 })();
