@@ -4,13 +4,18 @@
   "version": "1.0.0",
   "description": "Convert between Imperial and Metric units instantly. Auto-detect units on any webpage or use the popup for quick conversions.",
   "author": "ItoMcovertor",
-  
+  "homepage_url": "https://itomcovertor.com",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "extension@itomcovertor.com",
+      "strict_min_version": "109.0"
+    }
+  },
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
@@ -20,29 +25,30 @@
     },
     "default_title": "ItoMcovertor"
   },
-  
   "permissions": [
     "storage",
     "activeTab",
     "contextMenus"
   ],
-  
   "host_permissions": [
     "<all_urls>"
   ],
-  
   "background": {
     "service_worker": "background.js"
   },
-  
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "css": ["content.css"],
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
       "run_at": "document_idle"
     }
   ],
-  
   "options_page": "options.html"
 }
