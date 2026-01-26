@@ -192,13 +192,16 @@
         const isDark = state.settings.darkMode;
         document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
 
-        // Update theme toggle icons
-        const sunIcon = elements.themeToggle.querySelector('.sun-icon');
-        const moonIcon = elements.themeToggle.querySelector('.moon-icon');
+        // Update theme toggle icons (may be dynamically injected, so re-query if needed)
+        const themeToggle = elements.themeToggle || document.getElementById('themeToggle');
+        if (themeToggle) {
+            const sunIcon = themeToggle.querySelector('.sun-icon');
+            const moonIcon = themeToggle.querySelector('.moon-icon');
 
-        if (sunIcon && moonIcon) {
-            sunIcon.style.display = isDark ? 'none' : 'block';
-            moonIcon.style.display = isDark ? 'block' : 'none';
+            if (sunIcon && moonIcon) {
+                sunIcon.style.display = isDark ? 'none' : 'block';
+                moonIcon.style.display = isDark ? 'block' : 'none';
+            }
         }
 
         // Update dark mode toggle in settings
@@ -351,14 +354,16 @@
             }
         });
 
-        // Theme toggle
-        if (elements.themeToggle) {
-            elements.themeToggle.addEventListener('click', toggleTheme);
+        // Theme toggle (may be dynamically injected by components.js, so re-query)
+        const themeToggle = elements.themeToggle || document.getElementById('themeToggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', toggleTheme);
         }
 
-        // Settings
-        if (elements.settingsBtn) {
-            elements.settingsBtn.addEventListener('click', openSettings);
+        // Settings (may be dynamically injected by components.js, so re-query)
+        const settingsBtn = elements.settingsBtn || document.getElementById('settingsBtn');
+        if (settingsBtn) {
+            settingsBtn.addEventListener('click', openSettings);
         }
         if (elements.settingsClose) {
             elements.settingsClose.addEventListener('click', closeSettings);

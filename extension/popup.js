@@ -1,7 +1,11 @@
 /**
  * ItoMcovertor Extension - Compact Popup Logic
  * Top 10 most used conversions with dynamic labels
+ * Compatible with Chrome, Edge, and Firefox (Manifest V3)
  */
+
+// Cross-browser compatibility: Firefox uses 'browser', Chrome uses 'chrome'
+const browserAPI = typeof browser !== 'undefined' ? browser : chrome;
 
 // Conversion definitions - bidirectional (first unit to second and vice versa)
 const CONVERSIONS = {
@@ -86,16 +90,16 @@ document.addEventListener('DOMContentLoaded', init);
 
 async function init() {
   // Load saved state
-  const stored = await chrome.storage.sync.get([
+  const stored = await browserAPI.storage.sync.get([
     'autoConvert', 'direction', 'selectedUnit',
     'precision', 'numberGrouping', 'scientificNotation', 'rounding', 'selectionPopup', 'badgeStyle'
   ]);
-  
+
   if (stored.autoConvert !== undefined) {
     autoConvert = stored.autoConvert;
     autoConvertToggle.checked = autoConvert;
   }
-  
+
   if (stored.direction) {
     if (stored.direction === 'imperial-to-metric') {
       direction = 'forward';
@@ -105,17 +109,17 @@ async function init() {
       directionSelect.value = 'metric-to-imperial';
     }
   }
-  
+
   if (stored.selectedUnit && CONVERSIONS[stored.selectedUnit]) {
     selectedUnit = stored.selectedUnit;
   }
-  
+
   // Load settings
   if (stored.precision !== undefined) settings.precision = stored.precision;
   if (stored.numberGrouping !== undefined) settings.numberGrouping = stored.numberGrouping;
   if (stored.scientificNotation !== undefined) settings.scientificNotation = stored.scientificNotation;
   if (stored.rounding !== undefined) settings.rounding = stored.rounding;
-  
+
   updateUnitLabels();
   unitSelect.value = selectedUnit;
   setupEventListeners();
@@ -126,52 +130,52 @@ function setupEventListeners() {
   // Settings - open in new tab
   settingsBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    chrome.runtime.openOptionsPage();
+    browserAPI.runtime.openOptionsPage();
   });
-  
+
   // Auto-convert toggle
   autoConvertToggle.addEventListener('change', async () => {
     autoConvert = autoConvertToggle.checked;
-    await chrome.storage.sync.set({ autoConvert });
+    await browserAPI.storage.sync.set({ autoConvert });
     const dir = directionSelect.value;
     sendMessage({ type: 'UPDATE_SETTINGS', autoConvert, direction: dir });
   });
-  
+
   // Direction change
   directionSelect.addEventListener('change', async () => {
     const dir = directionSelect.value;
     direction = dir === 'imperial-to-metric' ? 'forward' : 'reverse';
-    await chrome.storage.sync.set({ direction: dir });
+    await browserAPI.storage.sync.set({ direction: dir });
     updateUnitLabels();
     sendMessage({ type: 'UPDATE_SETTINGS', autoConvert, direction: dir });
     performConversion();
   });
-  
+
   // Convert This Page
   convertPageBtn.addEventListener('click', () => {
     const dir = directionSelect.value;
     sendMessage({ type: 'CONVERT_PAGE', direction: dir });
   });
-  
+
   // Clear Badges
   clearBadgesBtn.addEventListener('click', () => {
     sendMessage({ type: 'CLEAR_BADGES' });
   });
-  
+
   // Unit selection
   unitSelect.addEventListener('change', async () => {
     selectedUnit = unitSelect.value;
-    await chrome.storage.sync.set({ selectedUnit });
+    await browserAPI.storage.sync.set({ selectedUnit });
     performConversion();
   });
-  
+
   // Live conversion on input
   inputValue.addEventListener('input', performConversion);
 }
 
 function updateUnitLabels() {
   const options = unitSelect.querySelectorAll('option');
-  
+
   options.forEach(option => {
     const unitKey = option.value;
     const conv = CONVERSIONS[unitKey];
@@ -187,28 +191,28 @@ function updateUnitLabels() {
 
 function performConversion() {
   const value = parseFloat(inputValue.value);
-  
+
   if (isNaN(value) || inputValue.value === '') {
     resultValue.textContent = '-';
     resultValue.classList.add('placeholder');
     resultUnit.textContent = '';
     return;
   }
-  
+
   resultValue.classList.remove('placeholder');
-  
+
   const convSet = CONVERSIONS[selectedUnit];
   if (!convSet) return;
-  
+
   const conv = convSet[direction];
   let result;
-  
+
   if (conv.convert) {
     result = conv.convert(value);
   } else {
     result = value * conv.factor;
   }
-  
+
   resultValue.textContent = formatNumber(result);
   resultUnit.textContent = conv.to;
 }
@@ -216,7 +220,7 @@ function performConversion() {
 function formatNumber(value) {
   const decimals = settings.precision;
   const multiplier = Math.pow(10, decimals);
-  
+
   // Apply rounding mode
   let rounded;
   switch (settings.rounding) {
@@ -229,12 +233,12 @@ function formatNumber(value) {
     default:
       rounded = Math.round(value * multiplier) / multiplier;
   }
-  
+
   // Scientific notation for very small/large numbers
   if (settings.scientificNotation && rounded !== 0 && (Math.abs(rounded) < 0.0001 || Math.abs(rounded) > 999999999)) {
     return rounded.toExponential(decimals);
   }
-  
+
   if (settings.numberGrouping) {
     return rounded.toLocaleString('en-US', {
       maximumFractionDigits: decimals,
@@ -247,9 +251,9 @@ function formatNumber(value) {
 
 async function sendMessage(message) {
   try {
-    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    const [tab] = await browserAPI.tabs.query({ active: true, currentWindow: true });
     if (tab?.id) {
-      chrome.tabs.sendMessage(tab.id, message).catch(() => {});
+      browserAPI.tabs.sendMessage(tab.id, message).catch(() => { });
     }
   } catch (e) {
     // Ignore

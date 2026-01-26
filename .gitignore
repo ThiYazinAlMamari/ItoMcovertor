@@ -1,38 +1,122 @@
-# .NET Build outputs
-bin/
-obj/
+# ========================================
+# ItoM Unit Converter - Comprehensive .gitignore
+# ========================================
 
-# User-specific files
+# ==================
+# OS Generated Files
+# ==================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ==================
+# IDE & Editors
+# ==================
+# Visual Studio
+.vs/
 *.user
 *.suo
 *.userosscache
 *.sln.docstates
-
-# Visual Studio
-.vs/
 *.csproj.user
 
-# JetBrains Rider
+# JetBrains (Rider, WebStorm, etc.)
 .idea/
 *.sln.iml
 
-# NuGet
+# VS Code
+.vscode/
+*.code-workspace
+
+# ==================
+# .NET / C# (CLI)
+# ==================
+bin/
+obj/
 *.nupkg
 *.snupkg
 packages/
-
-# Build results
 [Dd]ebug/
 [Rr]elease/
 x64/
 x86/
+*.cache
+*.dll
+*.exe
+*.pdb
 
-# Logs
+# ==================
+# Node.js (Desktop, Mobile, Web)
+# ==================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn/
+package-lock.json.bak
+
+# ==================
+# Tauri (Desktop App)
+# ==================
+app/desktop/src-tauri/target/
+app/desktop/dist/
+
+# ==================
+# Capacitor (Mobile App)
+# ==================
+app/mobile/android/
+app/mobile/ios/
+app/mobile/node_modules/
+app/mobile/.sourcemaps/
+
+# ==================
+# Browser Extension
+# ==================
+extension/*.zip
+extension/dist/
+
+# ==================
+# Build & Distribution
+# ==================
+dist/
+build/
+out/
+*.zip
+*.tar.gz
+
+# ==================
+# Logs & Temp Files
+# ==================
 *.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
 
-# OS generated files
-.DS_Store
-Thumbs.db
+# ==================
+# Environment & Secrets
+# ==================
+.env
+.env.*
+!.env.example
+*.local
 
-# Agent
+# ==================
+# Test & Coverage
+# ==================
+coverage/
+*.coverage
+.nyc_output/
+TestResults/
+
+# ==================
+# Agent & AI Tools
+# ==================
 .agent/

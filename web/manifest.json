@@ -1,0 +1,60 @@
+{
+    "name": "ItoMcovertor",
+    "short_name": "ItoMcovertor",
+    "description": "Free, fast, and accurate unit converter for Imperial and Metric systems. Convert length, weight, temperature, and more.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0F172A",
+    "theme_color": "#38B2AC",
+    "orientation": "any",
+    "scope": "/",
+    "lang": "en",
+    "icons": [
+        {
+            "src": "favicon/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        },
+        {
+            "src": "favicon/web-app-manifest-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "favicon/web-app-manifest-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": [
+        "utilities",
+        "productivity",
+        "education"
+    ],
+    "shortcuts": [
+        {
+            "name": "Convert Length",
+            "short_name": "Length",
+            "url": "/?cat=length",
+            "description": "Convert length units like miles, kilometers, feet, meters"
+        },
+        {
+            "name": "Convert Temperature",
+            "short_name": "Temp",
+            "url": "/?cat=temperature",
+            "description": "Convert between Fahrenheit, Celsius, and Kelvin"
+        },
+        {
+            "name": "Convert Mass",
+            "short_name": "Mass",
+            "url": "/?cat=mass",
+            "description": "Convert weight units like pounds, kilograms, ounces"
+        }
+    ],
+    "screenshots": [],
+    "related_applications": [],
+    "prefer_related_applications": false
+}

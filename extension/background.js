@@ -1,7 +1,11 @@
 /**
  * ItoMcovertor Extension - Background Service Worker
  * Handles extension lifecycle, icon updates, and context menus
+ * Compatible with Chrome, Edge, and Firefox (Manifest V3)
  */
+
+// Cross-browser compatibility: Firefox uses 'browser', Chrome uses 'chrome'
+const browserAPI = typeof browser !== 'undefined' ? browser : chrome;
 
 // Default settings
 const DEFAULT_SETTINGS = {
@@ -32,14 +36,18 @@ const MENU_CONVERT_METRIC = 'convert-to-metric';
 const MENU_CONVERT_IMPERIAL = 'convert-to-imperial';
 
 // Initialize on install
-chrome.runtime.onInstalled.addListener(() => {
+browserAPI.runtime.onInstalled.addListener(() => {
   // Set default settings
-  chrome.storage.sync.get(Object.keys(DEFAULT_SETTINGS), (result) => {
+  browserAPI.storage.sync.get(Object.keys(DEFAULT_SETTINGS)).then((result) => {
     const settings = { ...DEFAULT_SETTINGS, ...result };
-    chrome.storage.sync.set(settings);
+    browserAPI.storage.sync.set(settings);
     updateBadge(settings.autoConvert);
+  }).catch(() => {
+    // Fallback for callback-based API (older Chrome)
+    browserAPI.storage.sync.set(DEFAULT_SETTINGS);
+    updateBadge(DEFAULT_SETTINGS.autoConvert);
   });
-  
+
   // Create context menus
   createContextMenus();
 });
@@ -47,24 +55,24 @@ chrome.runtime.onInstalled.addListener(() => {
 // Create right-click context menus
 function createContextMenus() {
   // Remove existing menus first
-  chrome.contextMenus.removeAll(() => {
+  browserAPI.contextMenus.removeAll(() => {
     // Parent menu
-    chrome.contextMenus.create({
+    browserAPI.contextMenus.create({
       id: 'itomcovertor-parent',
       title: 'ItoMcovertor',
       contexts: ['selection']
     });
-    
+
     // Convert to Metric
-    chrome.contextMenus.create({
+    browserAPI.contextMenus.create({
       id: MENU_CONVERT_METRIC,
       parentId: 'itomcovertor-parent',
       title: 'Convert to Metric',
       contexts: ['selection']
     });
-    
+
     // Convert to Imperial
-    chrome.contextMenus.create({
+    browserAPI.contextMenus.create({
       id: MENU_CONVERT_IMPERIAL,
       parentId: 'itomcovertor-parent',
       title: 'Convert to Imperial',
@@ -74,12 +82,12 @@ function createContextMenus() {
 }
 
 // Handle context menu clicks
-chrome.contextMenus.onClicked.addListener((info, tab) => {
+browserAPI.contextMenus.onClicked.addListener((info, tab) => {
   if (!tab?.id) return;
-  
+
   const selectedText = info.selectionText;
   if (!selectedText) return;
-  
+
   let direction;
   if (info.menuItemId === MENU_CONVERT_METRIC) {
     direction = 'imperial-to-metric';
@@ -88,9 +96,9 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
   } else {
     return;
   }
-  
+
   // Send to content script
-  chrome.tabs.sendMessage(tab.id, {
+  browserAPI.tabs.sendMessage(tab.id, {
     type: 'CONVERT_SELECTION',
     text: selectedText,
     direction: direction
@@ -100,7 +108,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
 });
 
 // Listen for storage changes to update badge
-chrome.storage.onChanged.addListener((changes, areaName) => {
+browserAPI.storage.onChanged.addListener((changes, areaName) => {
   if (areaName === 'sync' && changes.autoConvert) {
     updateBadge(changes.autoConvert.newValue);
   }
@@ -110,34 +118,36 @@ chrome.storage.onChanged.addListener((changes, areaName) => {
 function updateBadge(isEnabled) {
   if (isEnabled) {
     // Active state: colored icons
-    chrome.action.setIcon({
+    browserAPI.action.setIcon({
       path: {
         "16": "icons/icon16.png",
         "48": "icons/icon48.png",
         "128": "icons/icon128.png"
       }
     });
-    chrome.action.setBadgeText({ text: '' });
-    chrome.action.setTitle({ title: 'ItoMcovertor - Auto-Convert ON' });
+    browserAPI.action.setBadgeText({ text: '' });
+    browserAPI.action.setTitle({ title: 'ItoMcovertor - Auto-Convert ON' });
   } else {
     // Inactive state: grayscale icons
-    chrome.action.setIcon({
+    browserAPI.action.setIcon({
       path: {
         "16": "icons/icon16_inactive.png",
         "48": "icons/icon48_inactive.png",
         "128": "icons/icon128_inactive.png"
       }
     });
-    chrome.action.setBadgeText({ text: '' });
-    chrome.action.setTitle({ title: 'ItoMcovertor - Click to convert units' });
+    browserAPI.action.setBadgeText({ text: '' });
+    browserAPI.action.setTitle({ title: 'ItoMcovertor - Click to convert units' });
   }
 }
 
 // Handle messages from content scripts
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+browserAPI.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === 'GET_SETTINGS') {
-    chrome.storage.sync.get(['autoConvert', 'direction'], (result) => {
+    browserAPI.storage.sync.get(['autoConvert', 'direction']).then((result) => {
       sendResponse(result);
+    }).catch(() => {
+      sendResponse({});
     });
     return true; // Keep channel open for async response
   }

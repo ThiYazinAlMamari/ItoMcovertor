@@ -1,4 +1,8 @@
 // ItoMcovertor Extension - Options Page Script
+// Compatible with Chrome, Edge, and Firefox (Manifest V3)
+
+// Cross-browser compatibility: Firefox uses 'browser', Chrome uses 'chrome'
+const browserAPI = typeof browser !== 'undefined' ? browser : chrome;
 
 document.addEventListener('DOMContentLoaded', () => {
   // Elements
@@ -48,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Load saved settings
-  chrome.storage.sync.get(DEFAULT_SETTINGS, (settings) => {
+  browserAPI.storage.sync.get(DEFAULT_SETTINGS).then((settings) => {
     // General
     elements.autoConvertToggle.checked = settings.autoConvert;
     elements.directionSelect.value = settings.direction;
@@ -69,6 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
     elements.roundingSelect.value = settings.rounding;
     // Privacy
     elements.syncEnabledToggle.checked = settings.syncEnabled;
+  }).catch(() => {
+    // Fallback for callback-based API
   });
 
   // === General Section ===
@@ -141,18 +147,18 @@ document.addEventListener('DOMContentLoaded', () => {
   elements.syncEnabledToggle.addEventListener('change', () => {
     const syncEnabled = elements.syncEnabledToggle.checked;
     saveSetting('syncEnabled', syncEnabled);
-    
+
     if (!syncEnabled) {
       // Migrate settings to local storage
-      chrome.storage.sync.get(null, (settings) => {
-        chrome.storage.local.set(settings, () => {
+      browserAPI.storage.sync.get(null).then((settings) => {
+        browserAPI.storage.local.set(settings).then(() => {
           showStatus('Settings moved to local storage');
         });
       });
     } else {
       // Migrate settings to sync storage
-      chrome.storage.local.get(null, (settings) => {
-        chrome.storage.sync.set(settings, () => {
+      browserAPI.storage.local.get(null).then((settings) => {
+        browserAPI.storage.sync.set(settings).then(() => {
           showStatus('Settings synced to account');
         });
       });
@@ -161,10 +167,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   elements.clearHistoryBtn.addEventListener('click', () => {
     if (confirm('Are you sure you want to clear all data? This will reset all settings to defaults.')) {
-      chrome.storage.sync.clear(() => {
-        chrome.storage.local.clear(() => {
+      browserAPI.storage.sync.clear().then(() => {
+        browserAPI.storage.local.clear().then(() => {
           // Restore defaults
-          chrome.storage.sync.set(DEFAULT_SETTINGS, () => {
+          browserAPI.storage.sync.set(DEFAULT_SETTINGS).then(() => {
             // Reload page to reflect defaults
             showStatus('All data cleared');
             setTimeout(() => location.reload(), 1000);
@@ -200,7 +206,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // === Utility Functions ===
   function saveSetting(key, value) {
-    chrome.storage.sync.set({ [key]: value }, () => {
+    browserAPI.storage.sync.set({ [key]: value }).then(() => {
+      showStatus('Setting saved');
+    }).catch(() => {
       showStatus('Setting saved');
     });
   }
@@ -208,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function showStatus(message) {
     elements.statusMessage.textContent = message;
     elements.statusMessage.classList.add('visible');
-    
+
     setTimeout(() => {
       elements.statusMessage.classList.remove('visible');
     }, 2000);

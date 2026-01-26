@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ItoMcovertor</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        (function () {
+            try {
+                var s = JSON.parse(localStorage.getItem('itom_desktop_settings') || '{}');
+                if (s.darkMode !== false) document.documentElement.setAttribute('data-theme', 'dark');
+            } catch (e) { }
+        })();
+    </script>
+</head>
+
+<body>
+    <div class="app">
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <nav class="nav" id="categoryNav">
+                <div class="nav-row active" data-category="length">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 12h18M7 8l-4 4 4 4M17 8l4 4-4 4" />
+                    </svg>
+                    <span>Length</span>
+                </div>
+                <div class="nav-row" data-category="area">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 4h16v16H4z" />
+                    </svg>
+                    <span>Area</span>
+                </div>
+                <div class="nav-row" data-category="volume-liquid">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M8 2h8l2 4v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6l2-4z M4 6h16" />
+                    </svg>
+                    <span>Volume (L)</span>
+                </div>
+                <div class="nav-row" data-category="volume-solid">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2l10 6v8l-10 6-10-6V8l10-6z M2 8l10 6 10-6 M12 14v8" />
+                    </svg>
+                    <span>Volume (S)</span>
+                </div>
+                <div class="nav-row" data-category="mass">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3v18 M6 7l6-4 6 4 M5 21h14" />
+                    </svg>
+                    <span>Mass</span>
+                </div>
+                <div class="nav-row" data-category="temperature">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 9V3 M8 14a4 4 0 108 0 M10 3h4" />
+                    </svg>
+                    <span>Temperature</span>
+                </div>
+                <div class="nav-row" data-category="speed">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 12l4-8 M4 18a8 8 0 1116 0" />
+                    </svg>
+                    <span>Speed</span>
+                </div>
+                <div class="nav-row" data-category="pressure">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3v18 M5 10l7-7 7 7" />
+                    </svg>
+                    <span>Pressure</span>
+                </div>
+                <div class="nav-row" data-category="energy">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M13 2L3 14h9l-1 8 11-12h-9l1-8z" />
+                    </svg>
+                    <span>Energy</span>
+                </div>
+                <div class="nav-row" data-category="power">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 2v4 M12 18v4 M4.93 4.93l2.83 2.83 M16.24 16.24l2.83 2.83 M2 12h4 M18 12h4 M4.93 19.07l2.83-2.83 M16.24 7.76l2.83-2.83" />
+                    </svg>
+                    <span>Power</span>
+                </div>
+                <div class="nav-row" data-category="force">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 19V5 M5 12l7-7 7 7" />
+                    </svg>
+                    <span>Force</span>
+                </div>
+                <div class="nav-row" data-category="nautical">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 17l3 3h12l3-3 M5 17v-7l7-7 7 7v7" />
+                    </svg>
+                    <span>Nautical</span>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="nav-row" id="themeToggle" title="Toggle theme">
+                    <svg class="icon-sun" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="4" />
+                        <path
+                            d="M12 2v2 M12 20v2 M4.93 4.93l1.41 1.41 M17.66 17.66l1.41 1.41 M2 12h2 M20 12h2 M4.93 19.07l1.41-1.41 M17.66 6.34l1.41-1.41" />
+                    </svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                    </svg>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Panel -->
+        <main class="main">
+            <div class="form-block">
+                <div class="form-group">
+                    <label>From</label>
+                    <div class="input-row">
+                        <input type="number" id="fromValue" placeholder="0" step="any" autocomplete="off">
+                        <select id="fromUnit" title="From unit"></select>
+                    </div>
+                </div>
+                <div class="swap-inline">
+                    <button id="swapBtn" title="Swap (Ctrl+Enter)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M7 16V4l-4 4 M7 4l4 4 M17 8v12l4-4 M17 20l-4-4" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="form-group">
+                    <label>To</label>
+                    <div class="input-row">
+                        <input type="text" id="toValue" placeholder="—" readonly title="Click to copy">
+                        <select id="toUnit" title="To unit"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="info-bar" id="quickReference"></div>
+        </main>
+
+        <!-- History Panel -->
+        <aside class="history">
+            <div class="history-head">
+                <span>History</span>
+                <button id="clearHistoryBtn" title="Clear history">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 6h18 M8 6V4h8v2 M5 6v14a2 2 0 002 2h10a2 2 0 002-2V6" />
+                    </svg>
+                </button>
+            </div>
+            <ul class="history-list" id="historyList">
+                <li class="history-empty">No conversions</li>
+            </ul>
+        </aside>
+    </div>
+
+    <!-- Context Menu -->
+    <div class="context-menu" id="contextMenu">
+        <div class="context-item" data-action="copy">Copy</div>
+        <div class="context-item" data-action="delete">Delete</div>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+    <script src="js/converter.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

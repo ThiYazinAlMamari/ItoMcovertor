@@ -68,9 +68,13 @@ Simply open `index.html` in a web browser. No build step required.
 ```text
 web/
 ├── index.html          # Main page
+├── about.html          # About page
+├── faq.html            # FAQ page
 ├── changelog.html      # Version history
 ├── privacy.html        # Privacy policy
+├── terms.html          # Terms of service
 ├── support.html        # Help and support
+├── 404.html            # Error page
 ├── css/
 │   └── styles.css      # Styling
 ├── js/
@@ -83,5 +87,7 @@ web/
 ├── logo.png            # Site logo
 ├── logo.svg            # Vector logo
 ├── og-image.png        # Social sharing image
+├── sitemap.xml         # SEO sitemap
+├── robots.txt          # Crawler rules
 └── README.md           # This file
 ```
