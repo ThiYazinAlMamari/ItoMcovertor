@@ -150,7 +150,7 @@
         // Show banner if user hasn't made a choice
         if (CookieManager.needsConsent()) {
             setTimeout(() => {
-                banner.classList.add('show');
+                banner.classList.add('cookie--show');
             }, 1000); // Delay for better UX
         }
 
@@ -179,8 +179,8 @@
     function hideCookieBanner() {
         const banner = document.getElementById('cookieBanner');
         if (banner) {
-            banner.classList.remove('show');
-            banner.classList.add('hide');
+            banner.classList.remove('cookie--show');
+            banner.classList.add('cookie--hide');
         }
     }
 
@@ -206,7 +206,7 @@
 
         // Update dark mode toggle in settings
         if (elements.darkModeToggle) {
-            elements.darkModeToggle.classList.toggle('active', isDark);
+            elements.darkModeToggle.classList.toggle('settings__toggle--active', isDark);
             elements.darkModeToggle.setAttribute('aria-checked', isDark);
         }
     }
@@ -254,19 +254,19 @@
 
         // Apply auto-save setting
         if (elements.autoSaveToggle) {
-            elements.autoSaveToggle.classList.toggle('active', state.settings.autoSave);
+            elements.autoSaveToggle.classList.toggle('settings__toggle--active', state.settings.autoSave);
             elements.autoSaveToggle.setAttribute('aria-checked', state.settings.autoSave);
         }
 
         // Apply number grouping setting
         if (elements.numberGroupingToggle) {
-            elements.numberGroupingToggle.classList.toggle('active', state.settings.numberGrouping);
+            elements.numberGroupingToggle.classList.toggle('settings__toggle--active', state.settings.numberGrouping);
             elements.numberGroupingToggle.setAttribute('aria-checked', state.settings.numberGrouping);
         }
 
         // Apply scientific notation setting
         if (elements.scientificNotationToggle) {
-            elements.scientificNotationToggle.classList.toggle('active', state.settings.scientificNotation);
+            elements.scientificNotationToggle.classList.toggle('settings__toggle--active', state.settings.scientificNotation);
             elements.scientificNotationToggle.setAttribute('aria-checked', state.settings.scientificNotation);
         }
 
@@ -295,12 +295,12 @@
     }
 
     function openSettings() {
-        elements.settingsOverlay.classList.add('open');
+        elements.settingsOverlay.classList.add('settings--open');
         document.body.style.overflow = 'hidden';
     }
 
     function closeSettings() {
-        elements.settingsOverlay.classList.remove('open');
+        elements.settingsOverlay.classList.remove('settings--open');
         document.body.style.overflow = '';
     }
 
@@ -311,7 +311,7 @@
     function setupEventListeners() {
         // Category tabs
         elements.categoryTabs.addEventListener('click', (e) => {
-            if (e.target.classList.contains('tab-btn')) {
+            if (e.target.classList.contains('tabs__btn')) {
                 const category = e.target.dataset.category;
                 setActiveTab(e.target);
                 loadCategory(category);
@@ -391,7 +391,7 @@
         if (elements.autoSaveToggle) {
             elements.autoSaveToggle.addEventListener('click', () => {
                 state.settings.autoSave = !state.settings.autoSave;
-                elements.autoSaveToggle.classList.toggle('active', state.settings.autoSave);
+                elements.autoSaveToggle.classList.toggle('settings__toggle--active', state.settings.autoSave);
                 elements.autoSaveToggle.setAttribute('aria-checked', state.settings.autoSave);
                 saveSettings();
             });
@@ -410,7 +410,7 @@
         if (elements.numberGroupingToggle) {
             elements.numberGroupingToggle.addEventListener('click', () => {
                 state.settings.numberGrouping = !state.settings.numberGrouping;
-                elements.numberGroupingToggle.classList.toggle('active', state.settings.numberGrouping);
+                elements.numberGroupingToggle.classList.toggle('settings__toggle--active', state.settings.numberGrouping);
                 elements.numberGroupingToggle.setAttribute('aria-checked', state.settings.numberGrouping);
                 saveSettings();
                 performConversion();
@@ -421,7 +421,7 @@
         if (elements.scientificNotationToggle) {
             elements.scientificNotationToggle.addEventListener('click', () => {
                 state.settings.scientificNotation = !state.settings.scientificNotation;
-                elements.scientificNotationToggle.classList.toggle('active', state.settings.scientificNotation);
+                elements.scientificNotationToggle.classList.toggle('settings__toggle--active', state.settings.scientificNotation);
                 elements.scientificNotationToggle.setAttribute('aria-checked', state.settings.scientificNotation);
                 saveSettings();
                 performConversion();
@@ -453,10 +453,10 @@
     // =========================================================================
 
     function setActiveTab(tab) {
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.classList.remove('active');
+        document.querySelectorAll('.tabs__btn').forEach(btn => {
+            btn.classList.remove('tabs__btn--active');
         });
-        tab.classList.add('active');
+        tab.classList.add('tabs__btn--active');
     }
 
     function loadCategory(category) {
@@ -593,9 +593,9 @@
             showToast('Copied to clipboard!', 'success');
 
             // Visual feedback on button
-            elements.copyBtn.classList.add('copied');
+            elements.copyBtn.classList.add('converter__copy-btn--copied');
             setTimeout(() => {
-                elements.copyBtn.classList.remove('copied');
+                elements.copyBtn.classList.remove('converter__copy-btn--copied');
             }, 1500);
         }).catch(() => {
             showToast('Failed to copy', 'error');
@@ -608,24 +608,24 @@
 
     function showToast(message, type = 'info') {
         const toast = document.createElement('div');
-        toast.className = `toast ${type}`;
+        toast.className = `toast__item toast__item--${type}`;
 
         const icons = {
-            success: '<svg class="toast-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9"/></svg>',
-            error: '<svg class="toast-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6"/><path d="M15 9l-6 6"/></svg>',
-            info: '<svg class="toast-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v6"/><path d="M12 16h.01"/></svg>'
+            success: '<svg class="toast__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9"/></svg>',
+            error: '<svg class="toast__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6"/><path d="M15 9l-6 6"/></svg>',
+            info: '<svg class="toast__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v6"/><path d="M12 16h.01"/></svg>'
         };
 
         toast.innerHTML = `
             ${icons[type] || icons.info}
-            <span class="toast-message">${message}</span>
+            <span class="toast__message">${message}</span>
         `;
 
         elements.toastContainer.appendChild(toast);
 
         // Auto-dismiss after 3 seconds
         setTimeout(() => {
-            toast.classList.add('hiding');
+            toast.classList.add('toast__item--hiding');
             setTimeout(() => {
                 toast.remove();
             }, 300);
@@ -761,7 +761,7 @@
 
     function renderHistory() {
         if (state.history.length === 0) {
-            elements.historyList.innerHTML = '<li class="history-empty">No conversions yet</li>';
+            elements.historyList.innerHTML = '<li class="history__empty">No conversions yet</li>';
             return;
         }
 

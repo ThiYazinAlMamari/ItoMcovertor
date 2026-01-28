@@ -38,7 +38,7 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
-    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
     <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
 
@@ -156,71 +156,50 @@
 </head>
 
 <body>
-    <!-- Skip Link for Accessibility -->
     <a href="#converter" class="skip-link">Skip to converter</a>
 
-    <!-- Header (loaded from components.js) -->
+    <!-- Header -->
     <div id="header-placeholder"></div>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <h1 class="hero-title">Transform Units in a <span class="accent">Snap</span></h1>
-        <p class="hero-subtitle">Convert Imperial to Metric and Metric to Imperial in a snap. 120+ conversions for Units
-            of Measure across 12 categories all for free.</p>
-        <div class="hero-stats">
-            <div class="stat-item">
-                <div class="stat-value">12</div>
-                <div class="stat-label">Categories</div>
+    <!-- Hero Converter -->
+    <section class="hero" id="converter">
+        <div class="hero__container">
+            <!-- Header -->
+            <div class="hero__header">
+                <h1 class="hero__title">Transform Units in a <span class="accent">Snap</span></h1>
+                <p class="hero__subtitle">Convert Imperial to Metric and Metric to Imperial instantly. 120+ conversions
+                    across 12 categories — completely free.</p>
             </div>
-            <div class="stat-item">
-                <div class="stat-value">120+</div>
-                <div class="stat-label">Conversions</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-value">100%</div>
-                <div class="stat-label">Free</div>
-            </div>
-        </div>
-    </section>
 
-
-
-    <!-- Converter Tool Section -->
-    <section class="tool-section" id="converter">
-        <div class="section-container">
-            <!-- Category Tabs -->
-            <nav class="category-tabs" id="categoryTabs" role="tablist">
-                <button class="tab-btn active" data-category="length" role="tab">Length</button>
-                <button class="tab-btn" data-category="area" role="tab">Area</button>
-                <button class="tab-btn" data-category="volume-liquid" role="tab">Volume (Liquid)</button>
-                <button class="tab-btn" data-category="volume-solid" role="tab">Volume (Solid)</button>
-                <button class="tab-btn" data-category="mass" role="tab">Mass</button>
-                <button class="tab-btn" data-category="temperature" role="tab">Temperature</button>
-                <button class="tab-btn" data-category="speed" role="tab">Speed</button>
-                <button class="tab-btn" data-category="pressure" role="tab">Pressure</button>
-                <button class="tab-btn" data-category="energy" role="tab">Energy</button>
-                <button class="tab-btn" data-category="power" role="tab">Power</button>
-                <button class="tab-btn" data-category="force" role="tab">Force</button>
-                <button class="tab-btn" data-category="nautical" role="tab">Nautical</button>
+            <nav class="tabs" id="categoryTabs" role="tablist">
+                <button class="tabs__btn tabs__btn--active" data-category="length" role="tab">Length</button>
+                <button class="tabs__btn" data-category="area" role="tab">Area</button>
+                <button class="tabs__btn" data-category="volume-liquid" role="tab">Volume (Liquid)</button>
+                <button class="tabs__btn" data-category="volume-solid" role="tab">Volume (Solid)</button>
+                <button class="tabs__btn" data-category="mass" role="tab">Mass</button>
+                <button class="tabs__btn" data-category="temperature" role="tab">Temperature</button>
+                <button class="tabs__btn" data-category="speed" role="tab">Speed</button>
+                <button class="tabs__btn" data-category="pressure" role="tab">Pressure</button>
+                <button class="tabs__btn" data-category="energy" role="tab">Energy</button>
+                <button class="tabs__btn" data-category="power" role="tab">Power</button>
+                <button class="tabs__btn" data-category="force" role="tab">Force</button>
+                <button class="tabs__btn" data-category="nautical" role="tab">Nautical</button>
             </nav>
 
-            <!-- Two-column layout wrapper -->
+            <!-- Converter -->
             <div class="tool-grid">
-                <!-- Converter Card -->
-                <main class="converter-card">
-                    <div class="converter-grid">
-                        <!-- From Section -->
-                        <div class="converter-section">
-                            <label class="section-label" for="fromValue">From</label>
-                            <input type="number" id="fromValue" class="value-input" placeholder="Enter value" step="any"
-                                autocomplete="off">
-                            <div class="unit-select-wrapper">
-                                <select id="fromUnit" class="unit-select" aria-label="From unit"></select>
+                <main class="converter">
+                    <div class="converter__grid">
+                        <div class="converter__section">
+                            <label class="converter__label" for="fromValue">From</label>
+                            <input type="number" id="fromValue" class="converter__input" placeholder="Enter value"
+                                step="any" autocomplete="off">
+                            <div class="converter__select-wrapper">
+                                <select id="fromUnit" class="converter__select" aria-label="From unit"></select>
                             </div>
                         </div>
 
-                        <!-- Swap Button -->
-                        <button class="swap-btn" id="swapBtn" title="Swap units" aria-label="Swap units">
+                        <button class="converter__swap-btn" id="swapBtn" title="Swap units" aria-label="Swap units">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round">
@@ -228,13 +207,13 @@
                             </svg>
                         </button>
 
-                        <!-- To Section -->
-                        <div class="converter-section">
-                            <label class="section-label" for="toValue">To</label>
-                            <div class="result-wrapper">
-                                <input type="text" id="toValue" class="value-input result" readonly placeholder="Result"
-                                    aria-live="polite">
-                                <button class="copy-btn" id="copyBtn" title="Copy result" aria-label="Copy result">
+                        <div class="converter__section">
+                            <label class="converter__label" for="toValue">To</label>
+                            <div class="converter__result-wrapper">
+                                <input type="text" id="toValue" class="converter__input converter__input--result"
+                                    readonly placeholder="Result" aria-live="polite">
+                                <button class="converter__copy-btn" id="copyBtn" title="Copy result"
+                                    aria-label="Copy result">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round">
@@ -243,51 +222,65 @@
                                     </svg>
                                 </button>
                             </div>
-                            <div class="unit-select-wrapper">
-                                <select id="toUnit" class="unit-select" aria-label="To unit"></select>
+                            <div class="converter__select-wrapper">
+                                <select id="toUnit" class="converter__select" aria-label="To unit"></select>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Validation Message -->
-                    <div class="validation-message" id="validationMessage" role="alert"></div>
+                    <div class="converter__validation" id="validationMessage" role="alert"></div>
 
-                    <!-- Quick Reference -->
-                    <div class="quick-reference" id="quickReference"></div>
+                    <div class="converter__reference" id="quickReference"></div>
                 </main>
 
                 <!-- History Panel -->
-                <section class="history-panel" aria-labelledby="historyTitle" style="margin-top: 0;">
-                    <div class="history-header">
+                <section class="history" aria-labelledby="historyTitle">
+                    <div class="history__header">
                         <h2 id="historyTitle">Conversion History</h2>
-                        <button class="clear-btn" id="clearHistoryBtn">Clear</button>
+                        <button class="history__clear-btn" id="clearHistoryBtn">Clear</button>
                     </div>
-                    <ul class="history-list" id="historyList">
-                        <li class="history-empty">No conversions yet</li>
+                    <ul class="history__list" id="historyList">
+                        <li class="history__empty">No conversions yet</li>
                     </ul>
                 </section>
+            </div>
+
+            <div class="hero__stats">
+                <div class="hero__stat">
+                    <span class="hero__stat-value">12</span>
+                    <span class="hero__stat-label">Categories</span>
+                </div>
+                <div class="hero__stat-divider"></div>
+                <div class="hero__stat">
+                    <span class="hero__stat-value">120+</span>
+                    <span class="hero__stat-label">Conversions</span>
+                </div>
+                <div class="hero__stat-divider"></div>
+                <div class="hero__stat">
+                    <span class="hero__stat-value">100%</span>
+                    <span class="hero__stat-label">Free</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Extension Promotion Section -->
-    <section class="extension-section" aria-labelledby="extension-title">
-        <div class="extension-container">
+    <!-- Extension Promotion -->
+    <section class="extension" aria-labelledby="extension-title">
+        <div class="extension__container">
 
-            <!-- Left: Content -->
-            <div class="extension-content">
-                <span class="extension-badge">Browser Extension</span>
+            <div class="extension__content">
+                <span class="extension__badge">Browser Extension</span>
 
-                <h2 class="extension-title" id="extension-title">
+                <h2 class="extension__title" id="extension-title">
                     Get the Browser Extension
                 </h2>
 
-                <p class="extension-description">
+                <p class="extension__description">
                     Enhance your browsing with automatic unit conversions. Instantly detect and convert
                     measurements on any webpage, completely offline.
                 </p>
 
-                <ul class="extension-features">
+                <ul class="extension__features">
                     <li>
                         <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -317,7 +310,7 @@
                 </ul>
 
                 <a id="extensionBtn" href="https://chrome.google.com/webstore/detail/YOUR_EXTENSION_ID" target="_blank"
-                    rel="noopener noreferrer" class="extension-btn" aria-label="Add ItoMcovertor Extension">
+                    rel="noopener noreferrer" class="extension__btn" aria-label="Add ItoMcovertor Extension">
                     <!-- Chrome Web Store Icon (exact copy from Google_Chrome_Web_Store_icon_2022.svg) -->
                     <svg id="iconChrome" class="browser-icon" viewBox="0 0 152.00976 132" width="22" height="22"
                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -554,8 +547,7 @@
                 </script>
             </div>
 
-            <!-- Right: Preview -->
-            <div class="extension-preview" aria-hidden="true">
+            <div class="extension__preview" aria-hidden="true">
                 <div class="preview-browser" id="previewBrowser">
                     <!-- Mac style (default) -->
                     <div class="preview-bar preview-bar-mac">
@@ -612,109 +604,6 @@
         </div>
     </section>
 
-
-    <!-- FAQ Section -->
-    <section class="faq-section" id="faq">
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        <div class="faq-grid">
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>What units can I convert?</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M6 9l6 6 6-6" />
-                    </svg>
-                </button>
-                <div class="faq-answer">
-                    <p>ItoMcovertor supports 120+ units across 12 categories: Length, Area, Volume (Liquid and Solid),
-                        Mass, Temperature, Speed, Pressure, Energy, Power, Force, and Nautical. Full SI scale support
-                        from yocto to Yotta prefixes is included for applicable units.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Is this converter free to use?</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M6 9l6 6 6-6" />
-                    </svg>
-                </button>
-                <div class="faq-answer">
-                    <p>Yes, completely free. No ads, no sign-up, no data collection. Both the website and browser
-                        extension are 100% free. Your conversion history stays on your device only.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>What can the browser extension do?</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M6 9l6 6 6-6" />
-                    </svg>
-                </button>
-                <div class="faq-answer">
-                    <p>The extension automatically detects and converts units on any webpage. Select text to see instant
-                        conversions in a popup, or enable auto-convert to add inline badges next to detected units.
-                        Includes a toolbar popup for quick manual conversions and right-click context menu support.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Can I customize the extension?</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M6 9l6 6 6-6" />
-                    </svg>
-                </button>
-                <div class="faq-answer">
-                    <p>Absolutely. Choose your default conversion direction (Imperial to Metric or vice versa), set
-                        decimal precision, pick badge or inline display styles, control site allowlists/denylists, and
-                        configure scan behavior. Settings sync across devices via your browser account.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>Does it work offline?</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M6 9l6 6 6-6" />
-                    </svg>
-                </button>
-                <div class="faq-answer">
-                    <p>The web version requires internet to load initially, but all calculations run locally in your
-                        browser. The browser extension works 100% offline once installed and never sends data to
-                        external servers.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">
-                    <span>How do I share a conversion?</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M6 9l6 6 6-6" />
-                    </svg>
-                </button>
-                <div class="faq-answer">
-                    <p>On the website, copy the URL after performing a conversion. The link encodes your input, units,
-                        and result so anyone opening it sees the exact same conversion.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- View All FAQs CTA -->
-        <div class="faq-cta">
-            <p class="faq-cta-text">More questions about permissions, privacy, and conversions?</p>
-            <a href="faq.html" class="faq-cta-btn">
-                View All FAQs
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                    <polyline points="12 5 19 12 12 19" />
-                </svg>
-            </a>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
@@ -738,8 +627,7 @@
                 <div class="footer-column">
                     <h4>Resources</h4>
                     <ul class="footer-links">
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="support.html">Support</a></li>
+                        <li><a href="support.html">Help & Support</a></li>
                         <li><a href="privacy.html">Privacy Policy</a></li>
                         <li><a href="terms.html">Terms of Service</a></li>
                     </ul>
@@ -759,11 +647,11 @@
     </footer>
 
     <!-- Settings Panel -->
-    <div class="settings-overlay" id="settingsOverlay">
-        <div class="settings-panel">
-            <div class="settings-header">
+    <div class="settings" id="settingsOverlay">
+        <div class="settings__panel">
+            <div class="settings__header">
                 <h2>Settings</h2>
-                <button class="settings-close" id="settingsClose" aria-label="Close settings">
+                <button class="settings__close" id="settingsClose" aria-label="Close settings">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="18" y1="6" x2="6" y2="18" />
@@ -771,62 +659,64 @@
                     </svg>
                 </button>
             </div>
-            <div class="settings-content">
-                <div class="settings-group">
+            <div class="settings__content">
+                <div class="settings__group">
                     <h3>Appearance</h3>
-                    <div class="setting-item">
+                    <div class="settings__item">
                         <div>
-                            <div class="setting-label">Dark Mode</div>
-                            <div class="setting-description">Use dark color theme</div>
+                            <div class="settings__label">Dark Mode</div>
+                            <div class="settings__description">Use dark color theme</div>
                         </div>
-                        <div class="toggle-switch" id="darkModeToggle" role="switch" aria-checked="false" tabindex="0">
+                        <div class="settings__toggle" id="darkModeToggle" role="switch" aria-checked="false"
+                            tabindex="0">
                         </div>
                     </div>
                 </div>
-                <div class="settings-group">
+                <div class="settings__group">
                     <h3>Behavior</h3>
-                    <div class="setting-item">
+                    <div class="settings__item">
                         <div>
-                            <div class="setting-label">Auto-save History</div>
-                            <div class="setting-description">Save conversions automatically</div>
+                            <div class="settings__label">Auto-save History</div>
+                            <div class="settings__description">Save conversions automatically</div>
                         </div>
-                        <div class="toggle-switch active" id="autoSaveToggle" role="switch" aria-checked="true"
-                            tabindex="0"></div>
+                        <div class="settings__toggle settings__toggle--active" id="autoSaveToggle" role="switch"
+                            aria-checked="true" tabindex="0"></div>
                     </div>
-                    <div class="setting-item">
+                    <div class="settings__item">
                         <div>
-                            <div class="setting-label">Precision (Decimals)</div>
-                            <div class="setting-description">Number of decimal places</div>
+                            <div class="settings__label">Precision (Decimals)</div>
+                            <div class="settings__description">Number of decimal places</div>
                         </div>
-                        <select class="unit-select" id="precisionSelect" style="width: auto; padding-right: 36px;">
+                        <select class="converter__select" id="precisionSelect"
+                            style="width: auto; padding-right: 36px;">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4" selected>4</option>
                         </select>
                     </div>
-                    <div class="setting-item">
+                    <div class="settings__item">
                         <div>
-                            <div class="setting-label">Number Grouping</div>
-                            <div class="setting-description">Use comma separators (1,000)</div>
+                            <div class="settings__label">Number Grouping</div>
+                            <div class="settings__description">Use comma separators (1,000)</div>
                         </div>
-                        <div class="toggle-switch active" id="numberGroupingToggle" role="switch" aria-checked="true"
-                            tabindex="0"></div>
-                    </div>
-                    <div class="setting-item">
-                        <div>
-                            <div class="setting-label">Scientific Notation</div>
-                            <div class="setting-description">Use for very small/large numbers</div>
-                        </div>
-                        <div class="toggle-switch active" id="scientificNotationToggle" role="switch"
+                        <div class="settings__toggle settings__toggle--active" id="numberGroupingToggle" role="switch"
                             aria-checked="true" tabindex="0"></div>
                     </div>
-                    <div class="setting-item">
+                    <div class="settings__item">
                         <div>
-                            <div class="setting-label">Rounding</div>
-                            <div class="setting-description">How to round converted values</div>
+                            <div class="settings__label">Scientific Notation</div>
+                            <div class="settings__description">Use for very small/large numbers</div>
                         </div>
-                        <select class="unit-select" id="roundingSelect" style="width: auto; padding-right: 36px;">
+                        <div class="settings__toggle settings__toggle--active" id="scientificNotationToggle"
+                            role="switch" aria-checked="true" tabindex="0"></div>
+                    </div>
+                    <div class="settings__item">
+                        <div>
+                            <div class="settings__label">Rounding</div>
+                            <div class="settings__description">How to round converted values</div>
+                        </div>
+                        <select class="converter__select" id="roundingSelect" style="width: auto; padding-right: 36px;">
                             <option value="round" selected>Round</option>
                             <option value="floor">Floor</option>
                             <option value="ceiling">Ceiling</option>
@@ -837,12 +727,11 @@
         </div>
     </div>
 
-    <!-- Cookie Consent Banner -->
-    <div class="cookie-banner" id="cookieBanner" role="dialog" aria-labelledby="cookieTitle"
-        aria-describedby="cookieText">
-        <div class="cookie-container">
-            <div class="cookie-content">
-                <div class="cookie-title" id="cookieTitle">
+    <!-- Cookie Consent -->
+    <div class="cookie" id="cookieBanner" role="dialog" aria-labelledby="cookieTitle" aria-describedby="cookieText">
+        <div class="cookie__container">
+            <div class="cookie__content">
+                <div class="cookie__title" id="cookieTitle">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         aria-hidden="true">
@@ -853,20 +742,19 @@
                     </svg>
                     We use cookies
                 </div>
-                <p class="cookie-text" id="cookieText">
+                <p class="cookie__text" id="cookieText">
                     We use cookies to save your preferences and conversion history locally.
                     No data is sent to our servers. <a href="privacy.html">Learn more</a>
                 </p>
             </div>
-            <div class="cookie-actions">
-                <button class="cookie-btn cookie-btn-decline" id="cookieDecline">Decline</button>
-                <button class="cookie-btn cookie-btn-accept" id="cookieAccept">Accept</button>
+            <div class="cookie__actions">
+                <button class="cookie__btn cookie__btn--decline" id="cookieDecline">Decline</button>
+                <button class="cookie__btn cookie__btn--accept" id="cookieAccept">Accept</button>
             </div>
         </div>
     </div>
 
-    <!-- Toast Container -->
-    <div class="toast-container" id="toastContainer"></div>
+    <div class="toast" id="toastContainer"></div>
 
     <!-- Scripts -->
     <script src="js/components.js"></script>

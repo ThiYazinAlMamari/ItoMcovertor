@@ -22,22 +22,21 @@
 
     const headerIndexHTML = `
     <nav class="navbar">
-        <div class="navbar-container">
-            <a href="index.html" class="navbar-brand">
-                <img src="logo.svg" alt="ItoMcovertor Logo" class="navbar-logo">
-                <span class="navbar-title">ItoMcovertor</span>
+        <div class="navbar__container">
+            <a href="index.html" class="navbar__brand">
+                <img src="logo.svg" alt="ItoMcovertor Logo" class="navbar__logo">
+                <span class="navbar__title">ItoMcovertor</span>
             </a>
             
-            <ul class="navbar-nav">
-                <li><a href="#converter" class="nav-link active" data-page="index">Converter</a></li>
-                <li><a href="#faq" class="nav-link" data-page="faq">FAQ</a></li>
-                <li><a href="changelog.html" class="nav-link" data-page="changelog">Changelog</a></li>
-                <li><a href="support.html" class="nav-link" data-page="support">Support</a></li>
-                <li><a href="https://chrome.google.com/webstore" target="_blank" rel="noopener" class="nav-link nav-extension">Extension</a></li>
+            <ul class="navbar__nav">
+                <li><a href="#converter" class="navbar__link navbar__link--active" data-page="index">Converter</a></li>
+                <li><a href="changelog.html" class="navbar__link" data-page="changelog">Changelog</a></li>
+                <li><a href="support.html" class="navbar__link" data-page="support">Support</a></li>
+                <li><a href="https://chrome.google.com/webstore" target="_blank" rel="noopener" class="navbar__link navbar__link--extension">Extension</a></li>
             </ul>
             
-            <div class="navbar-actions">
-                <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+            <div class="navbar__actions">
+                <button class="navbar__theme-toggle" id="themeToggle" title="Toggle theme">
                     <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"/>
                         <line x1="12" y1="1" x2="12" y2="3"/>
@@ -53,13 +52,13 @@
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
                     </svg>
                 </button>
-                <button class="settings-btn" id="settingsBtn" title="Settings">
+                <button class="navbar__settings-btn" id="settingsBtn" title="Settings">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="3"/>
                         <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
                     </svg>
                 </button>
-                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+                <button class="navbar__mobile-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="3" y1="12" x2="21" y2="12"/>
                         <line x1="3" y1="6" x2="21" y2="6"/>
@@ -76,22 +75,21 @@
 
     const headerStandardHTML = `
     <nav class="navbar">
-        <div class="navbar-container">
-            <a href="index.html" class="navbar-brand">
-                <img src="logo.svg" alt="ItoMcovertor Logo" class="navbar-logo">
-                <span class="navbar-title">ItoMcovertor</span>
+        <div class="navbar__container">
+            <a href="index.html" class="navbar__brand">
+                <img src="logo.svg" alt="ItoMcovertor Logo" class="navbar__logo">
+                <span class="navbar__title">ItoMcovertor</span>
             </a>
             
-            <ul class="navbar-nav">
-                <li><a href="index.html#converter" class="nav-link" data-page="index">Converter</a></li>
-                <li><a href="faq.html" class="nav-link" data-page="faq">FAQ</a></li>
-                <li><a href="changelog.html" class="nav-link" data-page="changelog">Changelog</a></li>
-                <li><a href="support.html" class="nav-link" data-page="support">Support</a></li>
-                <li><a href="https://chrome.google.com/webstore" target="_blank" rel="noopener" class="nav-link nav-extension">Extension</a></li>
+            <ul class="navbar__nav">
+                <li><a href="index.html#converter" class="navbar__link" data-page="index">Converter</a></li>
+                <li><a href="changelog.html" class="navbar__link" data-page="changelog">Changelog</a></li>
+                <li><a href="support.html" class="navbar__link" data-page="support">Support</a></li>
+                <li><a href="https://chrome.google.com/webstore" target="_blank" rel="noopener" class="navbar__link navbar__link--extension">Extension</a></li>
             </ul>
             
-            <div class="navbar-actions">
-                <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+            <div class="navbar__actions">
+                <button class="navbar__theme-toggle" id="themeToggle" title="Toggle theme">
                     <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"/>
                         <line x1="12" y1="1" x2="12" y2="3"/>
@@ -107,7 +105,7 @@
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
                     </svg>
                 </button>
-                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+                <button class="navbar__mobile-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="3" y1="12" x2="21" y2="12"/>
                         <line x1="3" y1="6" x2="21" y2="6"/>
@@ -124,42 +122,41 @@
 
     const footerHTML = `
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="index.html" class="footer-brand-link">
-                        <img src="logo.svg" alt="ItoMcovertor" class="footer-logo">
-                        <span class="footer-title">ItoMcovertor</span>
+        <div class="footer__container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="index.html" class="footer__brand-link">
+                        <img src="logo.svg" alt="ItoMcovertor" class="footer__logo">
+                        <span class="footer__title">ItoMcovertor</span>
                     </a>
-                    <p class="footer-description">Fast, accurate, and free unit conversions between Imperial and Metric systems. Built for developers, students, and professionals.</p>
+                    <p class="footer__description">Fast, accurate, and free unit conversions between Imperial and Metric systems. Built for developers, students, and professionals.</p>
                 </div>
-                <div class="footer-column">
+                <div class="footer__column">
                     <h4>Product</h4>
-                    <ul class="footer-links">
+                    <ul class="footer__links">
                         <li><a href="index.html#converter">Web Converter</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="changelog.html">Changelog</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
+                <div class="footer__column">
                     <h4>Resources</h4>
-                    <ul class="footer-links">
-                        <li><a href="faq.html">FAQ</a></li>
+                    <ul class="footer__links">
                         <li><a href="support.html">Support</a></li>
                         <li><a href="privacy.html">Privacy Policy</a></li>
                         <li><a href="terms.html">Terms of Service</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
+                <div class="footer__column">
                     <h4>Connect</h4>
-                    <ul class="footer-links">
+                    <ul class="footer__links">
                         <li><a href="https://github.com" target="_blank" rel="noopener">GitHub</a></li>
                         <li><a href="support.html">Contact</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p class="footer-copyright">&copy;2026 ItoMcovertor. All rights reserved.</p>
+            <div class="footer__bottom">
+                <p class="footer__copyright">&copy;2026 ItoMcovertor. All rights reserved.</p>
             </div>
         </div>
     </footer>`;
@@ -169,10 +166,10 @@
     // =========================================================================
 
     const cookieBannerHTML = `
-    <div class="cookie-banner" id="cookieBanner" role="dialog" aria-labelledby="cookieTitle" aria-describedby="cookieText">
-        <div class="cookie-container">
-            <div class="cookie-content">
-                <div class="cookie-title" id="cookieTitle">
+    <div class="cookie" id="cookieBanner" role="dialog" aria-labelledby="cookieTitle" aria-describedby="cookieText">
+        <div class="cookie__container">
+            <div class="cookie__content">
+                <div class="cookie__title" id="cookieTitle">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         aria-hidden="true">
@@ -183,14 +180,14 @@
                     </svg>
                     We use cookies
                 </div>
-                <p class="cookie-text" id="cookieText">
+                <p class="cookie__text" id="cookieText">
                     We use cookies to save your preferences and conversion history locally.
                     No data is sent to our servers. <a href="privacy.html">Learn more</a>
                 </p>
             </div>
-            <div class="cookie-actions">
-                <button class="cookie-btn cookie-btn-decline" id="cookieDecline">Decline</button>
-                <button class="cookie-btn cookie-btn-accept" id="cookieAccept">Accept</button>
+            <div class="cookie__actions">
+                <button class="cookie__btn cookie__btn--decline" id="cookieDecline">Decline</button>
+                <button class="cookie__btn cookie__btn--accept" id="cookieAccept">Accept</button>
             </div>
         </div>
     </div>`;
@@ -235,7 +232,7 @@
         // Show if no consent choice made yet
         if (CookieManager.needsConsent()) {
             setTimeout(() => {
-                banner.classList.add('show');
+                banner.classList.add('cookie--show');
             }, 500);
         }
 
@@ -261,8 +258,8 @@
     function hideCookieBanner() {
         const banner = document.getElementById('cookieBanner');
         if (banner) {
-            banner.classList.remove('show');
-            banner.classList.add('hide');
+            banner.classList.remove('cookie--show');
+            banner.classList.add('cookie--hide');
         }
     }
 
@@ -276,7 +273,6 @@
         const filename = path.substring(path.lastIndexOf('/') + 1) || 'index.html';
 
         if (filename === 'index.html' || filename === '') return 'index';
-        if (filename === 'faq.html') return 'faq';
         if (filename === 'changelog.html') return 'changelog';
         if (filename === 'support.html') return 'support';
         if (filename === 'privacy.html') return 'privacy';
@@ -288,14 +284,14 @@
     // Set active nav link based on current page
     function setActiveNavLink() {
         const currentPage = getCurrentPage();
-        const navLinks = document.querySelectorAll('.nav-link[data-page]');
+        const navLinks = document.querySelectorAll('.navbar__link[data-page]');
 
         navLinks.forEach(link => {
             const page = link.getAttribute('data-page');
             if (page === currentPage) {
-                link.classList.add('active');
+                link.classList.add('navbar__link--active');
             } else {
-                link.classList.remove('active');
+                link.classList.remove('navbar__link--active');
             }
         });
     }

@@ -39,189 +39,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Changelog Hero */
-        .changelog-hero {
-            text-align: center;
-            padding: 80px 24px 60px;
-            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .changelog-hero h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 12px;
-        }
-
-        .changelog-hero h1 .accent {
-            color: var(--color-primary);
-        }
-
-        .changelog-hero p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        /* Changelog Container */
-        .changelog-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 60px 24px 80px;
-        }
-
-        /* Version Card */
-        .version-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-xl);
-            padding: 40px;
-            box-shadow: var(--shadow-sm);
-        }
-
-        /* Version Header */
-        .version-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 32px;
-            flex-wrap: wrap;
-        }
-
-        .version-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--color-primary);
-        }
-
-        .version-date {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            padding: 8px 16px;
-            background: var(--bg-secondary);
-            border-radius: var(--radius-full);
-            font-weight: 500;
-        }
-
-        .version-tag {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 8px 14px;
-            border-radius: var(--radius-full);
-            background: linear-gradient(135deg, rgba(56, 161, 105, 0.2), rgba(56, 161, 105, 0.1));
-            color: var(--color-success);
-            border: 1px solid rgba(56, 161, 105, 0.3);
-        }
-
-        /* Feature List */
-        .feature-list {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: grid;
-            gap: 16px;
-        }
-
-        .feature-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            font-size: 1rem;
-        }
-
-        .feature-list li .icon {
-            flex-shrink: 0;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: rgba(56, 178, 172, 0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 2px;
-        }
-
-        .feature-list li .icon svg {
-            width: 14px;
-            height: 14px;
-            stroke: var(--color-primary);
-        }
-
-        .feature-list li strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        /* Categories Section */
-        .categories-section {
-            margin-top: 32px;
-            padding-top: 32px;
-            border-top: 1px solid var(--border-light);
-        }
-
-        .categories-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 16px;
-        }
-
-        .category-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .category-pill {
-            padding: 8px 16px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-full);
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            transition: var(--transition-fast);
-        }
-
-        .category-pill:hover {
-            border-color: var(--color-primary);
-            color: var(--color-primary);
-        }
-
-        /* Stats */
-        .stats-row {
-            display: flex;
-            justify-content: center;
-            gap: 48px;
-            margin-top: 32px;
-            padding-top: 32px;
-            border-top: 1px solid var(--border-light);
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--color-primary);
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-    </style>
 
     <!-- Apply theme immediately to prevent flash -->
     <script>
@@ -247,23 +64,23 @@
     <div id="header-placeholder"></div>
 
     <!-- Changelog Hero -->
-    <section class="changelog-hero">
+    <section class="changelog__hero">
         <h1>Extension <span class="accent">Changelog</span></h1>
         <p>Updates and improvements to the ItoMcovertor browser extension.</p>
     </section>
 
     <!-- Main Content -->
-    <main class="changelog-container">
+    <main class="changelog">
 
         <!-- Version 1.0.0 -->
-        <article class="version-card">
-            <div class="version-header">
-                <span class="version-number">v1.0.0</span>
-                <span class="version-date">January 2026</span>
-                <span class="version-tag">Initial Release</span>
+        <article class="changelog__version">
+            <div class="changelog__header">
+                <span class="changelog__number">v1.0.0</span>
+                <span class="changelog__date">January 2026</span>
+                <span class="changelog__tag">Initial Release</span>
             </div>
 
-            <ul class="feature-list">
+            <ul class="changelog__list">
                 <li>
                     <span class="icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2.5"
@@ -311,23 +128,23 @@
                 </li>
             </ul>
 
-            <div class="categories-section">
-                <h3 class="categories-title">Supported Categories</h3>
-                <div class="category-grid">
-                    <span class="category-pill">Length</span>
-                    <span class="category-pill">Area</span>
-                    <span class="category-pill">Volume</span>
-                    <span class="category-pill">Mass</span>
-                    <span class="category-pill">Temperature</span>
-                    <span class="category-pill">Speed</span>
-                    <span class="category-pill">Pressure</span>
-                    <span class="category-pill">Energy</span>
-                    <span class="category-pill">Power</span>
-                    <span class="category-pill">Force</span>
+            <div class="changelog__categories">
+                <h3 class="changelog__categories-title">Supported Categories</h3>
+                <div class="changelog__category-grid">
+                    <span class="changelog__pill">Length</span>
+                    <span class="changelog__pill">Area</span>
+                    <span class="changelog__pill">Volume</span>
+                    <span class="changelog__pill">Mass</span>
+                    <span class="changelog__pill">Temperature</span>
+                    <span class="changelog__pill">Speed</span>
+                    <span class="changelog__pill">Pressure</span>
+                    <span class="changelog__pill">Energy</span>
+                    <span class="changelog__pill">Power</span>
+                    <span class="changelog__pill">Force</span>
                 </div>
             </div>
 
-            <div class="stats-row">
+            <div class="changelog__stats">
                 <div class="stat-item">
                     <div class="stat-value">120+</div>
                     <div class="stat-label">Units</div>

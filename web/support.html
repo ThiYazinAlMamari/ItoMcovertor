@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Get help with ItoMcovertor unit converter. Report issues, request features, or find troubleshooting tips for the website and browser extension.">
+        content="Get help with ItoMcovertor unit converter. Find answers to frequently asked questions, report issues, request features, or find troubleshooting tips.">
     <meta name="keywords"
-        content="ItoMcovertor support, unit converter help, report bug, feature request, troubleshooting, contact">
+        content="ItoMcovertor support, unit converter help, FAQ, report bug, feature request, troubleshooting, contact">
     <meta name="author" content="ItoMcovertor">
     <meta name="theme-color" content="#38B2AC">
     <meta name="robots" content="index, follow">
@@ -18,416 +18,61 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://itomcovertor.com/support.html">
-    <meta property="og:title" content="Support - ItoMcovertor">
+    <meta property="og:title" content="Help & Support - ItoMcovertor">
     <meta property="og:description"
-        content="Get help with ItoMcovertor unit converter. Report issues, request features, or find troubleshooting tips.">
+        content="Get help with ItoMcovertor unit converter. Find FAQs, report issues, request features, or find troubleshooting tips.">
     <meta property="og:image" content="https://itomcovertor.com/og-image.png">
     <meta property="og:site_name" content="ItoMcovertor">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Support - ItoMcovertor">
+    <meta name="twitter:title" content="Help & Support - ItoMcovertor">
     <meta name="twitter:description"
-        content="Get help with ItoMcovertor unit converter. Report issues, request features, or find troubleshooting tips.">
+        content="Get help with ItoMcovertor unit converter. Find FAQs, report issues, request features, or find troubleshooting tips.">
 
     <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
     <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
     <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
-    <title>Support - ItoMcovertor</title>
+    <title>Help & Support - ItoMcovertor</title>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is ItoMcovertor?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "ItoMcovertor is a free, fast, and accurate unit converter that helps you convert between Imperial and Metric measurement systems. It's available as a web app, browser extension, and command-line tool, supporting over 120 different unit conversions across 12 categories."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is ItoMcovertor free to use?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, ItoMcovertor is completely free to use. There are no premium features, subscriptions, or hidden costs."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What units can I convert?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "ItoMcovertor supports conversions across 12 categories: Length, Area, Volume (Liquid and Solid), Mass, Temperature, Speed, Pressure, Energy, Power, Force, and Nautical."
+                }
+            }
+        ]
+    }
+    </script>
 
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        /* Support Page Specific Styles */
-        .support-hero {
-            text-align: center;
-            padding: 80px 24px 60px;
-            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
-            border-bottom: 1px solid var(--border-light);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .support-hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -10%;
-            width: 40%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(56, 178, 172, 0.08) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .support-hero::after {
-            content: '';
-            position: absolute;
-            bottom: -50%;
-            right: -10%;
-            width: 40%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(56, 178, 172, 0.06) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .support-hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .support-hero h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: var(--text-primary);
-        }
-
-        .support-hero h1 span {
-            color: var(--color-primary);
-        }
-
-        .support-hero p {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        /* Main Content Area */
-        .support-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 60px 24px 80px;
-        }
-
-        /* Support Cards Grid */
-        .support-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-bottom: 72px;
-        }
-
-        @media (max-width: 900px) {
-            .support-cards {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .support-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-xl);
-            padding: 32px;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-        }
-
-        .support-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
-            opacity: 0;
-            transition: opacity 0.25s ease;
-        }
-
-        .support-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-xl);
-            border-color: var(--color-primary);
-        }
-
-        .support-card:hover::before {
-            opacity: 1;
-        }
-
-        .support-card-icon {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, rgba(56, 178, 172, 0.15) 0%, rgba(56, 178, 172, 0.05) 100%);
-            border-radius: var(--radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .support-card-icon svg {
-            width: 28px;
-            height: 28px;
-            stroke: var(--color-primary);
-        }
-
-        .support-card h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--text-primary);
-        }
-
-        .support-card p {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .support-card-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--color-primary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: gap 0.2s ease;
-        }
-
-        .support-card-link:hover {
-            gap: 12px;
-        }
-
-        .support-card-link svg {
-            width: 18px;
-            height: 18px;
-            transition: transform 0.2s ease;
-        }
-
-        .support-card-link:hover svg {
-            transform: translateX(4px);
-        }
-
-        /* Troubleshooting Section */
-        .troubleshooting-section {
-            margin-bottom: 72px;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 32px;
-        }
-
-        .section-header-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-            border-radius: var(--radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(56, 178, 172, 0.3);
-        }
-
-        .section-header-icon svg {
-            width: 24px;
-            height: 24px;
-            stroke: white;
-        }
-
-        .section-header h2 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .troubleshooting-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .troubleshooting-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .troubleshooting-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            transition: border-color 0.2s ease;
-        }
-
-        .troubleshooting-item:hover {
-            border-color: var(--border-medium);
-        }
-
-        .troubleshooting-item h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .troubleshooting-item h3 svg {
-            width: 20px;
-            height: 20px;
-            stroke: var(--color-primary);
-            flex-shrink: 0;
-        }
-
-        .troubleshooting-item p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-left: 30px;
-        }
-
-        /* Quick Links Section */
-        .quick-links-section {
-            margin-bottom: 72px;
-        }
-
-        .quick-links-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-        }
-
-        @media (max-width: 900px) {
-            .quick-links-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 500px) {
-            .quick-links-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .quick-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 16px 20px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.2s ease;
-        }
-
-        .quick-link:hover {
-            background: var(--bg-card);
-            border-color: var(--color-primary);
-            color: var(--color-primary);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .quick-link svg {
-            width: 20px;
-            height: 20px;
-            stroke: var(--color-primary);
-            flex-shrink: 0;
-        }
-
-        /* Contact CTA Section */
-        .contact-section {
-            background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-slate-dark) 100%);
-            border-radius: var(--radius-xl);
-            padding: 48px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 50%, rgba(56, 178, 172, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 70% 50%, rgba(56, 178, 172, 0.15) 0%, transparent 40%);
-            pointer-events: none;
-        }
-
-        .contact-section-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .contact-section h2 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 12px;
-        }
-
-        .contact-section p {
-            font-size: 1.05rem;
-            color: rgba(255, 255, 255, 0.85);
-            max-width: 500px;
-            margin: 0 auto 28px;
-            line-height: 1.6;
-        }
-
-        .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 16px 32px;
-            background: white;
-            color: var(--color-slate-dark);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            border-radius: var(--radius-lg);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .contact-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .contact-btn svg {
-            width: 22px;
-            height: 22px;
-        }
-
-        /* Response Time Badge */
-        .response-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 20px;
-            padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: var(--radius-full);
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.85rem;
-        }
-
-        .response-badge svg {
-            width: 16px;
-            height: 16px;
-            stroke: var(--color-primary-light);
-        }
-    </style>
 
     <!-- Apply theme immediately to prevent flash -->
     <script>
@@ -452,136 +97,36 @@
     <!-- Header (loaded dynamically) -->
     <div id="header-placeholder"></div>
 
-    <!-- Hero Section -->
-    <section class="support-hero">
-        <div class="support-hero-content">
-            <h1>How Can We <span>Help</span>?</h1>
-            <p>Find answers, report issues, or get in touch with us. We're here to make your experience better.</p>
-        </div>
-    </section>
-
     <!-- Main Content -->
-    <main class="support-content">
-        <!-- Support Cards -->
-        <div class="support-cards">
-            <!-- Report Issue -->
-            <div class="support-card">
-                <div class="support-card-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10" />
-                        <line x1="12" y1="8" x2="12" y2="12" />
-                        <line x1="12" y1="16" x2="12.01" y2="16" />
-                    </svg>
-                </div>
-                <h3>Report an Issue</h3>
-                <p>Found a bug or conversion error? Let us know so we can investigate and fix it quickly.</p>
-                <a href="https://github.com/ItoMcovertor/issues" target="_blank" rel="noopener"
-                    class="support-card-link">
-                    Open an Issue
+    <main class="support">
+        <!-- Hero Search Section -->
+        <section class="support__hero" id="help">
+            <h1 class="support__title">How can we <span>help</span>?</h1>
+            <p class="support__subtitle">Ask anything about ItoMcovertor</p>
+            <div class="support__search">
+                <svg class="support__search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <input type="text" class="support__search-input" id="supportSearch"
+                    placeholder="Try: How do I convert miles to kilometers?" autocomplete="off">
+                <button class="support__search-clear" id="searchClear" aria-label="Clear search">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                        <polyline points="12 5 19 12 12 19" />
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
                     </svg>
-                </a>
+                </button>
             </div>
-
-            <!-- Feature Request -->
-            <div class="support-card">
-                <div class="support-card-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                    </svg>
-                </div>
-                <h3>Request a Feature</h3>
-                <p>Have an idea for a new unit or feature? We'd love to hear your suggestions and feedback.</p>
-                <a href="https://github.com/ItoMcovertor/discussions" target="_blank" rel="noopener"
-                    class="support-card-link">
-                    Start a Discussion
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                        <polyline points="12 5 19 12 12 19" />
-                    </svg>
-                </a>
-            </div>
-
-            <!-- Documentation -->
-            <div class="support-card">
-                <div class="support-card-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-                    </svg>
-                </div>
-                <h3>Documentation</h3>
-                <p>Check out our FAQ for common questions, or view the changelog for recent updates.</p>
-                <a href="index.html#faq" class="support-card-link">
-                    View FAQ
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                        <polyline points="12 5 19 12 12 19" />
-                    </svg>
-                </a>
-            </div>
-        </div>
-
-        <!-- Quick Links -->
-        <section class="quick-links-section">
-            <div class="section-header">
-                <div class="section-header-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-                    </svg>
-                </div>
-                <h2>Quick Links</h2>
-            </div>
-            <div class="quick-links-grid">
-                <a href="index.html#converter" class="quick-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M7 16V4M7 4L3 8M7 4L11 8M17 8v12M17 20l4-4M17 20l-4-4" />
-                    </svg>
-                    Unit Converter
-                </a>
-                <a href="changelog.html" class="quick-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                        <polyline points="14 2 14 8 20 8" />
-                        <line x1="16" y1="13" x2="8" y2="13" />
-                        <line x1="16" y1="17" x2="8" y2="17" />
-                    </svg>
-                    Changelog
-                </a>
-                <a href="privacy.html" class="quick-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg>
-                    Privacy Policy
-                </a>
-                <a href="https://chrome.google.com/webstore" target="_blank" rel="noopener" class="quick-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                        <path d="M7 7h.01M11 7h.01M7 11h.01" />
-                    </svg>
-                    Get Extension
-                </a>
-            </div>
+            <!-- Smart Search Results -->
+            <div class="support__results" id="searchResults"></div>
         </section>
 
-        <!-- Troubleshooting Section -->
-        <section class="troubleshooting-section">
-            <div class="section-header">
-                <div class="section-header-icon">
+        <!-- Top Questions Section - 4 Cards -->
+        <section class="faq" id="faq">
+            <div class="faq__header">
+                <div class="faq__header-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="10" />
@@ -589,95 +134,143 @@
                         <line x1="12" y1="17" x2="12.01" y2="17" />
                     </svg>
                 </div>
-                <h2>Troubleshooting</h2>
+                <h2>Top Questions</h2>
             </div>
 
-            <div class="troubleshooting-grid">
-                <div class="troubleshooting-item">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
-                            <polyline points="17 21 17 13 7 13 7 21" />
-                            <polyline points="7 3 7 8 15 8" />
+            <div class="faq__grid">
+                <!-- Card 1: What is ItoMcovertor -->
+                <div class="faq__card">
+                    <div class="faq__card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
                         </svg>
-                        Conversions not saving?
-                    </h3>
-                    <p>Make sure "Auto-save History" is enabled in Settings. Also check that your browser allows
-                        localStorage for this site.</p>
+                    </div>
+                    <h3>What is ItoMcovertor?</h3>
+                    <p>A free, fast unit converter for Imperial & Metric. Available as web app, browser extension, and
+                        CLI with 120+ conversions.</p>
                 </div>
 
-                <div class="troubleshooting-item">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="5" />
-                            <line x1="12" y1="1" x2="12" y2="3" />
-                            <line x1="12" y1="21" x2="12" y2="23" />
-                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                            <line x1="1" y1="12" x2="3" y2="12" />
-                            <line x1="21" y1="12" x2="23" y2="12" />
-                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                <!-- Card 2: How to use extension -->
+                <div class="faq__card">
+                    <div class="faq__card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                            <polyline points="15 3 21 3 21 9" />
+                            <line x1="10" y1="14" x2="21" y2="3" />
                         </svg>
-                        Theme not persisting?
-                    </h3>
-                    <p>Your theme preference is saved in localStorage. If it resets, your browser may be clearing site
-                        data on close.</p>
+                    </div>
+                    <h3>How do I use the extension?</h3>
+                    <p>Highlight any measurement on a webpage (like "5 miles"). The extension auto-detects and shows a
+                        conversion tooltip.</p>
                 </div>
 
-                <div class="troubleshooting-item">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                            <path d="M7 7h.01M11 7h.01M7 11h.01" />
+                <!-- Card 3: What units are supported -->
+                <div class="faq__card">
+                    <div class="faq__card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="8" y1="6" x2="21" y2="6" />
+                            <line x1="8" y1="12" x2="21" y2="12" />
+                            <line x1="8" y1="18" x2="21" y2="18" />
+                            <line x1="3" y1="6" x2="3.01" y2="6" />
+                            <line x1="3" y1="12" x2="3.01" y2="12" />
+                            <line x1="3" y1="18" x2="3.01" y2="18" />
                         </svg>
-                        Extension not working?
-                    </h3>
-                    <p>Try disabling and re-enabling the extension. If the issue persists, uninstall and reinstall from
-                        the Web Store.</p>
+                    </div>
+                    <h3>What units can I convert?</h3>
+                    <p>Length, Area, Volume, Mass, Temperature, Speed, Pressure, Energy, Power, Force & Nautical — 12
+                        categories total.</p>
                 </div>
 
-                <div class="troubleshooting-item">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10" />
-                            <line x1="2" y1="12" x2="22" y2="12" />
-                            <path
-                                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                <!-- Card 4: Offline & Privacy -->
+                <div class="faq__card">
+                    <div class="faq__card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                         </svg>
-                        Page not loading correctly?
-                    </h3>
-                    <p>Clear your browser cache and refresh the page. Ensure you have a stable internet connection for
-                        the initial load.</p>
+                    </div>
+                    <h3>Does it work offline? Is it private?</h3>
+                    <p>Yes! Extension works 100% offline. No data collected — everything runs locally in your browser.
+                    </p>
                 </div>
             </div>
         </section>
 
-        <!-- Contact CTA Section -->
-        <section class="contact-section">
-            <div class="contact-section-content">
+        <!-- Support Section -->
+        <section class="support__section">
+            <div class="faq__header">
+                <div class="faq__header-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                </div>
+                <h2>Get Support</h2>
+            </div>
+
+            <div class="support__grid">
+                <div class="support__card">
+                    <div class="support__card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="12" />
+                            <line x1="12" y1="16" x2="12.01" y2="16" />
+                        </svg>
+                    </div>
+                    <h3>Report an Issue</h3>
+                    <p>Found a bug or conversion error? Let us know so we can fix it.</p>
+                    <a href="https://github.com/ItoMcovertor/issues" target="_blank" rel="noopener"
+                        class="support__card-link">
+                        Open Issue
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="support__card">
+                    <div class="support__card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>
+                    </div>
+                    <h3>Request a Feature</h3>
+                    <p>Have an idea for a new unit or feature? We'd love to hear it.</p>
+                    <a href="https://github.com/ItoMcovertor/discussions" target="_blank" rel="noopener"
+                        class="support__card-link">
+                        Start Discussion
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact CTA -->
+        <section class="contact">
+            <div class="contact__content">
                 <h2>Still Need Help?</h2>
-                <p>For general inquiries, partnership opportunities, or anything else, reach out to us through GitHub.
-                </p>
-                <a href="https://github.com/ItoMcovertor" target="_blank" rel="noopener" class="contact-btn">
+                <p>Reach out to us through GitHub for any other questions or inquiries.</p>
+                <a href="https://github.com/ItoMcovertor" target="_blank" rel="noopener" class="contact__btn">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                         <path
                             d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                     </svg>
-                    Visit our GitHub
+                    Visit GitHub
                 </a>
-                <div class="response-badge">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10" />
-                        <polyline points="12 6 12 12 16 14" />
-                    </svg>
-                    Typical response time: 1-2 business days
-                </div>
             </div>
         </section>
     </main>
@@ -687,6 +280,216 @@
 
     <!-- Component Loader -->
     <script src="js/components.js"></script>
+
+    <!-- Smart Search Script -->
+    <script>
+        // Knowledge base for smart search
+        const knowledgeBase = [
+            {
+                keywords: ['convert', 'miles', 'kilometers', 'km', 'mile', 'length', 'distance'],
+                question: 'How do I convert miles to kilometers?',
+                answer: 'Select "Length" category, choose "Miles" as input and "Kilometers" as output, then enter your value. Or use the extension by highlighting text like "5 miles" on any webpage.',
+                action: { type: 'link', url: 'index.html', label: 'Open Converter' }
+            },
+            {
+                keywords: ['convert', 'fahrenheit', 'celsius', 'temperature', 'degrees', 'temp'],
+                question: 'How do I convert Fahrenheit to Celsius?',
+                answer: 'Select "Temperature" category, choose "Fahrenheit" as input and "Celsius" as output. The formula is (°F − 32) × 5/9 = °C, but we do the math for you!',
+                action: { type: 'link', url: 'index.html', label: 'Open Converter' }
+            },
+            {
+                keywords: ['extension', 'browser', 'install', 'chrome', 'firefox', 'edge', 'safari', 'add'],
+                question: 'How do I install the browser extension?',
+                answer: 'Visit our download page and click on your browser\'s store link. The extension is available for Chrome, Firefox, Edge, and Safari.',
+                action: { type: 'link', url: 'index.html#download', label: 'Download Extension' }
+            },
+            {
+                keywords: ['highlight', 'text', 'select', 'auto', 'detect', 'webpage', 'page', 'tooltip'],
+                question: 'How does the auto-detection work?',
+                answer: 'Simply highlight any measurement text on a webpage (e.g., "10 pounds" or "100 km"). The extension detects the unit and shows a conversion tooltip instantly.',
+                action: null
+            },
+            {
+                keywords: ['offline', 'internet', 'connection', 'without', 'work'],
+                question: 'Does ItoMcovertor work offline?',
+                answer: 'Yes! The browser extension works 100% offline after installation. The web app needs internet to load initially but runs all calculations locally.',
+                action: null
+            },
+            {
+                keywords: ['privacy', 'data', 'collect', 'tracking', 'personal', 'information', 'safe', 'secure'],
+                question: 'Is my data private and secure?',
+                answer: 'Absolutely. We collect zero data. All conversions run locally in your browser. No tracking, no analytics, no server calls. Your privacy is fully protected.',
+                action: { type: 'link', url: 'privacy.html', label: 'Privacy Policy' }
+            },
+            {
+                keywords: ['free', 'cost', 'price', 'pay', 'subscription', 'premium', 'money'],
+                question: 'Is ItoMcovertor free?',
+                answer: 'Yes, ItoMcovertor is 100% free forever. No ads, no premium features, no subscriptions. Everything is completely free to use.',
+                action: null
+            },
+            {
+                keywords: ['history', 'save', 'remember', 'previous', 'past', 'conversions'],
+                question: 'How do I save my conversion history?',
+                answer: 'Go to Settings and enable "Auto-save History". Your conversions will be stored locally on your device and never leave your browser.',
+                action: null
+            },
+            {
+                keywords: ['theme', 'dark', 'light', 'mode', 'appearance', 'color'],
+                question: 'How do I change the theme?',
+                answer: 'Click the sun/moon icon in the navigation bar to toggle between light and dark mode. Your preference is saved automatically.',
+                action: null
+            },
+            {
+                keywords: ['cli', 'command', 'line', 'terminal', 'dotnet', 'console'],
+                question: 'How do I use the CLI tool?',
+                answer: 'Install via dotnet: "dotnet tool install -g ItoMcovertor". Then use commands like "itom 5 miles km" to convert directly from your terminal.',
+                action: { type: 'link', url: 'index.html#download', label: 'Get CLI Tool' }
+            },
+            {
+                keywords: ['weight', 'mass', 'pounds', 'kilograms', 'kg', 'lb', 'lbs', 'ounces', 'grams'],
+                question: 'How do I convert weight/mass units?',
+                answer: 'Select "Mass" category, choose your input unit (e.g., Pounds) and output unit (e.g., Kilograms). We support all common weight units including ounces, grams, and tonnes.',
+                action: { type: 'link', url: 'index.html', label: 'Open Converter' }
+            },
+            {
+                keywords: ['volume', 'liters', 'gallons', 'cups', 'fl', 'oz', 'liquid', 'fluid'],
+                question: 'How do I convert volume/liquid units?',
+                answer: 'Select "Volume (Liquid)" category for fluid measurements like gallons, liters, cups, and fluid ounces. Perfect for cooking and recipe conversions!',
+                action: { type: 'link', url: 'index.html', label: 'Open Converter' }
+            },
+            {
+                keywords: ['bug', 'error', 'wrong', 'incorrect', 'problem', 'issue', 'broken', 'fix'],
+                question: 'How do I report a bug or error?',
+                answer: 'Please open an issue on our GitHub repository with details about the problem. Include the conversion you tried and what went wrong.',
+                action: { type: 'link', url: 'https://github.com/ItoMcovertor/issues', label: 'Report Issue', external: true }
+            },
+            {
+                keywords: ['feature', 'request', 'suggest', 'idea', 'new', 'add', 'want'],
+                question: 'How do I request a new feature?',
+                answer: 'We love feedback! Start a discussion on our GitHub page with your idea. We review all suggestions and prioritize based on community interest.',
+                action: { type: 'link', url: 'https://github.com/ItoMcovertor/discussions', label: 'Start Discussion', external: true }
+            },
+            {
+                keywords: ['speed', 'mph', 'kmh', 'knots', 'velocity'],
+                question: 'How do I convert speed units?',
+                answer: 'Select "Speed" category for conversions between mph, km/h, m/s, knots, and more. Great for travel and navigation!',
+                action: { type: 'link', url: 'index.html', label: 'Open Converter' }
+            }
+        ];
+
+        // Smart search function with fuzzy matching
+        function smartSearch(query) {
+            if (!query || query.length < 2) return [];
+
+            const queryWords = query.toLowerCase().split(/\s+/).filter(w => w.length > 1);
+            const results = [];
+
+            knowledgeBase.forEach(item => {
+                let score = 0;
+
+                queryWords.forEach(word => {
+                    // Exact keyword match
+                    if (item.keywords.some(k => k === word)) {
+                        score += 10;
+                    }
+                    // Partial keyword match
+                    else if (item.keywords.some(k => k.includes(word) || word.includes(k))) {
+                        score += 5;
+                    }
+                    // Question/answer contains word
+                    if (item.question.toLowerCase().includes(word)) {
+                        score += 3;
+                    }
+                    if (item.answer.toLowerCase().includes(word)) {
+                        score += 2;
+                    }
+                });
+
+                if (score > 0) {
+                    results.push({ ...item, score });
+                }
+            });
+
+            // Sort by score and return top 5
+            return results.sort((a, b) => b.score - a.score).slice(0, 5);
+        }
+
+        // Render search results
+        function renderResults(results) {
+            const container = document.getElementById('searchResults');
+
+            if (results.length === 0) {
+                container.innerHTML = `
+                    <div class="support__no-results">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            <line x1="8" y1="11" x2="14" y2="11"/>
+                        </svg>
+                        <p>No results found. Try different keywords or <a href="https://github.com/ItoMcovertor/discussions" target="_blank">ask us directly</a>.</p>
+                    </div>
+                `;
+                container.classList.add('support__results--visible');
+                return;
+            }
+
+            let html = '<div class="support__results-list">';
+            results.forEach(result => {
+                html += `
+                    <div class="support__result-item">
+                        <h4>${result.question}</h4>
+                        <p>${result.answer}</p>
+                        ${result.action ? `
+                            <a href="${result.action.url}" class="support__result-action" ${result.action.external ? 'target="_blank" rel="noopener"' : ''}>
+                                ${result.action.label}
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                    <polyline points="12 5 19 12 12 19"/>
+                                </svg>
+                            </a>
+                        ` : ''}
+                    </div>
+                `;
+            });
+            html += '</div>';
+
+            container.innerHTML = html;
+            container.classList.add('support__results--visible');
+        }
+
+        // Event listeners
+        const searchInput = document.getElementById('supportSearch');
+        const searchClear = document.getElementById('searchClear');
+        const searchResults = document.getElementById('searchResults');
+        let searchTimeout;
+
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.trim();
+            searchClear.classList.toggle('support__search-clear--visible', query.length > 0);
+
+            clearTimeout(searchTimeout);
+
+            if (query.length < 2) {
+                searchResults.classList.remove('support__results--visible');
+                searchResults.innerHTML = '';
+                return;
+            }
+
+            // Debounce search
+            searchTimeout = setTimeout(() => {
+                const results = smartSearch(query);
+                renderResults(results);
+            }, 200);
+        });
+
+        searchClear.addEventListener('click', () => {
+            searchInput.value = '';
+            searchInput.focus();
+            searchClear.classList.remove('support__search-clear--visible');
+            searchResults.classList.remove('support__results--visible');
+            searchResults.innerHTML = '';
+        });
+    </script>
 </body>
 
 </html>
